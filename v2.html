@@ -59,7 +59,7 @@
           <button onclick="switchView('tracking')" class="px-4 py-2 border border-brand-200 text-brand-600 text-sm font-medium rounded-lg hover:bg-brand-50 transition">
             Lacak Cepat 🔍
           </button>
-          <button onclick="openLoginModal()" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium rounded-lg shadow-lg">
+          <button onclick="openLoginModal('karyawan')" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium rounded-lg shadow-lg">
             Masuk POS 🚪
           </button>
         </div>
@@ -113,6 +113,143 @@
             <div class="text-3xl mb-4">👟</div>
             <h3 class="font-bold text-lg mb-2">Spa Sepatu</h3>
             <p class="text-sm text-slate-600">Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-6">
+          <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">Teknologi Sinkronisasi Multi-Outlet Instan</h2>
+          <p class="text-slate-600">Kami mengerti tantangan mengelola banyak cabang outlet laundry. imlaundry hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.</p>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <span class="text-brand-600 text-lg">✓</span>
+              <div>
+                <h4 class="font-bold text-slate-800">Sinkronisasi Spreadsheet Otomatis</h4>
+                <p class="text-sm text-slate-600">Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <span class="text-brand-600 text-lg">✓</span>
+              <div>
+                <h4 class="font-bold text-slate-800">Hak Akses Fleksibel Kasir &amp; Owner</h4>
+                <p class="text-sm text-slate-600">Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <span class="text-brand-600 text-lg">✓</span>
+              <div>
+                <h4 class="font-bold text-slate-800">Lacak Status via QR Code</h4>
+                <p class="text-sm text-slate-600">Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
+            <div class="text-4xl font-extrabold text-brand-600 mb-2">99.8%</div>
+            <p class="text-sm font-semibold text-slate-700">Tingkat Kepuasan</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
+            <div class="text-4xl font-extrabold text-brand-600 mb-2">10k+</div>
+            <p class="text-sm font-semibold text-slate-700">Helai Pakaian Bersih/Hari</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
+            <div class="text-4xl font-extrabold text-brand-600 mb-2">0s</div>
+            <p class="text-sm font-semibold text-slate-700">Tunda Sinkron</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
+            <div class="text-4xl font-extrabold text-brand-600 mb-2">100%</div>
+            <p class="text-sm font-semibold text-slate-700">Deterjen Ramah Lingkungan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Packages Section -->
+    <section id="pricing" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
+        <p class="text-slate-600 max-w-xl mx-auto mb-16">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Card 1 -->
+          <div class="border border-slate-200 rounded-2xl p-8 bg-white hover:border-brand-500 transition relative flex flex-col justify-between text-left">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Cuci Lipat Reguler</h3>
+              <p class="text-slate-500 text-sm mb-6">Pilihan hemat untuk pakaian harian sehari-hari.</p>
+              <div class="text-3xl font-extrabold text-slate-900 mb-6">Rp 8.000 <span class="text-sm text-slate-400 font-medium">/ kg</span></div>
+              <ul class="space-y-3 text-sm text-slate-600 mb-8">
+                <li>✓ Parfum eksklusif &amp; higienis</li>
+                <li>✓ Setrika uap antipudar</li>
+                <li>✓ Selesai dalam waktu 48 jam</li>
+              </ul>
+            </div>
+            <button onclick="switchView('tracking')" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-lg transition text-center text-sm">
+              Lacak Status Pesanan
+            </button>
+          </div>
+          <!-- Card 2 -->
+          <div class="border-2 border-brand-500 rounded-2xl p-8 bg-brand-50/50 hover:shadow-xl transition relative flex flex-col justify-between text-left">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Paling Populer</div>
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Cuci &amp; Lipat Ekspres</h3>
+              <p class="text-slate-500 text-sm mb-6">Cepat selesai untuk kebutuhan darurat Anda.</p>
+              <div class="text-3xl font-extrabold text-slate-900 mb-6">Rp 15.000 <span class="text-sm text-slate-400 font-medium">/ kg</span></div>
+              <ul class="space-y-3 text-sm text-slate-600 mb-8">
+                <li>✓ Antrean cuci prioritas khusus</li>
+                <li>✓ Siap diambil dalam waktu 24 jam</li>
+                <li>✓ Setrika ganda ekstra rapi</li>
+              </ul>
+            </div>
+            <button onclick="openLoginModal('karyawan')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition text-center text-sm shadow-md">
+              Proses Sekarang
+            </button>
+          </div>
+          <!-- Card 3 -->
+          <div class="border border-slate-200 rounded-2xl p-8 bg-white hover:border-brand-500 transition relative flex flex-col justify-between text-left">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Jas &amp; Premium Wear</h3>
+              <p class="text-slate-500 text-sm mb-6">Penanganan profesional per helai pakaian.</p>
+              <div class="text-3xl font-extrabold text-slate-900 mb-6">Rp 50.000 <span class="text-sm text-slate-400 font-medium">/ pcs</span></div>
+              <ul class="space-y-3 text-sm text-slate-600 mb-8">
+                <li>✓ Dry cleaning ramah serat kain</li>
+                <li>✓ Kemasan hanger gantung khusus</li>
+                <li>✓ Treatment noda membandel</li>
+              </ul>
+            </div>
+            <button onclick="switchView('tracking')" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-lg transition text-center text-sm">
+              Lacak Progres Jas
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-slate-900 mb-16">Kisah Puas Pelanggan Setia kami</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="flex text-amber-400 mb-4">★★★★★</div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">"Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya apakah masih dicuci atau sudah siap ambil!"</p>
+            <div class="font-bold text-slate-800 text-sm">Sarah Rahmawati</div>
+            <p class="text-xs text-slate-400">Ibu Rumah Tangga</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="flex text-amber-400 mb-4">★★★★★</div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">"Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian dan komparasi omset antar cabang tampil transparan."</p>
+            <div class="font-bold text-slate-800 text-sm">Bambang Susanto</div>
+            <p class="text-xs text-slate-400">Pemilik Multi-Outlet</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="flex text-amber-400 mb-4">★★★★★</div>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">"Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional."</p>
+            <div class="font-bold text-slate-800 text-sm">Rian Mahendra</div>
+            <p class="text-xs text-slate-400">Kasir Laundry Utama</p>
           </div>
         </div>
       </div>
@@ -856,7 +993,7 @@
     // MODULE A: CONFIG & GLOBAL STATES
     // ==========================================
     const CONFIG = {
-      // URL Web App Google Apps Script Anda:
+      // URL Web App Google Apps Script Anda (SUDAH DIPERBARUI):
       API_URL: "https://script.google.com/macros/s/AKfycbyh-3ba4r8cRJkVnMC0afWPBtq92HnNAJnSMo62GoXFx9hcjQxIq7FUwNmspB-OlljO/exec", 
       MOCK_MODE: false,
     };
