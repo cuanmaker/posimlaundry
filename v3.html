@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>imlaundry POS - Kasir & Lacak Status Laundry</title>
+  <title>iMersLonry POS - Kasir & Lacak Status Laundry</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -56,7 +56,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div class="flex items-center space-x-2">
           <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-brand-500/20" id="landing-icon-badge">🧼</div>
-          <span class="text-2xl font-bold tracking-tight text-brand-600 logo-font" id="landing-brand-text">imlaundry</span>
+          <span class="text-2xl font-bold tracking-tight text-brand-600 logo-font" id="landing-brand-text">iMersLonry</span>
         </div>
         <div class="flex items-center space-x-3">
           <button onclick="switchView('tracking')" class="px-4 py-2 border border-brand-200 text-brand-600 text-sm font-semibold rounded-lg hover:bg-brand-50 transition">
@@ -69,8 +69,8 @@
       </div>
     </header>
 
-    <!-- HERO SECTION DENGAN GRADIENT KEREN -->
-    <section class="relative bg-gradient-to-br from-brand-700 via-brand-500 to-cyan-400 py-24 lg:py-36 overflow-hidden text-center shadow-inner">
+    <!-- HERO SECTION DINAMIS (Warna Dikontrol dari Javascript/Settings) -->
+    <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500" style="background: linear-gradient(135deg, #0369a1, #22d3ee);">
       <!-- Ornamen Pattern Transparan -->
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30"></div>
       
@@ -78,18 +78,16 @@
         <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-md border border-white/30 mb-6 shadow-sm">
           ✨ Sistem Kasir & Pelacakan Cerdas
         </span>
-        <h1 id="landing-headline" class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 drop-shadow-md">
+        <!-- Headline Dinamis Warnanya -->
+        <h1 id="landing-headline" class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 drop-shadow-md transition-colors duration-500" style="color: #ffffff;">
           Sistem POS Kasir & Portal Pelanggan Laundry
         </h1>
-        <p id="landing-subheadline" class="text-lg sm:text-xl text-brand-50 mb-10 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
+        <p id="landing-subheadline" class="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
           Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!
         </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <button onclick="openLoginModal('karyawan')" class="px-8 py-4 bg-slate-900 hover:bg-black text-white font-bold rounded-xl transition shadow-2xl hover:-translate-y-1">
-            👨‍💻 Masuk Area Karyawan
-          </button>
-          <button onclick="openLoginModal('pelanggan')" class="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/50 backdrop-blur-md text-white font-bold rounded-xl transition shadow-lg hover:-translate-y-1">
-            👕 Masuk Portal Pelanggan
+        <div class="flex justify-center">
+          <button onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 bg-white text-brand-700 hover:text-brand-800 font-extrabold rounded-xl transition shadow-2xl hover:-translate-y-1">
+            💰 Lihat Daftar Harga
           </button>
         </div>
       </div>
@@ -132,7 +130,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div class="space-y-6">
             <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">Teknologi Sinkronisasi Multi-Outlet Instan</h2>
-            <p class="text-slate-600">Kami mengerti tantangan mengelola banyak cabang outlet laundry. imlaundry hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.</p>
+            <p class="text-slate-600">Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.</p>
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <span class="text-brand-600 text-lg">✓</span>
@@ -183,8 +181,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
           <p class="text-slate-600 max-w-xl mx-auto mb-16">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
+          
+          <!-- GRID KARTU HARGA DINAMIS (DARI DATABASE SERVICES) -->
           <div id="landing-pricing-grid" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <!-- Akan di-render otomatis oleh JS berdasarkan data layanan -->
+            <!-- Kartu Harga akan diinjek otomatis oleh javascript -->
           </div>
         </div>
       </section>
@@ -221,7 +221,7 @@
     <footer class="bg-slate-900 text-white py-12 border-t border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
         <div>
-          <div id="footer-brand-text" class="text-2xl font-bold logo-font text-brand-400 mb-2">imlaundry</div>
+          <div id="footer-brand-text" class="text-2xl font-bold logo-font text-brand-400 mb-2">iMersLonry</div>
           <p class="text-slate-400 text-sm">Sistem Kasir Modern & Pelacakan Laundry Terintegrasi.</p>
         </div>
         <div class="flex gap-4">
@@ -237,7 +237,7 @@
   <!-- 2. MULTI-ROLE LOGIN & FORGOT PASSWORD MODALS -->
   <!-- ============================================== -->
   <div id="login-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-    <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-slate-100 relative mx-4">
       <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl">✕</button>
       
       <!-- Tab Switcher -->
@@ -274,7 +274,7 @@
           <p class="font-bold mb-1">Panduan Demo Cepat:</p>
           <p>Owner: <span class="font-mono bg-white border px-1">owner</span> / <span class="font-mono bg-white border px-1">owner123</span></p>
           <p>Admin: <span class="font-mono bg-white border px-1">admin</span> / <span class="font-mono bg-white border px-1">admin123</span></p>
-          <p>Kasir: <span class="font-mono bg-white border px-1">cashier</span> / <span class="font-mono bg-white border px-1">cashier123</span></p>
+          <p>Kasir: <span class="font-mono bg-white border px-1">kasir</span> / <span class="font-mono bg-white border px-1">kasir123</span></p>
         </div>
       </form>
     </div>
@@ -311,7 +311,7 @@
           ← Kembali
         </button>
         <div class="flex items-center space-x-2">
-          <span class="text-xl font-bold tracking-tight text-brand-600 logo-font" id="tracking-brand-text">imlaundry</span>
+          <span class="text-xl font-bold tracking-tight text-brand-600 logo-font" id="tracking-brand-text">iMersLonry</span>
         </div>
       </div>
 
@@ -367,7 +367,7 @@
       <div class="p-6 border-b border-slate-800 flex justify-between items-center">
         <div class="flex items-center space-x-2">
           <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white" id="sidebar-icon">🧼</div>
-          <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">imlaundry</span>
+          <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
         <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-emerald-500" title="Online Sync Active"></span>
       </div>
@@ -572,41 +572,54 @@
 
         <!-- TAB: SETTINGS & WA GATEWAY -->
         <div id="tab-settings" class="tab-content hidden space-y-6">
-          <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-            <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Desain Landing Page</h3>
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Landing Page Website</label>
-                <select id="set-landing-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
-                  <option value="ON">ON - Tampilkan Semua Fitur Promo</option>
-                  <option value="OFF">OFF - Hanya Tampilkan Login Saja</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon / Emoji Logo Toko</label>
-                <input id="set-brand-icon" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
-              </div>
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero (Headline Besar)</label>
-              <input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Deskripsi Singkat</label>
-              <input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
-            </div>
-          </div>
-
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-              <h3 class="font-bold text-slate-800 text-lg">Parameter Identitas Toko Pusat</h3>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Brand Usaha</label><input id="set-store-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alamat Induk Pusat</label><input id="set-store-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan di Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+            
+            <div class="space-y-6">
+              <!-- Konfigurasi Teks Landing Page -->
+              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Teks Landing Page</h3>
+                <div>
+                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Landing Page Website</label>
+                  <select id="set-landing-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
+                    <option value="ON">ON - Tampilkan Semua Fitur Promo</option>
+                    <option value="OFF">OFF - Hanya Tampilkan Login Saja</option>
+                  </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon / Emoji Logo</label><input id="set-brand-icon" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Brand Utama</label><input id="set-store-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                </div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Deskripsi Singkat</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              </div>
+
+              <!-- Tema Warna Color Picker -->
+              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-800 text-lg">Tema Warna (Color Picker) Beranda</h3>
+                <div>
+                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero</label>
+                  <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
+                    <option value="gradient">Gradient (Dua Warna)</option>
+                    <option value="solid">Solid (Satu Warna Saja)</option>
+                  </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 1</label><input id="set-hero-bg-color1" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 2 (Jika Gradient)</label><input id="set-hero-bg-color2" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+                </div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Headline)</label><input id="set-hero-title-color" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+              </div>
             </div>
 
             <div class="space-y-6">
+              <!-- Parameter Identitas Toko -->
+              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-800 text-lg">Parameter Identitas Toko Pusat</h3>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alamat Induk Pusat</label><input id="set-store-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan di Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              </div>
+
               <!-- Konfigurasi WhatsApp API -->
               <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
                 <h3 class="font-bold text-slate-800 text-lg">Konfigurasi WhatsApp API Gateway</h3>
@@ -620,8 +633,8 @@
                 </div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">API Key / Token Rahasia Akun</label><input id="set-wa-api" type="password" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor Pengirim (Hanya untuk WAPlus)</label><input id="set-wa-sender" type="text" placeholder="Contoh: 62812345..." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div class="pt-2">
-                  <button onclick="saveGlobalSettings()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition">Simpan Semua Pengaturan ke Server</button>
+                <div class="pt-4 border-t border-slate-100 mt-2">
+                  <button onclick="saveGlobalSettings()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server</button>
                 </div>
               </div>
               
@@ -791,7 +804,7 @@
       <div class="space-y-4">
         <input type="hidden" id="serv-id" />
         <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Paket / Layanan</label><input id="serv-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deksripsi Manfaat (Poin Keunggulan)</label><input id="serv-desc" type="text" placeholder="Gunakan tanda titik (.) untuk memisah poin" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deksripsi Manfaat (Pisahkan Poin dengan Titik)</label><input id="serv-desc" type="text" placeholder="Wangi tahan lama. Setrika uap. Antrean cepat." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
         <div class="grid grid-cols-2 gap-4">
           <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sistem Hitung</label><select id="serv-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="kilogram">Kiloan (Kg)</option><option value="item">Satuan Biji (Pcs)</option></select></div>
           <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tarif Harga (Rp)</label><input id="serv-price" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
@@ -981,7 +994,6 @@
     // MODULE A: CONFIG & GLOBAL STATES
     // ==========================================
     const CONFIG = {
-      // URL Web App Google Apps Script Anda SUDAH AKTIF:
       API_URL: "https://script.google.com/macros/s/AKfycbyh-3ba4r8cRJkVnMC0afWPBtq92HnNAJnSMo62GoXFx9hcjQxIq7FUwNmspB-OlljO/exec", 
       MOCK_MODE: false,
     };
@@ -992,7 +1004,8 @@
       settings: { 
         store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih banyak!", 
         wa_provider: "none", wa_api_key: "", wa_sender: "",
-        landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!"
+        landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!",
+        hero_bg_type: "gradient", hero_bg_color1: "#0369a1", hero_bg_color2: "#22d3ee", hero_title_color: "#ffffff"
       }
     };
 
@@ -1050,7 +1063,7 @@
     // MODULE C: LOCALSTORAGE ENGINE
     // ==========================================
     const INITIAL_DUMMY_DATA = {
-      settings: { store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih atas kepercayaannya!", wa_provider: "none", wa_api_key: "", wa_sender: "", landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!" },
+      settings: { store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih atas kepercayaannya!", wa_provider: "none", wa_api_key: "", wa_sender: "", landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", hero_bg_type: "gradient", hero_bg_color1: "#0369a1", hero_bg_color2: "#22d3ee", hero_title_color: "#ffffff" },
       outlets: [
         { id: "OUT-001", name: "Cabang Utama Dago", address: "Jl. Dago No. 45", phone: "08111222333", status: "Active", created_at: "2026-06-01 10:00:00" }
       ],
@@ -1062,8 +1075,8 @@
       ],
       services: [
         { id: "SERV-001", name: "Cuci Lipat Reguler", description: "Pilihan hemat harian. Parfum eksklusif & higienis. Selesai 2 Hari.", type: "kilogram", price: 8000, estimate_days: 2, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" },
-        { id: "SERV-002", name: "Cuci Setrika Ekspres", description: "Antrean cuci prioritas. Siap dalam 24 jam. Setrika rapi ganda.", type: "kilogram", price: 15000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:00:00" },
-        { id: "SERV-003", name: "Jas & Premium Wear", description: "Perlakuan dry cleaning lembut. Hanger pack eksklusif. Treatment anti noda.", type: "item", price: 50000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:10:00" }
+        { id: "SERV-002", name: "Cuci Setrika Ekspres", description: "Antrean cuci prioritas khusus. Siap dalam 24 jam. Setrika ganda ekstra rapi.", type: "kilogram", price: 15000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:00:00" },
+        { id: "SERV-003", name: "Jas & Premium Wear", description: "Dry cleaning ramah serat kain. Kemasan hanger gantung khusus. Treatment noda membandel.", type: "item", price: 50000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:10:00" }
       ],
       transactions: [],
       expenses: [],
@@ -1220,7 +1233,7 @@
         user = APP_STATE.users.find(u => u.username === idField && u.password === passField);
       } else {
         user = APP_STATE.customers.find(c => c.phone === idField && c.password === passField);
-        if(user) user.role = "Customer"; // Virtual identitas pelacakan
+        if(user) user.role = "Customer";
       }
 
       if (user) {
@@ -1303,7 +1316,7 @@
       document.querySelector("[onclick=\"changeTab('profile-security')\"]").classList.remove("hidden");
     }
 
-    // Mengaplikasikan konfigurasi kustomisasi Landing Page
+    // Mengaplikasikan konfigurasi UI dan Harga untuk Landing Page
     function applyDynamicLandingPage() {
       const set = APP_STATE.settings;
       
@@ -1314,9 +1327,17 @@
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
-      // Update the texts exactly as requested, replacing only if changed by user
       document.getElementById("landing-headline").innerText = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
       document.getElementById("landing-subheadline").innerText = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
+      
+      // Mengubah Warna Hero
+      const heroSec = document.getElementById("hero-section");
+      if (set.hero_bg_type === "solid") {
+        heroSec.style.background = set.hero_bg_color1 || "#0369a1";
+      } else {
+        heroSec.style.background = `linear-gradient(135deg, ${set.hero_bg_color1 || '#0369a1'}, ${set.hero_bg_color2 || '#22d3ee'})`;
+      }
+      document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
       
       const waNum = (set.store_phone || "").replace(/[^0-9]/g, "");
       const waFormatted = waNum.startsWith("0") ? "62" + waNum.slice(1) : waNum;
@@ -1331,7 +1352,7 @@
       }
     }
 
-    // Me-render Daftar Harga berdasarkan Data Service Asli
+    // Render Kartu Harga ke Landing Page
     function renderDynamicPricing() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
@@ -1344,32 +1365,30 @@
       }
 
       activeServices.forEach((s, index) => {
-        const isPopular = index === 1; // Kartu tengah dibikin mencolok desainnya
+        const isPopular = index === 1; // Kartu tengah diwarnai mencolok
         const wrapperClass = isPopular 
-          ? "border-2 border-brand-500 rounded-2xl p-8 bg-brand-50/50 hover:shadow-xl transition relative flex flex-col justify-between text-left" 
+          ? "border-2 border-brand-500 rounded-2xl p-8 bg-brand-50/50 hover:shadow-xl transition relative flex flex-col justify-between text-left transform md:-translate-y-4" 
           : "border border-slate-200 rounded-2xl p-8 bg-white hover:border-brand-500 transition relative flex flex-col justify-between text-left";
         
-        const badgeHtml = isPopular ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Paling Populer</div>` : "";
+        const badgeHtml = isPopular ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">Paling Populer</div>` : "";
         const unitLabel = s.type === "kilogram" ? "/ kg" : "/ pcs";
 
         const points = (s.description || "Layanan cuci premium.").split(".").filter(p => p.trim() !== "");
         let bulletHtml = "";
-        points.forEach(point => {
-          bulletHtml += `<li>✓ ${point.trim()}</li>`;
-        });
+        points.forEach(point => { bulletHtml += `<li class="flex items-start"><span class="text-brand-500 mr-2">✓</span> ${point.trim()}</li>`; });
 
         const btnHtml = isPopular 
-          ? `<button onclick="openLoginModal('karyawan')" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg transition text-center text-sm shadow-md">Proses Sekarang</button>`
-          : `<button onclick="switchView('tracking')" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold rounded-lg transition text-center text-sm">Lacak Status Pesanan</button>`;
+          ? `<button onclick="openLoginModal('karyawan')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl transition text-center text-sm shadow-lg">Pilih Paket Ini</button>`
+          : `<button onclick="switchView('tracking')" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl transition text-center text-sm">Lacak Pesanan</button>`;
 
         grid.innerHTML += `
           <div class="${wrapperClass}">
             ${badgeHtml}
             <div>
-              <h3 class="text-xl font-bold text-slate-900 mb-2">${s.name}</h3>
-              <p class="text-slate-500 text-sm mb-6">Pengerjaan estimasi selesai dalam ${s.estimate_days} hari kerja.</p>
+              <h3 class="text-xl font-extrabold text-slate-900 mb-2">${s.name}</h3>
+              <p class="text-slate-500 text-sm mb-6 font-medium">Estimasi penyelesaian ${s.estimate_days} hari kerja.</p>
               <div class="text-3xl font-extrabold text-slate-900 mb-6">${formatRupiah(s.price)} <span class="text-sm text-slate-400 font-medium">${unitLabel}</span></div>
-              <ul class="space-y-3 text-sm text-slate-600 mb-8">
+              <ul class="space-y-3 text-sm text-slate-600 mb-8 font-medium">
                 ${bulletHtml}
               </ul>
             </div>
@@ -1893,13 +1912,22 @@
     }
 
     function loadSettingsForm() {
-      document.getElementById("set-store-name").value = APP_STATE.settings.store_name;
-      document.getElementById("set-store-address").value = APP_STATE.settings.store_address;
-      document.getElementById("set-store-phone").value = APP_STATE.settings.store_phone;
-      document.getElementById("set-receipt-footer").value = APP_STATE.settings.receipt_footer;
+      document.getElementById("set-store-name").value = APP_STATE.settings.store_name || "";
+      document.getElementById("set-store-address").value = APP_STATE.settings.store_address || "";
+      document.getElementById("set-store-phone").value = APP_STATE.settings.store_phone || "";
+      document.getElementById("set-receipt-footer").value = APP_STATE.settings.receipt_footer || "";
       document.getElementById("set-wa-provider").value = APP_STATE.settings.wa_provider || "none";
       document.getElementById("set-wa-api").value = APP_STATE.settings.wa_api_key || "";
       document.getElementById("set-wa-sender").value = APP_STATE.settings.wa_sender || "";
+      
+      document.getElementById("set-landing-status").value = APP_STATE.settings.landing_status || "ON";
+      document.getElementById("set-brand-icon").value = APP_STATE.settings.brand_icon || "🧼";
+      document.getElementById("set-hero-headline").value = APP_STATE.settings.hero_headline || "";
+      document.getElementById("set-hero-sub").value = APP_STATE.settings.hero_subheadline || "";
+      document.getElementById("set-hero-bg-type").value = APP_STATE.settings.hero_bg_type || "gradient";
+      document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#0369a1";
+      document.getElementById("set-hero-bg-color2").value = APP_STATE.settings.hero_bg_color2 || "#22d3ee";
+      document.getElementById("set-hero-title-color").value = APP_STATE.settings.hero_title_color || "#ffffff";
     }
 
     function saveGlobalSettings() {
@@ -1910,6 +1938,15 @@
       APP_STATE.settings.wa_provider = document.getElementById("set-wa-provider").value;
       APP_STATE.settings.wa_api_key = document.getElementById("set-wa-api").value.trim();
       APP_STATE.settings.wa_sender = document.getElementById("set-wa-sender").value.trim();
+
+      APP_STATE.settings.landing_status = document.getElementById("set-landing-status").value;
+      APP_STATE.settings.brand_icon = document.getElementById("set-brand-icon").value.trim() || "🧼";
+      APP_STATE.settings.hero_headline = document.getElementById("set-hero-headline").value.trim();
+      APP_STATE.settings.hero_subheadline = document.getElementById("set-hero-sub").value.trim();
+      APP_STATE.settings.hero_bg_type = document.getElementById("set-hero-bg-type").value;
+      APP_STATE.settings.hero_bg_color1 = document.getElementById("set-hero-bg-color1").value;
+      APP_STATE.settings.hero_bg_color2 = document.getElementById("set-hero-bg-color2").value;
+      APP_STATE.settings.hero_title_color = document.getElementById("set-hero-title-color").value;
 
       StorageEngine.saveStateToLocal();
       showNotification("Identitas mutlak POS sentral serta penanaman mesin parameter gerbang integrasi (Gateway WhatsApp Server) diperbaharui penuh secara gemilang!", "Kompilasi Sukses Tersimpan", "✅");
@@ -1982,7 +2019,7 @@
 
     function reprintInvoice(txId) {
       const tx = APP_STATE.transactions.find(t => t.id === txId);
-      const service = APP_STATE.services[0]; // fallback since we don't fetch full items here
+      const service = APP_STATE.services[0]; 
       triggerDirectPrintReceipt(tx, service, 1);
     }
 
@@ -2038,6 +2075,7 @@
       initAuthCheck();
       const params = new URLSearchParams(window.location.search);
       if (params.get("invoice")) { switchView("tracking"); }
+      else if (!APP_STATE.currentUser) { switchView("landing"); }
     };
   </script>
 </body>
