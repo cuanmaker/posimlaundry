@@ -176,7 +176,7 @@
         </div>
       </section>
 
-      <!-- Pricing / Packages Section (BERUBAH JADI LIST TABLE) -->
+      <!-- Pricing / Packages Section (BERUBAH JADI LIST TABLE CORAL) -->
       <section id="pricing" class="py-20 bg-slate-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
@@ -337,7 +337,6 @@
           <div class="grid grid-cols-2 gap-4 text-sm">
             <div><span class="text-slate-500 block">No. Invoice:</span><span id="track-invoice-num" class="font-mono font-bold text-slate-800"></span></div>
             <div><span class="text-slate-500 block">Atas Nama:</span><span id="track-customer-name" class="font-bold text-slate-800"></span></div>
-            <div><span class="text-slate-500 block">Layanan:</span><span id="track-service" class="font-medium text-slate-800"></span></div>
             <div><span class="text-slate-500 block">Estimasi Selesai:</span><span id="track-est" class="font-medium text-slate-800"></span></div>
           </div>
         </div>
@@ -494,39 +493,62 @@
           </div>
         </div>
 
-        <!-- TAB: NEW TRANSACTION -->
+        <!-- TAB: NEW TRANSACTION (MULTI-ITEM CART) -->
         <div id="tab-new-transaction" class="tab-content hidden grid lg:grid-cols-3 gap-8">
           <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm lg:col-span-2 space-y-6">
-            <h3 class="font-bold text-slate-800 text-lg border-b pb-3">Formulir Pendaftaran Cucian Masuk</h3>
-            
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilih Data Pelanggan</label>
-                <select id="tx-customer" onchange="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select>
-              </div>
-              <div class="flex items-end">
-                <button onclick="changeTab('customers')" class="w-full p-3 bg-slate-100 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-200 transition">
-                  + Buat Pelanggan Baru
+            <div class="flex justify-between items-center border-b pb-3">
+               <h3 class="font-bold text-slate-800 text-lg">Formulir Pendaftaran Cucian Masuk</h3>
+               <button onclick="openCustomerModal()" class="px-3 py-1.5 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-200 transition">
+                  + Pelanggan Baru
                 </button>
+            </div>
+            
+            <div class="grid gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">1. Pilih Data Pelanggan</label>
+                <select id="tx-customer" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select>
               </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilihan Paket Layanan</label>
-                <select id="tx-service" onchange="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select>
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Berat (Kg) / Jumlah (Pcs)</label>
-                <input id="tx-qty" type="number" step="0.01" value="1" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Estimasi Pengerjaan (Hari)</label>
-                <input id="tx-days-est" type="number" readonly class="w-full p-3 border rounded-xl bg-slate-100 text-sm font-medium text-slate-500" />
+            <div class="p-5 bg-brand-50 border border-brand-100 rounded-xl space-y-4">
+              <label class="block text-xs font-bold text-brand-700 uppercase mb-1">2. Tambah Layanan ke Keranjang</label>
+              <div class="grid md:grid-cols-12 gap-4">
+                <div class="md:col-span-6">
+                  <select id="tx-service" class="w-full p-3 border rounded-xl bg-white text-sm font-medium"></select>
+                </div>
+                <div class="md:col-span-3">
+                  <input id="tx-qty" type="number" step="0.01" value="1" placeholder="Berat/Qty" class="w-full p-3 border rounded-xl bg-white text-sm font-medium" />
+                </div>
+                <div class="md:col-span-3">
+                  <button onclick="addServiceToCart()" class="w-full p-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-sm">
+                    + Tambah Item
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-4">
+            <!-- Keranjang Belanja -->
+            <div>
+              <h4 class="text-sm font-bold text-slate-700 mb-2">Daftar Item Cucian</h4>
+              <div class="overflow-x-auto border border-slate-200 rounded-xl">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-200">
+                      <th class="p-3 font-bold">Layanan</th>
+                      <th class="p-3 font-bold">Harga</th>
+                      <th class="p-3 font-bold text-center">Qty</th>
+                      <th class="p-3 font-bold text-right">Subtotal</th>
+                      <th class="p-3 font-bold text-center">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tx-cart-body" class="divide-y divide-slate-100 text-sm font-medium text-slate-700">
+                    <!-- Dynamic cart items -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 pt-4 border-t border-slate-100 mt-4">
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Potongan Diskon (Rp)</label>
                 <input id="tx-discount" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
@@ -537,7 +559,7 @@
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Pembayaran</label>
-                <select id="tx-payment-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium">
+                <select id="tx-payment-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" onchange="calculateNewTxTotal()">
                   <option value="Lunas">Lunas Sepenuhnya</option>
                   <option value="DP">Bayar DP Uang Muka</option>
                   <option value="Belum Bayar" selected>Belum Bayar Sama Sekali</option>
@@ -545,20 +567,24 @@
               </div>
             </div>
 
-            <label class="flex items-center space-x-2 text-sm text-slate-600 mt-4 cursor-pointer bg-brand-50 p-3 rounded-lg border border-brand-100">
+            <!-- Hidden input for estimated days calculation based on cart items -->
+            <input type="hidden" id="tx-days-est" value="1" />
+
+            <label class="flex items-center space-x-2 text-sm text-slate-600 mt-4 cursor-pointer bg-slate-50 p-3 rounded-lg border border-slate-100">
               <input type="checkbox" id="tx-send-wa" class="rounded text-brand-600 focus:ring-brand-500 h-5 w-5" checked />
               <span class="font-medium">Otomatis kirim e-Nota ke WhatsApp Pelanggan saat ini juga</span>
             </label>
           </div>
 
           <!-- Checkout Cart Summary Card -->
-          <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl flex flex-col justify-between">
+          <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl flex flex-col justify-between h-fit sticky top-24">
             <div>
               <h4 class="text-sm font-bold uppercase text-brand-400 tracking-wider mb-6">RINGKASAN BIAYA</h4>
               <div class="space-y-4 text-sm border-b border-slate-800 pb-6 mb-6">
-                <div class="flex justify-between"><span class="text-slate-400">Subtotal Dasar</span><span id="checkout-subtotal" class="font-semibold">Rp 0</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Total Item Cucian</span><span id="checkout-items-count" class="font-semibold">0</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Subtotal Dasar</span><span id="checkout-subtotal" class="font-semibold" data-raw-subtotal="0">Rp 0</span></div>
                 <div class="flex justify-between"><span class="text-slate-400">Total Diskon</span><span id="checkout-discount" class="font-semibold text-rose-400">-Rp 0</span></div>
-                <div class="flex justify-between text-base"><span class="font-bold text-white">Biaya Akhir</span><span id="checkout-total" class="font-bold text-brand-400">Rp 0</span></div>
+                <div class="flex justify-between text-base mt-2 pt-2 border-t border-slate-800"><span class="font-bold text-white">Biaya Akhir</span><span id="checkout-total" class="font-bold text-brand-400 text-xl">Rp 0</span></div>
               </div>
               <div class="space-y-4 text-sm">
                 <div class="flex justify-between"><span class="text-slate-400">Status Pembayaran:</span><span id="checkout-payment" class="font-medium text-amber-400">Belum Bayar</span></div>
@@ -566,7 +592,7 @@
               </div>
             </div>
             <div class="pt-8">
-              <button onclick="submitNewTransaction()" class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition shadow-xl text-center">Simpan Data & Cetak Struk 🖨️</button>
+              <button onclick="submitNewTransaction()" class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition shadow-xl text-center block">Simpan Data & Cetak Struk 🖨️</button>
             </div>
           </div>
         </div>
@@ -587,7 +613,7 @@
                   </select>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon / Emoji Logo</label><input id="set-brand-icon" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon / Emoji Logo Toko</label><input id="set-brand-icon" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                   <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Brand Utama</label><input id="set-store-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 </div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
@@ -944,9 +970,8 @@
         <span>Rincian Jenis Paket</span>
         <span>Harga Tarik</span>
       </div>
-      <div class="flex justify-between">
-        <span id="rec-service-name">Cuci Baju Kilat Cepat</span>
-        <span><span id="rec-qty">1.0</span> x <span id="rec-price">Rp 0</span></span>
+      <div id="rec-items-container" class="space-y-1">
+        <!-- Render Multi-Item Keranjang Disini -->
       </div>
     </div>
     <div class="border-t border-dashed border-slate-400 my-2"></div>
@@ -996,6 +1021,7 @@
     // MODULE A: CONFIG & GLOBAL STATES
     // ==========================================
     const CONFIG = {
+      // URL Web App Google Apps Script Anda SUDAH AKTIF:
       API_URL: "https://script.google.com/macros/s/AKfycbyh-3ba4r8cRJkVnMC0afWPBtq92HnNAJnSMo62GoXFx9hcjQxIq7FUwNmspB-OlljO/exec", 
       MOCK_MODE: false,
     };
@@ -1003,6 +1029,7 @@
     let APP_STATE = {
       currentUser: null, currentTab: "dashboard",
       outlets: [], users: [], customers: [], services: [], transactions: [], expenses: [], statusHistory: [],
+      transactionItems: [], // Tambahan untuk mensupport riwayat multi item cetak struk ulang
       settings: { 
         store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih banyak!", 
         wa_provider: "none", wa_api_key: "", wa_sender: "",
@@ -1076,10 +1103,10 @@
         { id: "CUST-001", name: "Aditya Rahman", phone: "081234567891", address: "Jl. Dipatiukur No. 10", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 08:00:00" }
       ],
       services: [
-        { id: "SERV-001", category: "Cuci Setrika", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" },
-        { id: "SERV-002", category: "Cuci Setrika", name: "Super Express", description: "Minimal laundry 3 Kg. Selesai 6 Jam", type: "kilogram", price: 14000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:00:00" }
+        { id: "SERV-001", category: "Cuci Setrika", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" }
       ],
       transactions: [],
+      transactionItems: [],
       expenses: [],
       statusHistory: []
     };
@@ -1093,6 +1120,7 @@
           localStorage.setItem("iml_customers", JSON.stringify(INITIAL_DUMMY_DATA.customers));
           localStorage.setItem("iml_services", JSON.stringify(INITIAL_DUMMY_DATA.services));
           localStorage.setItem("iml_transactions", JSON.stringify(INITIAL_DUMMY_DATA.transactions));
+          localStorage.setItem("iml_transaction_items", JSON.stringify(INITIAL_DUMMY_DATA.transactionItems));
           localStorage.setItem("iml_expenses", JSON.stringify(INITIAL_DUMMY_DATA.expenses));
           localStorage.setItem("iml_status_history", JSON.stringify(INITIAL_DUMMY_DATA.statusHistory));
         }
@@ -1105,6 +1133,7 @@
         APP_STATE.customers = JSON.parse(localStorage.getItem("iml_customers")) || [];
         APP_STATE.services = JSON.parse(localStorage.getItem("iml_services")) || [];
         APP_STATE.transactions = JSON.parse(localStorage.getItem("iml_transactions")) || [];
+        APP_STATE.transactionItems = JSON.parse(localStorage.getItem("iml_transaction_items")) || [];
         APP_STATE.expenses = JSON.parse(localStorage.getItem("iml_expenses")) || [];
         APP_STATE.statusHistory = JSON.parse(localStorage.getItem("iml_status_history")) || [];
       },
@@ -1115,6 +1144,7 @@
         localStorage.setItem("iml_customers", JSON.stringify(APP_STATE.customers));
         localStorage.setItem("iml_services", JSON.stringify(APP_STATE.services));
         localStorage.setItem("iml_transactions", JSON.stringify(APP_STATE.transactions));
+        localStorage.setItem("iml_transaction_items", JSON.stringify(APP_STATE.transactionItems));
         localStorage.setItem("iml_expenses", JSON.stringify(APP_STATE.expenses));
         localStorage.setItem("iml_status_history", JSON.stringify(APP_STATE.statusHistory));
       }
@@ -1194,8 +1224,8 @@
         document.getElementById("tab-btn-pelanggan").className = "flex-1 py-2 text-sm font-bold rounded-md text-slate-500 hover:text-slate-800 transition";
         document.getElementById("login-title").innerText = "Masuk Kasir Staf";
         document.getElementById("login-subtitle").innerText = "Masukkan kredensial otorisasi sistem Anda";
-        document.getElementById("lbl-login-id").innerText = "Username Karyawan";
-        document.getElementById("login-username").placeholder = "Cth: owner / admin / kasir";
+        document.getElementById("lbl-login-id").innerText = "Username Karir Anda";
+        document.getElementById("login-username").placeholder = "Cth: owner / admin / cashier";
         document.getElementById("login-hints").classList.remove("hidden");
       } else {
         document.getElementById("tab-btn-pelanggan").className = "flex-1 py-2 text-sm font-bold rounded-md bg-white shadow text-brand-600 transition";
@@ -1234,7 +1264,7 @@
         user = APP_STATE.users.find(u => u.username === idField && u.password === passField);
       } else {
         user = APP_STATE.customers.find(c => c.phone === idField && c.password === passField);
-        if(user) user.role = "Customer";
+        if(user) user.role = "Customer"; // Virtual identitas pelacakan
       }
 
       if (user) {
@@ -1364,11 +1394,11 @@
         promoWrapper.classList.add("hidden");
       } else {
         promoWrapper.classList.remove("hidden");
-        renderDynamicPricingList();
+        renderDynamicPricingList(); // Call tabel grup render
       }
     }
 
-    // Render Kartu Harga ke Landing Page (Grouped by Category)
+    // Render List Harga ke Landing Page (Grouped by Category) dengan tema Coral Soft
     function renderDynamicPricingList() {
       const listContainer = document.getElementById("landing-pricing-list");
       if (!listContainer) return;
@@ -1546,9 +1576,18 @@
 
 
     // ==========================================
-    // MODULE G: INTAKE SALE TRANSACTION INPUT
+    // MODULE G: INTAKE MULTI-ITEM TRANSACTION INPUT
     // ==========================================
+    let currentCart = []; // Global variable untuk keranjang
+
     function initNewTransactionForm() {
+      currentCart = []; // Kosongkan keranjang setiap masuk form baru
+      document.getElementById("tx-qty").value = "1";
+      document.getElementById("tx-discount").value = "0";
+      document.getElementById("tx-paid").value = "0";
+      document.getElementById("tx-payment-status").value = "Belum Bayar";
+      document.getElementById("checkout-subtotal").setAttribute("data-raw-subtotal", "0");
+
       const custSelect = document.getElementById("tx-customer");
       custSelect.innerHTML = "";
       const filteredCustomers = APP_STATE.customers.filter(c => {
@@ -1565,49 +1604,118 @@
       });
       filteredServices.forEach(s => { svcSelect.innerHTML += `<option value="${s.id}">${s.name} (${formatRupiah(s.price)}/${s.type === 'kilogram' ? 'kg' : 'pcs'})</option>`; });
 
-      calculateNewTxTotal();
+      renderCart();
+    }
+
+    function addServiceToCart() {
+      const svcId = document.getElementById("tx-service").value;
+      const qty = parseFloat(document.getElementById("tx-qty").value) || 0;
+      
+      if (!svcId || qty <= 0) {
+        showNotification("Harap pilih layanan dan masukkan jumlah berat atau kuantitas barang minimal 1.", "Data Tidak Valid", "⚠️");
+        return;
+      }
+      
+      const service = APP_STATE.services.find(s => s.id === svcId);
+      if (!service) return;
+      
+      // Jika item sudah ada di keranjang, tambahkan quantity-nya aja
+      const existingItemIndex = currentCart.findIndex(item => item.service_id === svcId);
+      if (existingItemIndex > -1) {
+        currentCart[existingItemIndex].qty += qty;
+        currentCart[existingItemIndex].total = currentCart[existingItemIndex].qty * currentCart[existingItemIndex].price;
+      } else {
+        // Jika belum ada, masukin item baru
+        currentCart.push({
+          service_id: service.id,
+          service_name: service.name,
+          qty: qty,
+          price: service.price,
+          total: service.price * qty,
+          estimate_days: service.estimate_days
+        });
+      }
+      
+      document.getElementById("tx-qty").value = "1"; // Reset input qty ke 1
+      renderCart();
+    }
+    
+    function removeFromCart(index) {
+      currentCart.splice(index, 1);
+      renderCart();
+    }
+
+    function renderCart() {
+      const body = document.getElementById("tx-cart-body");
+      body.innerHTML = "";
+      
+      let cartSubtotal = 0;
+      let maxDays = 0;
+      
+      if (currentCart.length === 0) {
+        body.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 font-normal">Keranjang masih kosong. Pilih layanan di atas lalu klik Tambah.</td></tr>`;
+      } else {
+        currentCart.forEach((item, index) => {
+          cartSubtotal += item.total;
+          if (item.estimate_days > maxDays) maxDays = item.estimate_days; // Cari hari pengerjaan paling lama
+          
+          body.innerHTML += `
+            <tr class="hover:bg-slate-50 transition">
+              <td class="p-3 truncate max-w-[150px]" title="${item.service_name}">${item.service_name}</td>
+              <td class="p-3">${formatRupiah(item.price)}</td>
+              <td class="p-3 text-center bg-brand-50 rounded-md font-bold text-brand-700">${item.qty}</td>
+              <td class="p-3 text-right font-bold">${formatRupiah(item.total)}</td>
+              <td class="p-3 text-center">
+                <button onclick="removeFromCart(${index})" class="w-8 h-8 rounded-full bg-rose-50 text-rose-500 hover:bg-rose-500 hover:text-white transition inline-flex items-center justify-center font-bold text-lg" title="Hapus Item">×</button>
+              </td>
+            </tr>
+          `;
+        });
+      }
+      
+      // Simpan subtotal dasar ke atribut tersembunyi
+      document.getElementById("checkout-subtotal").setAttribute("data-raw-subtotal", cartSubtotal);
+      document.getElementById("tx-days-est").value = maxDays || 1; // Untuk referensi pas disimpan
+      document.getElementById("checkout-items-count").innerText = currentCart.length;
+      
+      calculateNewTxTotal(); // Update potongan dan kembalian
     }
 
     function calculateNewTxTotal() {
-      const svcId = document.getElementById("tx-service").value;
-      const qty = parseFloat(document.getElementById("tx-qty").value) || 0;
+      const rawSubtotal = parseFloat(document.getElementById("checkout-subtotal").getAttribute("data-raw-subtotal")) || 0;
       const discount = parseFloat(document.getElementById("tx-discount").value) || 0;
       const paid = parseFloat(document.getElementById("tx-paid").value) || 0;
 
-      const service = APP_STATE.services.find(s => s.id === svcId);
-      if (!service) return;
-
-      document.getElementById("tx-days-est").value = service.estimate_days;
-
-      const subtotal = service.price * qty;
-      const total = Math.max(0, subtotal - discount);
+      const total = Math.max(0, rawSubtotal - discount);
       const change = Math.max(0, paid - total);
 
-      document.getElementById("checkout-subtotal").innerText = formatRupiah(subtotal);
+      document.getElementById("checkout-subtotal").innerText = formatRupiah(rawSubtotal);
       document.getElementById("checkout-discount").innerText = `-${formatRupiah(discount)}`;
       document.getElementById("checkout-total").innerText = formatRupiah(total);
       
       const payStatus = document.getElementById("tx-payment-status").value;
-      document.getElementById("checkout-payment").innerText = payStatus;
+      const displayStatusIndo = payStatus === "Paid" ? "Lunas" : (payStatus === "Down Payment" ? "DP (Uang Muka)" : "Belum Bayar");
+      document.getElementById("checkout-payment").innerText = displayStatusIndo;
       document.getElementById("checkout-change").innerText = formatRupiah(change);
     }
 
     function submitNewTransaction() {
       const custId = document.getElementById("tx-customer").value;
-      const svcId = document.getElementById("tx-service").value;
-      const qty = parseFloat(document.getElementById("tx-qty").value) || 0;
       const discount = parseFloat(document.getElementById("tx-discount").value) || 0;
       const paid = parseFloat(document.getElementById("tx-paid").value) || 0;
       const payStatus = document.getElementById("tx-payment-status").value;
       const autoWa = document.getElementById("tx-send-wa").checked;
 
-      if (!custId || !svcId || qty <= 0) {
-        return showNotification("Pengisian gagal! Verifikasi apakah klien sasaran, pilihan layanan paket dan bobot berat pakaian valid minimal 1.", "Integritas Form Pecah", "⚠️");
+      if (!custId) {
+        return showNotification("Harap daftarkan atau pilih nama pelanggan terlebih dahulu!", "Data Kurang", "⚠️");
+      }
+      
+      if (currentCart.length === 0) {
+        return showNotification("Tidak dapat menyimpan karena keranjang belanja masih kosong! Silakan tambahkan minimal 1 paket layanan.", "Keranjang Kosong", "⚠️");
       }
 
-      const service = APP_STATE.services.find(s => s.id === svcId);
-      const subtotal = service.price * qty;
-      const total = Math.max(0, subtotal - discount);
+      const rawSubtotal = parseFloat(document.getElementById("checkout-subtotal").getAttribute("data-raw-subtotal")) || 0;
+      const total = Math.max(0, rawSubtotal - discount);
       const change = Math.max(0, paid - total);
 
       const invoiceCode = "INV-" + Math.floor(10000000 + Math.random() * 90000000);
@@ -1615,27 +1723,44 @@
 
       const today = new Date();
       const dateString = today.toISOString().slice(0,10) + " " + today.toTimeString().slice(0,8);
-      const estDate = new Date(); estDate.setDate(today.getDate() + service.estimate_days);
+      
+      const estDays = parseInt(document.getElementById("tx-days-est").value) || 1;
+      const estDate = new Date(); estDate.setDate(today.getDate() + estDays);
       const estDateString = estDate.toISOString().slice(0,10);
 
       const newTx = {
         id: newTxId, invoice: invoiceCode, customer_id: custId, outlet_id: APP_STATE.currentUser.outlet_id,
         cashier_id: APP_STATE.currentUser.id, status_order: "Diterima", status_payment: payStatus,
-        subtotal: subtotal, discount: discount, total: total, paid: paid, change: change,
+        subtotal: rawSubtotal, discount: discount, total: total, paid: paid, change: change,
         estimated_done: estDateString, created_at: dateString
       };
 
       APP_STATE.transactions.unshift(newTx);
 
-      const newItem = { id: "TXI-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, service_id: svcId, service_name: service.name, qty: qty, price: service.price, total: subtotal };
-      
-      const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, status: "Diterima", note: "Nota cucian telah diterbitkan dari keranjang meja registrasi mesin kasir.", updated_by: APP_STATE.currentUser.name, updated_at: dateString };
+      // Siapkan array data untuk transaction_items
+      const newItems = currentCart.map(item => {
+        return {
+          id: "TXI-" + Math.floor(1000 + Math.random() * 9000),
+          transaction_id: newTxId,
+          service_id: item.service_id,
+          service_name: item.service_name,
+          qty: item.qty,
+          price: item.price,
+          total: item.total
+        };
+      });
+
+      APP_STATE.transactionItems.push(...newItems);
+
+      const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, status: "Diterima", note: "Nota cucian diterbitkan dari keranjang kasir.", updated_by: APP_STATE.currentUser.name, updated_at: dateString };
       APP_STATE.statusHistory.unshift(newHist);
 
       StorageEngine.saveStateToLocal();
-      triggerDirectPrintReceipt(newTx, service, qty);
+      triggerDirectPrintReceipt(newTx, currentCart, true); 
       changeTab("transactions");
-      apiRequest("createTransaction", { transaction: newTx, item: newItem, history: newHist, auto_wa: autoWa });
+      
+      // Kirim Array items ke backend, bukan cuma 1 item
+      apiRequest("createTransaction", { transaction: newTx, items: newItems, history: newHist, auto_wa: autoWa });
     }
 
 
@@ -2038,7 +2163,7 @@
       apiRequest("updateOrderStatus", { id: txId, status_order: orderStatus, status_payment: payStatus, history: newHist, auto_wa: autoWa });
     }
 
-    function triggerDirectPrintReceipt(tx, service, qty) {
+    function triggerDirectPrintReceipt(tx, cartItems, isNew = false) {
       document.getElementById("rec-store-name").innerText = APP_STATE.settings.store_name;
       document.getElementById("rec-store-address").innerText = APP_STATE.settings.store_address;
       document.getElementById("rec-store-phone").innerText = "Hubungi: " + APP_STATE.settings.store_phone;
@@ -2053,9 +2178,37 @@
       const cust = APP_STATE.customers.find(c => c.id === tx.customer_id) || { name: "Tamu Harian", phone: "" };
       document.getElementById("rec-customer-name").innerText = cust.name;
       document.getElementById("rec-customer-phone").innerText = cust.phone;
-      document.getElementById("rec-service-name").innerText = service.name;
-      document.getElementById("rec-qty").innerText = qty;
-      document.getElementById("rec-price").innerText = formatRupiah(service.price);
+
+      // Render keranjang multi-item
+      const recItemsContainer = document.getElementById("rec-items-container");
+      recItemsContainer.innerHTML = "";
+      
+      let itemsToPrint = [];
+      if (isNew) {
+         itemsToPrint = cartItems;
+      } else {
+         itemsToPrint = APP_STATE.transactionItems.filter(i => i.transaction_id === tx.id);
+      }
+
+      if (itemsToPrint.length > 0) {
+         itemsToPrint.forEach(item => {
+           recItemsContainer.innerHTML += `
+             <div class="flex justify-between">
+                <span>${item.qty}x ${item.service_name}</span>
+                <span>${formatRupiah(item.total)}</span>
+             </div>
+           `;
+         });
+      } else {
+         // Jika item lawas (sebelum update fitur keranjang) maka berikan info global
+         recItemsContainer.innerHTML += `
+             <div class="flex justify-between">
+                <span>1x Paket Global Sistem Lama</span>
+                <span>${formatRupiah(tx.subtotal)}</span>
+             </div>
+         `;
+      }
+
       document.getElementById("rec-subtotal").innerText = formatRupiah(tx.subtotal);
       document.getElementById("rec-discount").innerText = `-${formatRupiah(tx.discount)}`;
       document.getElementById("rec-total").innerText = formatRupiah(tx.total);
@@ -2077,8 +2230,7 @@
 
     function reprintInvoice(txId) {
       const tx = APP_STATE.transactions.find(t => t.id === txId);
-      const service = APP_STATE.services[0]; 
-      triggerDirectPrintReceipt(tx, service, 1);
+      triggerDirectPrintReceipt(tx, [], false);
     }
 
     function trackFromURL() {
@@ -2100,9 +2252,6 @@
         document.getElementById("track-invoice-num").innerText = tx.invoice;
         document.getElementById("track-customer-name").innerText = cust.name;
         document.getElementById("track-est").innerText = tx.estimated_done;
-        
-        const service = APP_STATE.services[0] || { name: "Cuci Reguler Menyesuaikan" };
-        document.getElementById("track-service").innerText = service.name;
 
         const badge = document.getElementById("track-badge");
         badge.innerText = tx.status_order.toUpperCase();
