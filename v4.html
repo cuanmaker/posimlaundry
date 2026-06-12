@@ -13,7 +13,7 @@
       theme: {
         extend: {
           colors: {
-            brand: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e' }
+            brand: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' }
           }
         }
       }
@@ -29,7 +29,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Mengubah font utama ke Poppins dan Heading ke Montserrat */
     body { font-family: 'Poppins', sans-serif; }
     h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
     .logo-font { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.5px; }
@@ -55,7 +54,7 @@
     <header class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-100 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div class="flex items-center space-x-2">
-          <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-brand-500/20" id="landing-icon-badge">🧼</div>
+          <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-brand-500/20 overflow-hidden" id="landing-icon-badge">🧼</div>
           <span class="text-2xl font-bold tracking-tight text-brand-600 logo-font" id="landing-brand-text">iMersLonry</span>
         </div>
         <div class="flex items-center space-x-3">
@@ -69,16 +68,14 @@
       </div>
     </header>
 
-    <!-- HERO SECTION DINAMIS (Warna Dikontrol dari Javascript/Settings) -->
-    <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500" style="background: linear-gradient(135deg, #0369a1, #22d3ee);">
-      <!-- Ornamen Pattern Transparan -->
+    <!-- HERO SECTION DINAMIS -->
+    <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500" style="background: linear-gradient(135deg, #fb923c, #ea580c);">
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30"></div>
       
       <div class="max-w-4xl mx-auto px-4 relative z-10">
         <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-md border border-white/30 mb-6 shadow-sm">
           ✨ Sistem Kasir & Pelacakan Cerdas
         </span>
-        <!-- Headline Dinamis Warnanya -->
         <h1 id="landing-headline" class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 drop-shadow-md transition-colors duration-500" style="color: #ffffff;">
           Sistem POS Kasir & Portal Pelanggan Laundry
         </h1>
@@ -95,62 +92,63 @@
 
     <!-- WRAPPER UNTUK KONTEN PROMO (BISA DI ON/OFF) -->
     <div id="landing-promo-sections">
-      <!-- Services Section -->
+      
+      <!-- Services Section (Teks Dinamis) -->
       <section id="services" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">Layanan Premium Kami</h2>
-          <p class="text-slate-600 max-w-xl mx-auto mb-16">Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.</p>
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4" id="lp-feat-title">Layanan Premium Kami</h2>
+          <p class="text-slate-600 max-w-xl mx-auto mb-16" id="lp-feat-sub">Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.</p>
           <div class="grid md:grid-cols-4 gap-8">
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
-              <div class="text-3xl mb-4">🧺</div>
-              <h3 class="font-bold text-lg mb-2">Cuci & Setrika</h3>
-              <p class="text-sm text-slate-600">Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.</p>
+              <div class="text-3xl mb-4" id="lp-feat1-icon">🧺</div>
+              <h3 class="font-bold text-lg mb-2" id="lp-feat1-title">Cuci & Setrika</h3>
+              <p class="text-sm text-slate-600" id="lp-feat1-desc">Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
-              <div class="text-3xl mb-4">👔</div>
-              <h3 class="font-bold text-lg mb-2">Dry Cleaning</h3>
-              <p class="text-sm text-slate-600">Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.</p>
+              <div class="text-3xl mb-4" id="lp-feat2-icon">👔</div>
+              <h3 class="font-bold text-lg mb-2" id="lp-feat2-title">Dry Cleaning</h3>
+              <p class="text-sm text-slate-600" id="lp-feat2-desc">Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
-              <div class="text-3xl mb-4">🛏️</div>
-              <h3 class="font-bold text-lg mb-2">Bed Cover & Selimut</h3>
-              <p class="text-sm text-slate-600">Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.</p>
+              <div class="text-3xl mb-4" id="lp-feat3-icon">🛏️</div>
+              <h3 class="font-bold text-lg mb-2" id="lp-feat3-title">Bed Cover & Selimut</h3>
+              <p class="text-sm text-slate-600" id="lp-feat3-desc">Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
-              <div class="text-3xl mb-4">👟</div>
-              <h3 class="font-bold text-lg mb-2">Spa Sepatu</h3>
-              <p class="text-sm text-slate-600">Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.</p>
+              <div class="text-3xl mb-4" id="lp-feat4-icon">👟</div>
+              <h3 class="font-bold text-lg mb-2" id="lp-feat4-title">Spa Sepatu</h3>
+              <p class="text-sm text-slate-600" id="lp-feat4-desc">Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Benefits Section -->
+      <!-- Benefits Section (Teks Dinamis) -->
       <section id="benefits" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div class="space-y-6">
-            <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">Teknologi Sinkronisasi Multi-Outlet Instan</h2>
-            <p class="text-slate-600">Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.</p>
+            <h2 class="text-3xl font-extrabold text-slate-900 leading-tight" id="lp-ben-title">Teknologi Sinkronisasi Multi-Outlet Instan</h2>
+            <p class="text-slate-600" id="lp-ben-desc">Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.</p>
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <span class="text-brand-600 text-lg">✓</span>
                 <div>
-                  <h4 class="font-bold text-slate-800">Sinkronisasi Spreadsheet Otomatis</h4>
-                  <p class="text-sm text-slate-600">Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.</p>
+                  <h4 class="font-bold text-slate-800" id="lp-ben1-title">Sinkronisasi Spreadsheet Otomatis</h4>
+                  <p class="text-sm text-slate-600" id="lp-ben1-desc">Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
                 <span class="text-brand-600 text-lg">✓</span>
                 <div>
-                  <h4 class="font-bold text-slate-800">Hak Akses Fleksibel Kasir &amp; Owner</h4>
-                  <p class="text-sm text-slate-600">Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.</p>
+                  <h4 class="font-bold text-slate-800" id="lp-ben2-title">Hak Akses Fleksibel Kasir & Owner</h4>
+                  <p class="text-sm text-slate-600" id="lp-ben2-desc">Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
                 <span class="text-brand-600 text-lg">✓</span>
                 <div>
-                  <h4 class="font-bold text-slate-800">Lacak Status via QR Code</h4>
-                  <p class="text-sm text-slate-600">Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.</p>
+                  <h4 class="font-bold text-slate-800" id="lp-ben3-title">Lacak Status via QR Code</h4>
+                  <p class="text-sm text-slate-600" id="lp-ben3-desc">Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.</p>
                 </div>
               </div>
             </div>
@@ -178,39 +176,41 @@
 
       <!-- Pricing / Packages Section -->
       <section id="pricing" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
-          <p class="text-slate-600 max-w-xl mx-auto mb-16">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
+            <p class="text-slate-600 max-w-xl mx-auto">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
+          </div>
           
-          <!-- GRID KARTU HARGA DINAMIS (DARI DATABASE SERVICES) -->
-          <div id="landing-pricing-grid" class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <!-- Kartu Harga akan diinjek otomatis oleh javascript -->
+          <!-- GRID KARTU HARGA DINAMIS BERDASARKAN KATEGORI (MENGGUNAKAN TEMA WARNA BRAND) -->
+          <div id="landing-pricing-grid" class="max-w-5xl mx-auto">
+            <!-- Render via JavaScript Grouped Table -->
           </div>
         </div>
       </section>
 
-      <!-- Testimonials Section -->
+      <!-- Testimonials Section (Teks Dinamis) -->
       <section id="testimonials" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-3xl font-bold text-slate-900 mb-16">Kisah Puas Pelanggan Setia kami</h2>
+          <h2 class="text-3xl font-bold text-slate-900 mb-16" id="lp-testi-title">Kisah Puas Pelanggan Setia kami</h2>
           <div class="grid md:grid-cols-3 gap-8">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-600 text-sm leading-relaxed mb-6">"Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya apakah masih dicuci atau sudah siap ambil!"</p>
-              <div class="font-bold text-slate-800 text-sm">Sarah Rahmawati</div>
-              <p class="text-xs text-slate-400">Ibu Rumah Tangga</p>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi1-desc">"Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya apakah masih dicuci atau sudah siap ambil!"</p>
+              <div class="font-bold text-slate-800 text-sm" id="lp-testi1-name">Sarah Rahmawati</div>
+              <p class="text-xs text-slate-400" id="lp-testi1-role">Ibu Rumah Tangga</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-600 text-sm leading-relaxed mb-6">"Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian dan komparasi omset antar cabang tampil transparan."</p>
-              <div class="font-bold text-slate-800 text-sm">Bambang Susanto</div>
-              <p class="text-xs text-slate-400">Pemilik Multi-Outlet</p>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi2-desc">"Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian dan komparasi omset antar cabang tampil transparan."</p>
+              <div class="font-bold text-slate-800 text-sm" id="lp-testi2-name">Bambang Susanto</div>
+              <p class="text-xs text-slate-400" id="lp-testi2-role">Pemilik Multi-Outlet</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-600 text-sm leading-relaxed mb-6">"Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional."</p>
-              <div class="font-bold text-slate-800 text-sm">Rian Mahendra</div>
-              <p class="text-xs text-slate-400">Kasir Laundry Utama</p>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi3-desc">"Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional."</p>
+              <div class="font-bold text-slate-800 text-sm" id="lp-testi3-name">Rian Mahendra</div>
+              <p class="text-xs text-slate-400" id="lp-testi3-role">Kasir Laundry Utama</p>
             </div>
           </div>
         </div>
@@ -225,7 +225,7 @@
           <p class="text-slate-400 text-sm">Sistem Kasir Modern & Pelacakan Laundry Terintegrasi.</p>
         </div>
         <div class="flex gap-4">
-          <a id="footer-wa-link" href="https://wa.me/6281234567890" target="_blank" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg text-sm transition flex items-center gap-2">
+          <a id="footer-wa-link" href="https://wa.me/6281234567890" target="_blank" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg text-sm transition flex items-center gap-2">
             💬 Hubungi CS Kami via WA
           </a>
         </div>
@@ -247,7 +247,6 @@
       </div>
 
       <div class="text-center mb-6">
-        <div id="login-icon-badge" class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center text-2xl mx-auto mb-3">🧼</div>
         <h3 id="login-title" class="text-2xl font-bold text-slate-900">Masuk Kasir</h3>
         <p id="login-subtitle" class="text-sm text-slate-500">Masukkan kredensial POS Anda</p>
       </div>
@@ -275,7 +274,7 @@
           <p class="font-bold mb-1">Panduan Demo Cepat:</p>
           <p>Owner: <span class="font-mono bg-white border px-1">owner</span> / <span class="font-mono bg-white border px-1">owner123</span></p>
           <p>Admin: <span class="font-mono bg-white border px-1">admin</span> / <span class="font-mono bg-white border px-1">admin123</span></p>
-          <p>Kasir: <span class="font-mono bg-white border px-1">kasir</span> / <span class="font-mono bg-white border px-1">kasir123</span></p>
+          <p>Kasir: <span class="font-mono bg-white border px-1">cashier</span> / <span class="font-mono bg-white border px-1">cashier123</span></p>
         </div>
       </form>
     </div>
@@ -294,13 +293,12 @@
           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor WhatsApp Terdaftar</label>
           <input id="forgot-phone" type="text" placeholder="Contoh: 0812345..." class="w-full px-4 py-3 border rounded-xl bg-slate-50 text-sm" />
         </div>
-        <button onclick="submitForgotPassword()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm transition shadow-lg">
+        <button onclick="submitForgotPassword()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition shadow-lg">
           Kirim Sandi via WA
         </button>
       </div>
     </div>
   </div>
-
 
   <!-- ============================================== -->
   <!-- 3. PUBLIC TRACKING PAGE VIEW -->
@@ -337,7 +335,6 @@
           <div class="grid grid-cols-2 gap-4 text-sm">
             <div><span class="text-slate-500 block">No. Invoice:</span><span id="track-invoice-num" class="font-mono font-bold text-slate-800"></span></div>
             <div><span class="text-slate-500 block">Atas Nama:</span><span id="track-customer-name" class="font-bold text-slate-800"></span></div>
-            <div><span class="text-slate-500 block">Layanan:</span><span id="track-service" class="font-medium text-slate-800"></span></div>
             <div><span class="text-slate-500 block">Estimasi Selesai:</span><span id="track-est" class="font-medium text-slate-800"></span></div>
           </div>
         </div>
@@ -367,7 +364,7 @@
     <aside class="w-full md:w-64 bg-slate-900 text-slate-200 flex flex-col flex-shrink-0">
       <div class="p-6 border-b border-slate-800 flex justify-between items-center">
         <div class="flex items-center space-x-2">
-          <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white" id="sidebar-icon">🧼</div>
+          <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white overflow-hidden" id="sidebar-icon">🧼</div>
           <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
         <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-emerald-500" title="Online Sync Active"></span>
@@ -392,11 +389,13 @@
         <button onclick="changeTab('customers')" class="nav-item nav-karyawan flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>👥</span> <span>Pelanggan</span></button>
         <button onclick="changeTab('services')" class="nav-item nav-karyawan flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>⚡</span> <span>Daftar Paket</span></button>
         
-        <button onclick="changeTab('outlets')" class="nav-item nav-admin-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🏢</span> <span>Manajemen Cabang</span></button>
+        <!-- Khusus Owner / Admin Berdasarkan Otoritas Tertentu -->
+        <button onclick="changeTab('outlets')" class="nav-item nav-owner-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🏢</span> <span>Manajemen Cabang</span></button>
+        <button onclick="changeTab('settings')" class="nav-item nav-owner-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>⚙️</span> <span>Pengaturan Sistem</span></button>
+
         <button onclick="changeTab('expenses')" class="nav-item nav-admin-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>💸</span> <span>Pengeluaran</span></button>
         <button onclick="changeTab('reports')" class="nav-item nav-admin-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>📈</span> <span>Laporan Keuangan</span></button>
         <button onclick="changeTab('users')" class="nav-item nav-admin-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🔑</span> <span>Akses Staf</span></button>
-        <button onclick="changeTab('settings')" class="nav-item nav-admin-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>⚙️</span> <span>Pengaturan Sistem</span></button>
 
         <!-- Pelanggan Navs -->
         <button onclick="changeTab('customer-portal')" class="nav-item nav-pelanggan hidden flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🧺</span> <span>Cucian Saya</span></button>
@@ -494,15 +493,17 @@
           </div>
         </div>
 
-        <!-- TAB: NEW TRANSACTION -->
+        <!-- TAB: NEW TRANSACTION (MULTI-ITEM CART) -->
         <div id="tab-new-transaction" class="tab-content hidden grid lg:grid-cols-3 gap-8">
           <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm lg:col-span-2 space-y-6">
-            <h3 class="font-bold text-slate-800 text-lg border-b pb-3">Formulir Pendaftaran Cucian Masuk</h3>
+            <div class="flex justify-between items-center border-b pb-3">
+              <h3 class="font-bold text-slate-800 text-lg">Keranjang Pesanan Baru</h3>
+            </div>
             
             <div class="grid md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilih Data Pelanggan</label>
-                <select id="tx-customer" onchange="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select>
+                <select id="tx-customer" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select>
               </div>
               <div class="flex items-end">
                 <button onclick="changeTab('customers')" class="w-full p-3 bg-slate-100 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-200 transition">
@@ -511,22 +512,44 @@
               </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-4">
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilihan Paket Layanan</label>
-                <select id="tx-service" onchange="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select>
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Berat (Kg) / Jumlah (Pcs)</label>
-                <input id="tx-qty" type="number" step="0.01" value="1" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Estimasi Pengerjaan (Hari)</label>
-                <input id="tx-days-est" type="number" readonly class="w-full p-3 border rounded-xl bg-slate-100 text-sm font-medium text-slate-500" />
+            <!-- Input Paket ke Keranjang -->
+            <div class="bg-brand-50 p-4 rounded-xl border border-brand-100">
+              <div class="grid md:grid-cols-4 gap-4 items-end">
+                <div class="md:col-span-2">
+                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilihan Paket Layanan</label>
+                  <select id="tx-service" class="w-full p-3 border rounded-xl bg-white text-sm font-medium"></select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Berat(Kg)/Jumlah(Pcs)</label>
+                  <input id="tx-qty" type="number" step="0.01" value="1" class="w-full p-3 border rounded-xl bg-white text-sm font-medium" />
+                </div>
+                <div>
+                  <button onclick="addCartItem()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl transition text-sm shadow-md">
+                    + Tambah Item
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-4">
+            <!-- Table Daftar Keranjang (Cart) -->
+            <div class="border border-slate-200 rounded-xl overflow-hidden">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-slate-100 text-slate-500 text-xs uppercase font-bold">
+                  <tr>
+                    <th class="p-3">Nama Paket Layanan</th>
+                    <th class="p-3">Harga</th>
+                    <th class="p-3">Qty</th>
+                    <th class="p-3">Subtotal</th>
+                    <th class="p-3 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tx-cart-body" class="divide-y divide-slate-100 bg-white">
+                  <!-- Diisi pakai JS POS_CART -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 mt-6">
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Potongan Diskon (Rp)</label>
                 <input id="tx-discount" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
@@ -537,7 +560,7 @@
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Pembayaran</label>
-                <select id="tx-payment-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium">
+                <select id="tx-payment-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" onchange="calculateNewTxTotal()">
                   <option value="Lunas">Lunas Sepenuhnya</option>
                   <option value="DP">Bayar DP Uang Muka</option>
                   <option value="Belum Bayar" selected>Belum Bayar Sama Sekali</option>
@@ -545,7 +568,7 @@
               </div>
             </div>
 
-            <label class="flex items-center space-x-2 text-sm text-slate-600 mt-4 cursor-pointer bg-brand-50 p-3 rounded-lg border border-brand-100">
+            <label class="flex items-center space-x-2 text-sm text-slate-600 mt-4 cursor-pointer bg-slate-50 p-3 rounded-lg border border-slate-200">
               <input type="checkbox" id="tx-send-wa" class="rounded text-brand-600 focus:ring-brand-500 h-5 w-5" checked />
               <span class="font-medium">Otomatis kirim e-Nota ke WhatsApp Pelanggan saat ini juga</span>
             </label>
@@ -556,11 +579,13 @@
             <div>
               <h4 class="text-sm font-bold uppercase text-brand-400 tracking-wider mb-6">RINGKASAN BIAYA</h4>
               <div class="space-y-4 text-sm border-b border-slate-800 pb-6 mb-6">
+                <div class="flex justify-between"><span class="text-slate-400">Total Item</span><span id="checkout-total-items" class="font-semibold">0</span></div>
                 <div class="flex justify-between"><span class="text-slate-400">Subtotal Dasar</span><span id="checkout-subtotal" class="font-semibold">Rp 0</span></div>
                 <div class="flex justify-between"><span class="text-slate-400">Total Diskon</span><span id="checkout-discount" class="font-semibold text-rose-400">-Rp 0</span></div>
                 <div class="flex justify-between text-base"><span class="font-bold text-white">Biaya Akhir</span><span id="checkout-total" class="font-bold text-brand-400">Rp 0</span></div>
               </div>
               <div class="space-y-4 text-sm">
+                <div class="flex justify-between"><span class="text-slate-400">Estimasi Selesai Maks:</span><span id="checkout-est-days" class="font-medium text-amber-400">-</span></div>
                 <div class="flex justify-between"><span class="text-slate-400">Status Pembayaran:</span><span id="checkout-payment" class="font-medium text-amber-400">Belum Bayar</span></div>
                 <div class="flex justify-between"><span class="text-slate-400">Uang Kembalian:</span><span id="checkout-change" class="font-semibold text-emerald-400">Rp 0</span></div>
               </div>
@@ -571,58 +596,156 @@
           </div>
         </div>
 
-        <!-- TAB: SETTINGS & WA GATEWAY -->
+        <!-- TAB: SETTINGS & WA GATEWAY (ALL DYNAMIC CONFIGS HERE) -->
         <div id="tab-settings" class="tab-content hidden space-y-6">
+          
+          <!-- Konfigurasi Teks Keterangan & Identitas -->
+          <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
+            <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
+              Identitas Toko & Konfigurasi Landing Page
+              <span class="transition group-open:rotate-180 text-slate-400">▼</span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Landing Page Website</label><select id="set-landing-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700"><option value="ON">ON - Tampilkan Semua Fitur Promo</option><option value="OFF">OFF - Hanya Tampilkan Login Saja</option></select></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon Emoji / URL Link Gambar Logo</label><input id="set-brand-icon" type="text" placeholder="🧼 atau http://linkgambar.png" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Brand Utama</label><input id="set-store-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alamat Induk Pusat</label><input id="set-store-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              </div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero Landing Page (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Hero Deskripsi Singkat</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+            </div>
+          </details>
+
+          <!-- Konfigurasi Layanan Premium (Features) -->
+          <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
+            <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
+              Teks Promo - 4 Layanan Premium Kami
+              <span class="transition group-open:rotate-180 text-slate-400">▼</span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Utama Section</label><input id="set-feat-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Subjudul / Penjelasan Singkat</label><input id="set-feat-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              </div>
+              <!-- Box 1 & 2 -->
+              <div class="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl">
+                <div>
+                  <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 1: Ikon & Judul</label>
+                  <div class="flex gap-2 mb-2">
+                    <input id="set-feat1-icon" type="text" class="w-16 p-2 border rounded-lg text-sm text-center" placeholder="🧺">
+                    <input id="set-feat1-title" type="text" class="flex-1 p-2 border rounded-lg text-sm">
+                  </div>
+                  <input id="set-feat1-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 1">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 2: Ikon & Judul</label>
+                  <div class="flex gap-2 mb-2">
+                    <input id="set-feat2-icon" type="text" class="w-16 p-2 border rounded-lg text-sm text-center" placeholder="👔">
+                    <input id="set-feat2-title" type="text" class="flex-1 p-2 border rounded-lg text-sm">
+                  </div>
+                  <input id="set-feat2-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 2">
+                </div>
+              </div>
+              <!-- Box 3 & 4 -->
+              <div class="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl">
+                <div>
+                  <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 3: Ikon & Judul</label>
+                  <div class="flex gap-2 mb-2">
+                    <input id="set-feat3-icon" type="text" class="w-16 p-2 border rounded-lg text-sm text-center" placeholder="🛏️">
+                    <input id="set-feat3-title" type="text" class="flex-1 p-2 border rounded-lg text-sm">
+                  </div>
+                  <input id="set-feat3-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 3">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 4: Ikon & Judul</label>
+                  <div class="flex gap-2 mb-2">
+                    <input id="set-feat4-icon" type="text" class="w-16 p-2 border rounded-lg text-sm text-center" placeholder="👟">
+                    <input id="set-feat4-title" type="text" class="flex-1 p-2 border rounded-lg text-sm">
+                  </div>
+                  <input id="set-feat4-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 4">
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Konfigurasi Benefits & Keunggulan -->
+          <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
+            <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
+              Teks Promo - Teknologi & Keunggulan (Benefits)
+              <span class="transition group-open:rotate-180 text-slate-400">▼</span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Utama Benefit</label><input id="set-ben-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deskripsi Utama Benefit</label><input id="set-ben-desc" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div class="p-4 bg-slate-50 rounded-xl space-y-3">
+                <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 1: Judul & Deskripsi</label><input id="set-ben1-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben1-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 2: Judul & Deskripsi</label><input id="set-ben2-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben2-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 3: Judul & Deskripsi</label><input id="set-ben3-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben3-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Konfigurasi Testimonial & Keterangan Harga -->
+          <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
+            <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
+              Teks Promo - Testimoni Pelanggan & Kaki Harga
+              <span class="transition group-open:rotate-180 text-slate-400">▼</span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Teks Keterangan Bawah Tabel Harga (Pengganti "Minimal 3 Kg")</label><input id="set-price-footer" type="text" class="w-full p-3 border rounded-xl bg-amber-50 text-amber-800 text-sm font-bold" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Section Testimoni</label><input id="set-testi-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              
+              <div class="grid md:grid-cols-3 gap-4">
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                  <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 1</label>
+                  <input id="set-testi1-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi1-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi1-desc" type="text" placeholder="Isi testimoni..." class="w-full p-2 border rounded-lg text-sm">
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                  <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 2</label>
+                  <input id="set-testi2-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi2-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi2-desc" type="text" placeholder="Isi testimoni..." class="w-full p-2 border rounded-lg text-sm">
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                  <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 3</label>
+                  <input id="set-testi3-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi3-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi3-desc" type="text" placeholder="Isi testimoni..." class="w-full p-2 border rounded-lg text-sm">
+                </div>
+              </div>
+            </div>
+          </details>
+
           <div class="grid md:grid-cols-2 gap-6">
-            
-            <div class="space-y-6">
-              <!-- Konfigurasi Teks Landing Page -->
-              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Teks Landing Page</h3>
+            <!-- Tema Warna Color Picker -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+              <h3 class="font-bold text-slate-800 text-lg">Tema Warna (Color Picker) Beranda</h3>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Landing Page Website</label>
-                <select id="set-landing-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
-                  <option value="ON">ON - Tampilkan Semua Fitur Promo</option>
-                  <option value="OFF">OFF - Hanya Tampilkan Login Saja</option>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero</label>
+                <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
+                  <option value="gradient">Gradient (Dua Warna)</option>
+                  <option value="solid">Solid (Satu Warna Saja)</option>
                 </select>
               </div>
               <div class="grid grid-cols-2 gap-4">
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon Emoji / URL Logo Gambar</label><input id="set-brand-icon" type="text" placeholder="🧼 atau https://link.com/logo.png" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Brand Utama</label><input id="set-store-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 1</label><input id="set-hero-bg-color1" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 2 (Jika Gradient)</label><input id="set-hero-bg-color2" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
               </div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Deskripsi Singkat</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              </div>
-
-              <!-- Tema Warna Color Picker -->
-              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-800 text-lg">Tema Warna (Color Picker) Beranda</h3>
-                <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero</label>
-                  <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
-                    <option value="gradient">Gradient (Dua Warna)</option>
-                    <option value="solid">Solid (Satu Warna Saja)</option>
-                  </select>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 1</label><input id="set-hero-bg-color1" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 2 (Jika Gradient)</label><input id="set-hero-bg-color2" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-                </div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Headline)</label><input id="set-hero-title-color" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-              </div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Headline)</label><input id="set-hero-title-color" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
             </div>
 
             <div class="space-y-6">
-              <!-- Parameter Identitas Toko -->
-              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-800 text-lg">Parameter Identitas Toko Pusat</h3>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alamat Induk Pusat</label><input id="set-store-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan di Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              </div>
-
               <!-- Konfigurasi WhatsApp API -->
-              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+              <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
                 <h3 class="font-bold text-slate-800 text-lg">Konfigurasi WhatsApp API Gateway</h3>
                 <div>
                   <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Penyedia Vendor Layanan Server</label>
@@ -634,9 +757,6 @@
                 </div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">API Key / Token Rahasia Akun</label><input id="set-wa-api" type="password" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor Pengirim (Hanya untuk WAPlus)</label><input id="set-wa-sender" type="text" placeholder="Contoh: 62812345..." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div class="pt-4 border-t border-slate-100 mt-2">
-                  <button onclick="saveGlobalSettings()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server</button>
-                </div>
               </div>
               
               <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 text-white shadow-lg">
@@ -645,6 +765,10 @@
                 <button onclick="triggerCloudBackup()" class="px-5 py-2.5 bg-emerald-600 text-white text-xs font-bold rounded-xl hover:bg-emerald-700 transition shadow-lg w-full">💾 Picu Pencadangan Arsip Sinkron</button>
               </div>
             </div>
+          </div>
+          
+          <div class="bg-brand-50 p-6 rounded-2xl border border-brand-200">
+            <button onclick="saveGlobalSettings()" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server Sekarang</button>
           </div>
         </div>
 
@@ -704,7 +828,7 @@
           <div class="flex justify-between items-center"><h3 class="font-bold text-slate-800 text-lg">Manajemen Harga & Paket Layanan</h3><button onclick="openServiceModal()" id="btn-add-service-tab" class="px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg text-sm transition">+ Buat Paket Baru</button></div>
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
-              <thead><tr class="text-slate-400 text-xs font-bold uppercase border-b border-slate-100"><th class="py-3">Nama Paket</th><th class="py-3">Satuan</th><th class="py-3">Tarif Harga</th><th class="py-3">Estimasi Jadi</th><th class="py-3">Ketersediaan</th><th class="py-3 text-right">Opsi</th></tr></thead>
+              <thead><tr class="text-slate-400 text-xs font-bold uppercase border-b border-slate-100"><th class="py-3">Kategori</th><th class="py-3">Nama Paket</th><th class="py-3">Satuan</th><th class="py-3">Tarif Harga</th><th class="py-3">Estimasi Jadi</th><th class="py-3">Ketersediaan</th><th class="py-3 text-right">Opsi</th></tr></thead>
               <tbody id="table-services-body" class="divide-y divide-slate-50 text-sm"></tbody>
             </table>
           </div>
@@ -769,7 +893,7 @@
   <!-- ============================================== -->
   
   <!-- Custom Notification Dialog (Replaces Alert) -->
-  <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+  <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300" style="z-index: 9999;">
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
       <div id="dialog-icon" class="text-5xl mb-2">⚠️</div>
       <h4 id="dialog-title" class="text-xl font-bold text-slate-900">Notifikasi Sistem</h4>
@@ -804,8 +928,9 @@
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-service-title">Tambahkan Paket Jasa</h3>
       <div class="space-y-4">
         <input type="hidden" id="serv-id" />
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Paket / Layanan</label><input id="serv-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deksripsi Manfaat (Pisahkan Poin dengan Titik)</label><input id="serv-desc" type="text" placeholder="Wangi tahan lama. Setrika uap. Antrean cepat." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kategori / Grup Layanan</label><input id="serv-category" type="text" placeholder="Contoh: Cuci Setrika / Setrika Wangi" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Paket Spesifik</label><input id="serv-name" type="text" placeholder="Contoh: Reguler Biasa / Express" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deksripsi Manfaat (Pisahkan Poin dgn Titik)</label><input id="serv-desc" type="text" placeholder="Minimal 3Kg. Wangi tahan lama." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
         <div class="grid grid-cols-2 gap-4">
           <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sistem Hitung</label><select id="serv-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="kilogram">Kiloan (Kg)</option><option value="item">Satuan Biji (Pcs)</option></select></div>
           <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tarif Harga (Rp)</label><input id="serv-price" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
@@ -938,16 +1063,17 @@
       <div>WhatsApp Tertaut: <span id="rec-customer-phone">+62812345678</span></div>
     </div>
     <div class="border-t border-dashed border-slate-400 my-2"></div>
+    
     <div class="space-y-1.5 text-[10px]">
       <div class="flex justify-between font-bold border-b border-slate-200 pb-1 mb-1">
         <span>Rincian Jenis Paket</span>
         <span>Harga Tarik</span>
       </div>
-      <div class="flex justify-between">
-        <span id="rec-service-name">Cuci Baju Kilat Cepat</span>
-        <span><span id="rec-qty">1.0</span> x <span id="rec-price">Rp 0</span></span>
+      <div id="rec-items-container" class="space-y-1.5">
+        <!-- Render from POS_CART or Single Item -->
       </div>
     </div>
+    
     <div class="border-t border-dashed border-slate-400 my-2"></div>
     <div class="space-y-1 text-[10px]">
       <div class="flex justify-between">
@@ -977,7 +1103,7 @@
     </div>
     <div class="border-t border-dashed border-slate-400 my-2"></div>
     <div class="text-center space-y-2 text-[9px]">
-      <p class="font-medium text-slate-800">Estimasi Pengembalian Siap Tuntas: <br><span id="rec-est-done" class="font-bold text-xs text-black border-b border-black inline-block mt-1">11 Juni 2026</span></p>
+      <p class="font-medium text-slate-800">Estimasi Pengembalian Siap Tuntas Maks: <br><span id="rec-est-done" class="font-bold text-xs text-black border-b border-black inline-block mt-1">11 Juni 2026</span></p>
       <div class="flex justify-center py-2">
         <div id="receipt-qr-code-box" class="p-1.5 bg-white border inline-block"></div>
       </div>
@@ -1002,13 +1128,11 @@
     let APP_STATE = {
       currentUser: null, currentTab: "dashboard",
       outlets: [], users: [], customers: [], services: [], transactions: [], expenses: [], statusHistory: [],
-      settings: { 
-        store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih banyak!", 
-        wa_provider: "none", wa_api_key: "", wa_sender: "",
-        landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!",
-        hero_bg_type: "gradient", hero_bg_color1: "#0369a1", hero_bg_color2: "#22d3ee", hero_title_color: "#ffffff"
-      }
+      settings: {}
     };
+
+    // Keranjang Multi-Item Kasir
+    let POS_CART = [];
 
     function formatRupiah(amount) {
       return "Rp " + Math.round(amount).toLocaleString("id-ID");
@@ -1064,20 +1188,37 @@
     // MODULE C: LOCALSTORAGE ENGINE
     // ==========================================
     const INITIAL_DUMMY_DATA = {
-      settings: { store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih atas kepercayaannya!", wa_provider: "none", wa_api_key: "", wa_sender: "", landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", hero_bg_type: "gradient", hero_bg_color1: "#0369a1", hero_bg_color2: "#22d3ee", hero_title_color: "#ffffff" },
+      settings: { 
+        store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih telah mempercayakan pakaian Anda di iMersLonry!", 
+        wa_provider: "none", wa_api_key: "", wa_sender: "", 
+        landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", 
+        hero_bg_type: "gradient", hero_bg_color1: "#fb923c", hero_bg_color2: "#ea580c", hero_title_color: "#ffffff",
+        feat_title: "Layanan Premium Kami", feat_sub: "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.", feat1_icon: "🧺", feat1_title: "Cuci & Setrika", feat1_desc: "Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.", feat2_icon: "👔", feat2_title: "Dry Cleaning", feat2_desc: "Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.", feat3_icon: "🛏️", feat3_title: "Bed Cover & Selimut", feat3_desc: "Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.", feat4_icon: "👟", feat4_title: "Spa Sepatu", feat4_desc: "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.",
+        ben_title: "Teknologi Sinkronisasi Multi-Outlet Instan", ben_desc: "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.", ben1_title: "Sinkronisasi Spreadsheet Otomatis", ben1_desc: "Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.", ben2_title: "Hak Akses Fleksibel Kasir & Owner", ben2_desc: "Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.", ben3_title: "Lacak Status via QR Code", ben3_desc: "Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.",
+        testi_title: "Kisah Puas Pelanggan Setia kami", testi1_desc: "Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya!", testi1_name: "Sarah Rahmawati", testi1_role: "Ibu Rumah Tangga", testi2_desc: "Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian transparan.", testi2_name: "Bambang Susanto", testi2_role: "Pemilik Multi-Outlet", testi3_desc: "Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional.", testi3_name: "Rian Mahendra", testi3_role: "Kasir Laundry Utama",
+        price_global_footer: "Ketentuan: Minimal berat pengerjaan laundry kiloan adalah 3 Kg per nota."
+      },
       outlets: [
-        { id: "OUT-001", name: "Cabang Utama Dago", address: "Jl. Dago No. 45", phone: "08111222333", status: "Active", created_at: "2026-06-01 10:00:00" }
+        { id: "OUT-001", name: "Cabang Utama Dago", address: "Jl. Dago No. 45", phone: "08111222333", status: "Active", created_at: "2026-06-01 10:00:00" },
+        { id: "OUT-002", name: "Cabang Sukajadi", address: "Jl. Sukajadi No. 12", phone: "08222333444", status: "Active", created_at: "2026-06-02 11:00:00" }
       ],
       users: [
-        { id: "USR-001", name: "Sang Pemilik Super", username: "owner", password: "owner123", role: "Owner", outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 10:00:00" }
+        { id: "USR-001", name: "Budi Santoso", username: "owner", password: "owner123", role: "Owner", outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 10:00:00" },
+        { id: "USR-002", name: "Siti Aminah", username: "admin", password: "admin123", role: "Admin", outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 10:05:00" },
+        { id: "USR-003", name: "Rian Hidayat", username: "cashier", password: "cashier123", role: "Cashier", outlet_id: "OUT-002", status: "Active", created_at: "2026-06-02 11:15:00" }
       ],
       customers: [
-        { id: "CUST-001", name: "Aditya Rahman", phone: "081234567891", address: "Jl. Dipatiukur No. 10", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 08:00:00" }
+        { id: "CUST-001", name: "Aditya Rahman", phone: "081234567891", address: "Jl. Dipatiukur No. 10", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 08:00:00" },
+        { id: "CUST-002", name: "Budi Gunawan", phone: "082234567892", address: "Jl. Dago No. 15", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 09:12:00" }
       ],
       services: [
-        { id: "SERV-001", name: "Cuci Lipat Reguler", description: "Pilihan hemat harian. Parfum eksklusif & higienis. Selesai 2 Hari.", type: "kilogram", price: 8000, estimate_days: 2, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" },
-        { id: "SERV-002", name: "Cuci Setrika Ekspres", description: "Antrean cuci prioritas khusus. Siap dalam 24 jam. Setrika ganda ekstra rapi.", type: "kilogram", price: 15000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:00:00" },
-        { id: "SERV-003", name: "Jas & Premium Wear", description: "Dry cleaning ramah serat kain. Kemasan hanger gantung khusus. Treatment noda membandel.", type: "item", price: 50000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:10:00" }
+        { id: "SERV-001", category: "Cuci Setrika", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" },
+        { id: "SERV-002", category: "Cuci Setrika", name: "Reguler Cepat", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6500, estimate_days: 2, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:05:00" },
+        { id: "SERV-003", category: "Cuci Setrika", name: "Express", description: "Minimal laundry 3 Kg", type: "kilogram", price: 8000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", "created_at": "2026-06-01 12:10:00"},
+        { id: "SERV-004", category: "Cuci Setrika", name: "Super Express", "description": "Minimal laundry 3 Kg. Selesai 6 Jam", "type": "kilogram", "price": 14000, "estimate_days": 1, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:00:00"},
+        { id: "SERV-005", category: "Setrika Wangi", "name": "Reguler Biasa", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 5000, "estimate_days": 3, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:05:00"},
+        { id: "SERV-006", category: "Setrika Wangi", "name": "Reguler Cepat", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 5500, "estimate_days": 2, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:10:00"},
+        { id: "SERV-007", category: "Setrika Wangi", "name": "Express", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 6000, "estimate_days": 1, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:15:00"}
       ],
       transactions: [],
       expenses: [],
@@ -1086,7 +1227,7 @@
 
     const StorageEngine = {
       init() {
-        if (!localStorage.getItem("iml_outlets")) {
+        if (!localStorage.getItem("iml_settings")) {
           localStorage.setItem("iml_settings", JSON.stringify(INITIAL_DUMMY_DATA.settings));
           localStorage.setItem("iml_outlets", JSON.stringify(INITIAL_DUMMY_DATA.outlets));
           localStorage.setItem("iml_users", JSON.stringify(INITIAL_DUMMY_DATA.users));
@@ -1171,6 +1312,18 @@
       } else {
         closeNotification();
         showNotification("Karena mode masih simulasi lokal (Mock), file backup otomatis disimpan aman di cache perangkat pintar Anda.", "Backup Lokal Diizinkan", "💾");
+      }
+    }
+
+    function renderBrandIcon(val, elId) {
+      const el = document.getElementById(elId);
+      if(!el) return;
+      if(val && (val.startsWith("http://") || val.startsWith("https://"))) {
+        el.innerHTML = `<img src="${val}" class="h-full w-full object-contain" onerror="this.outerHTML='🧼'" />`;
+        el.classList.replace("bg-brand-500", "bg-transparent");
+      } else {
+        el.innerHTML = val || "🧼";
+        el.classList.replace("bg-transparent", "bg-brand-500");
       }
     }
 
@@ -1309,7 +1462,10 @@
         changeTab("customer-portal");
       } else {
         document.querySelectorAll(".nav-karyawan").forEach(el => el.classList.remove("hidden"));
-        if (u.role === "Owner" || u.role === "Admin") {
+        if (u.role === "Owner") {
+          document.querySelectorAll(".nav-admin-only").forEach(el => el.classList.remove("hidden"));
+          document.querySelectorAll(".nav-owner-only").forEach(el => el.classList.remove("hidden"));
+        } else if (u.role === "Admin") {
           document.querySelectorAll(".nav-admin-only").forEach(el => el.classList.remove("hidden"));
         }
         changeTab("dashboard");
@@ -1317,43 +1473,82 @@
       document.querySelector("[onclick=\"changeTab('profile-security')\"]").classList.remove("hidden");
     }
 
-    // Fungsi Pembantu Merender Logo/Gambar Dinamis
-    function renderBrandIcon(iconValue) {
-      if (!iconValue) return "🧼";
-      if (iconValue.startsWith("http://") || iconValue.startsWith("https://")) {
-        return `<img src="${iconValue}" alt="Logo" class="w-full h-full object-contain p-1 rounded-xl" onerror="this.onerror=null; this.outerHTML='🧼';" />`;
-      }
-      return iconValue;
-    }
-
-    // Mengaplikasikan konfigurasi UI dan Harga untuk Landing Page
     function applyDynamicLandingPage() {
       const set = APP_STATE.settings;
       
-      const renderedIcon = renderBrandIcon(set.brand_icon);
-
+      // Update Title & Icons
       document.getElementById("landing-brand-text").innerText = set.store_name || "iMersLonry";
-      document.getElementById("landing-icon-badge").innerHTML = renderedIcon;
+      renderBrandIcon(set.brand_icon, "landing-icon-badge");
       document.getElementById("sidebar-brand").innerText = set.store_name || "iMersLonry";
-      document.getElementById("sidebar-icon").innerHTML = renderedIcon;
-      
-      const loginIcon = document.getElementById("login-icon-badge");
-      if(loginIcon) loginIcon.innerHTML = renderedIcon;
-
+      renderBrandIcon(set.brand_icon, "sidebar-icon");
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
+      // Hero Section Update
       document.getElementById("landing-headline").innerText = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
       document.getElementById("landing-subheadline").innerText = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
       
-      // Mengubah Warna Hero
       const heroSec = document.getElementById("hero-section");
       if (set.hero_bg_type === "solid") {
-        heroSec.style.background = set.hero_bg_color1 || "#0369a1";
+        heroSec.style.background = set.hero_bg_color1 || "#fb923c";
       } else {
-        heroSec.style.background = `linear-gradient(135deg, ${set.hero_bg_color1 || '#0369a1'}, ${set.hero_bg_color2 || '#22d3ee'})`;
+        heroSec.style.background = `linear-gradient(135deg, ${set.hero_bg_color1 || '#fb923c'}, ${set.hero_bg_color2 || '#ea580c'})`;
       }
       document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
+
+      // Features Update (Layanan Premium Kami)
+      if(document.getElementById("lp-feat-title")) {
+        document.getElementById("lp-feat-title").innerText = set.feat_title || "Layanan Premium Kami";
+        document.getElementById("lp-feat-sub").innerText = set.feat_sub || "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.";
+        
+        document.getElementById("lp-feat1-icon").innerText = set.feat1_icon || "🧺";
+        document.getElementById("lp-feat1-title").innerText = set.feat1_title || "Cuci & Setrika";
+        document.getElementById("lp-feat1-desc").innerText = set.feat1_desc || "Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.";
+        
+        document.getElementById("lp-feat2-icon").innerText = set.feat2_icon || "👔";
+        document.getElementById("lp-feat2-title").innerText = set.feat2_title || "Dry Cleaning";
+        document.getElementById("lp-feat2-desc").innerText = set.feat2_desc || "Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.";
+        
+        document.getElementById("lp-feat3-icon").innerText = set.feat3_icon || "🛏️";
+        document.getElementById("lp-feat3-title").innerText = set.feat3_title || "Bed Cover & Selimut";
+        document.getElementById("lp-feat3-desc").innerText = set.feat3_desc || "Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.";
+        
+        document.getElementById("lp-feat4-icon").innerText = set.feat4_icon || "👟";
+        document.getElementById("lp-feat4-title").innerText = set.feat4_title || "Spa Sepatu";
+        document.getElementById("lp-feat4-desc").innerText = set.feat4_desc || "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.";
+      }
+
+      // Benefits Update (Teknologi Sinkronisasi)
+      if(document.getElementById("lp-ben-title")) {
+        document.getElementById("lp-ben-title").innerText = set.ben_title || "Teknologi Sinkronisasi Multi-Outlet Instan";
+        document.getElementById("lp-ben-desc").innerText = set.ben_desc || "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.";
+        
+        document.getElementById("lp-ben1-title").innerText = set.ben1_title || "Sinkronisasi Spreadsheet Otomatis";
+        document.getElementById("lp-ben1-desc").innerText = set.ben1_desc || "Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.";
+        
+        document.getElementById("lp-ben2-title").innerText = set.ben2_title || "Hak Akses Fleksibel Kasir & Owner";
+        document.getElementById("lp-ben2-desc").innerText = set.ben2_desc || "Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.";
+        
+        document.getElementById("lp-ben3-title").innerText = set.ben3_title || "Lacak Status via QR Code";
+        document.getElementById("lp-ben3-desc").innerText = set.ben3_desc || "Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.";
+      }
+
+      // Testimonial Update
+      if(document.getElementById("lp-testi-title")) {
+        document.getElementById("lp-testi-title").innerText = set.testi_title || "Kisah Puas Pelanggan Setia kami";
+        
+        document.getElementById("lp-testi1-desc").innerText = `"${set.testi1_desc || 'Sangat memuaskan dan cepat'}"`;
+        document.getElementById("lp-testi1-name").innerText = set.testi1_name || "Sarah Rahmawati";
+        document.getElementById("lp-testi1-role").innerText = set.testi1_role || "Ibu Rumah Tangga";
+        
+        document.getElementById("lp-testi2-desc").innerText = `"${set.testi2_desc || 'Sistem kasirnya keren'}"`;
+        document.getElementById("lp-testi2-name").innerText = set.testi2_name || "Bambang Susanto";
+        document.getElementById("lp-testi2-role").innerText = set.testi2_role || "Pemilik Multi-Outlet";
+        
+        document.getElementById("lp-testi3-desc").innerText = `"${set.testi3_desc || 'Pelacakan via QR code gampang banget'}"`;
+        document.getElementById("lp-testi3-name").innerText = set.testi3_name || "Rian Mahendra";
+        document.getElementById("lp-testi3-role").innerText = set.testi3_role || "Kasir Laundry Utama";
+      }
       
       const waNum = (set.store_phone || "").replace(/[^0-9]/g, "");
       const waFormatted = waNum.startsWith("0") ? "62" + waNum.slice(1) : waNum;
@@ -1364,54 +1559,74 @@
         promoWrapper.classList.add("hidden");
       } else {
         promoWrapper.classList.remove("hidden");
-        renderDynamicPricing();
+        renderDynamicPricingList();
       }
     }
 
-    // Render Kartu Harga ke Landing Page
-    function renderDynamicPricing() {
+    // Render Kartu Harga dengan Format GROUPED TABLE (Warna Soft Orange Coral)
+    function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
       grid.innerHTML = "";
 
-      const activeServices = APP_STATE.services.filter(s => s.status === "Active").slice(0, 3);
+      const activeServices = APP_STATE.services.filter(s => s.status === "Active");
       if (activeServices.length === 0) {
-        grid.innerHTML = `<p class="col-span-3 text-slate-400">Belum ada paket layanan yang aktif di sistem kasir.</p>`;
+        grid.innerHTML = `<p class="text-slate-400 text-center w-full">Belum ada paket layanan yang aktif di sistem kasir.</p>`;
         return;
       }
 
-      activeServices.forEach((s, index) => {
-        const isPopular = index === 1; // Kartu tengah diwarnai mencolok
-        const wrapperClass = isPopular 
-          ? "border-2 border-brand-500 rounded-2xl p-8 bg-brand-50/50 hover:shadow-xl transition relative flex flex-col justify-between text-left transform md:-translate-y-4" 
-          : "border border-slate-200 rounded-2xl p-8 bg-white hover:border-brand-500 transition relative flex flex-col justify-between text-left";
-        
-        const badgeHtml = isPopular ? `<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">Paling Populer</div>` : "";
-        const unitLabel = s.type === "kilogram" ? "/ kg" : "/ pcs";
+      // Grouping layanan berdasarkan Kategori
+      const grouped = {};
+      activeServices.forEach(s => {
+        const cat = s.category || "Layanan Umum";
+        if(!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(s);
+      });
 
-        const points = (s.description || "Layanan cuci premium.").split(".").filter(p => p.trim() !== "");
-        let bulletHtml = "";
-        points.forEach(point => { bulletHtml += `<li class="flex items-start"><span class="text-brand-500 mr-2">✓</span> ${point.trim()}</li>`; });
+      const waNum = (APP_STATE.settings.store_phone || "").replace(/[^0-9]/g, "");
+      const waFormatted = waNum.startsWith("0") ? "62" + waNum.slice(1) : waNum;
 
-        const btnHtml = isPopular 
-          ? `<button onclick="openLoginModal('karyawan')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl transition text-center text-sm shadow-lg">Pilih Paket Ini</button>`
-          : `<button onclick="switchView('tracking')" class="w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl transition text-center text-sm">Lacak Pesanan</button>`;
+      for(let cat in grouped) {
+        let trs = "";
+        grouped[cat].forEach(s => {
+          trs += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
+              <td class="py-4 px-6 font-semibold text-slate-800">${s.name}</td>
+              <td class="py-4 px-6 text-slate-600 text-center font-medium">${s.estimate_days} Hari Selesai</td>
+              <td class="py-4 px-6 font-bold text-slate-800 text-right">${formatRupiah(s.price)} <span class="text-xs font-normal text-slate-500">/${s.type==='kilogram'?'Kg':'Pcs'}</span></td>
+              <td class="py-4 px-6 text-right w-16">
+                <a href="https://wa.me/${waFormatted}?text=Halo%20saya%20mau%20order%20Layanan%20${encodeURIComponent(cat + ' - ' + s.name)}" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-500 hover:bg-brand-600 text-white transition shadow-md hover:-translate-y-1">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.305-.88-.653-1.474-1.46-1.646-1.757-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg>
+                </a>
+              </td>
+            </tr>
+          `;
+        });
 
         grid.innerHTML += `
-          <div class="${wrapperClass}">
-            ${badgeHtml}
-            <div>
-              <h3 class="text-xl font-extrabold text-slate-900 mb-2">${s.name}</h3>
-              <p class="text-slate-500 text-sm mb-6 font-medium">Estimasi penyelesaian ${s.estimate_days} hari kerja.</p>
-              <div class="text-3xl font-extrabold text-slate-900 mb-6">${formatRupiah(s.price)} <span class="text-sm text-slate-400 font-medium">${unitLabel}</span></div>
-              <ul class="space-y-3 text-sm text-slate-600 mb-8 font-medium">
-                ${bulletHtml}
-              </ul>
+          <div class="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden mb-8 w-full transition hover:shadow-xl">
+            <div class="bg-brand-500 text-white py-4 px-6 text-center">
+              <h3 class="font-bold text-xl uppercase tracking-wider">${cat}</h3>
             </div>
-            ${btnHtml}
+            <div class="overflow-x-auto">
+              <table class="w-full text-left whitespace-nowrap">
+                <thead class="bg-slate-50 text-slate-500 text-xs uppercase font-extrabold border-b border-slate-200">
+                  <tr>
+                    <th class="py-4 px-6">Layanan</th>
+                    <th class="py-4 px-6 text-center">Waktu</th>
+                    <th class="py-4 px-6 text-right">Harga /Satuan</th>
+                    <th class="py-4 px-6 text-right">Order</th>
+                  </tr>
+                </thead>
+                <tbody>${trs}</tbody>
+              </table>
+            </div>
+            <div class="bg-brand-50 text-brand-800 text-xs font-semibold py-3 px-6 text-center border-t border-brand-100">
+              ${APP_STATE.settings.price_global_footer || "Ketentuan: Minimal berat pengerjaan laundry kiloan adalah 3 Kg per nota."}
+            </div>
           </div>
         `;
-      });
+      }
     }
 
     function switchView(view) {
@@ -1468,11 +1683,11 @@
     function renderDashboard() {
       const u = APP_STATE.currentUser;
       const transactions = APP_STATE.transactions.filter(t => {
-        if (u.role === "Owner" || u.role === "Admin") return true;
+        if (u.role === "Owner") return true;
         return t.outlet_id === u.outlet_id;
       });
 
-      const todayStr = "2026-06-09"; 
+      const todayStr = new Date().toISOString().slice(0,10); 
       const todayTxs = transactions.filter(t => t.created_at.startsWith(todayStr));
 
       const totalRevenue = todayTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
@@ -1486,7 +1701,12 @@
       const body = document.getElementById("dash-outlet-analytics");
       body.innerHTML = "";
       
-      APP_STATE.outlets.forEach(out => {
+      let displayOutlets = APP_STATE.outlets;
+      if (u.role !== "Owner") {
+        displayOutlets = APP_STATE.outlets.filter(o => o.id === u.outlet_id);
+      }
+      
+      displayOutlets.forEach(out => {
         const oTxs = APP_STATE.transactions.filter(t => t.outlet_id === out.id);
         const oEarnings = oTxs.reduce((sum, t) => sum + t.total, 0);
         const row = `<tr><td class="py-3 font-semibold text-slate-800">${out.name}</td><td class="py-3 text-slate-500 font-bold">${oTxs.length} Transaksi Terakumulasi</td><td class="py-3 text-right font-extrabold text-brand-600">${formatRupiah(oEarnings)}</td></tr>`;
@@ -1507,11 +1727,14 @@
       });
     }
 
-
     // ==========================================
-    // MODULE G: INTAKE SALE TRANSACTION INPUT
+    // MODULE G: INTAKE SALE TRANSACTION INPUT (MULTI-ITEM CART)
     // ==========================================
     function initNewTransactionForm() {
+      // Clear Cart First
+      POS_CART = [];
+      renderCartTable();
+
       const custSelect = document.getElementById("tx-customer");
       custSelect.innerHTML = "";
       const filteredCustomers = APP_STATE.customers.filter(c => {
@@ -1526,26 +1749,88 @@
         if (APP_STATE.currentUser.role === "Owner") return true;
         return s.outlet_id === APP_STATE.currentUser.outlet_id && s.status === "Active";
       });
-      filteredServices.forEach(s => { svcSelect.innerHTML += `<option value="${s.id}">${s.name} (${formatRupiah(s.price)}/${s.type === 'kilogram' ? 'kg' : 'pcs'})</option>`; });
+      filteredServices.forEach(s => { 
+        const catLabel = s.category ? `[${s.category}] ` : "";
+        svcSelect.innerHTML += `<option value="${s.id}">${catLabel}${s.name} (${formatRupiah(s.price)}/${s.type === 'kilogram' ? 'kg' : 'pcs'})</option>`; 
+      });
 
+      document.getElementById("tx-qty").value = "1";
+      document.getElementById("tx-discount").value = "0";
+      document.getElementById("tx-paid").value = "0";
       calculateNewTxTotal();
     }
 
-    function calculateNewTxTotal() {
+    function addCartItem() {
       const svcId = document.getElementById("tx-service").value;
       const qty = parseFloat(document.getElementById("tx-qty").value) || 0;
+      if (!svcId || qty <= 0) return showNotification("Pastikan layanan dipilih dan Qty lebih dari 0", "Input Ditolak", "⚠️");
+
+      const service = APP_STATE.services.find(s => s.id === svcId);
+      if(!service) return;
+
+      const subtotal = service.price * qty;
+      const newItem = {
+        cart_id: "CART-" + Date.now() + Math.floor(Math.random()*100),
+        service_id: service.id,
+        service_name: service.name,
+        price: service.price,
+        qty: qty,
+        total: subtotal,
+        estimate_days: service.estimate_days
+      };
+
+      POS_CART.push(newItem);
+      document.getElementById("tx-qty").value = "1"; // reset qty input
+      renderCartTable();
+      calculateNewTxTotal();
+    }
+
+    function removeCartItem(cartId) {
+      POS_CART = POS_CART.filter(i => i.cart_id !== cartId);
+      renderCartTable();
+      calculateNewTxTotal();
+    }
+
+    function renderCartTable() {
+      const body = document.getElementById("tx-cart-body");
+      body.innerHTML = "";
+      
+      if(POS_CART.length === 0) {
+        body.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 text-xs italic">Keranjang masih kosong, silakan tambah item di atas.</td></tr>`;
+        return;
+      }
+
+      POS_CART.forEach(item => {
+        body.innerHTML += `
+          <tr class="border-b border-slate-100 hover:bg-slate-50">
+            <td class="p-3 font-semibold text-slate-800">${item.service_name}</td>
+            <td class="p-3 text-slate-500">${formatRupiah(item.price)}</td>
+            <td class="p-3 font-bold">${item.qty}</td>
+            <td class="p-3 font-bold text-brand-600">${formatRupiah(item.total)}</td>
+            <td class="p-3 text-center">
+              <button onclick="removeCartItem('${item.cart_id}')" class="text-rose-500 hover:text-rose-700 bg-rose-50 px-2 py-1 rounded text-xs font-bold transition">Hapus</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function calculateNewTxTotal() {
       const discount = parseFloat(document.getElementById("tx-discount").value) || 0;
       const paid = parseFloat(document.getElementById("tx-paid").value) || 0;
 
-      const service = APP_STATE.services.find(s => s.id === svcId);
-      if (!service) return;
+      let subtotal = 0;
+      let maxEstDays = 0;
 
-      document.getElementById("tx-days-est").value = service.estimate_days;
+      POS_CART.forEach(item => {
+        subtotal += item.total;
+        if(item.estimate_days > maxEstDays) maxEstDays = item.estimate_days;
+      });
 
-      const subtotal = service.price * qty;
       const total = Math.max(0, subtotal - discount);
       const change = Math.max(0, paid - total);
 
+      document.getElementById("checkout-total-items").innerText = POS_CART.length + " Macam Layanan";
       document.getElementById("checkout-subtotal").innerText = formatRupiah(subtotal);
       document.getElementById("checkout-discount").innerText = `-${formatRupiah(discount)}`;
       document.getElementById("checkout-total").innerText = formatRupiah(total);
@@ -1553,23 +1838,30 @@
       const payStatus = document.getElementById("tx-payment-status").value;
       document.getElementById("checkout-payment").innerText = payStatus;
       document.getElementById("checkout-change").innerText = formatRupiah(change);
+
+      const today = new Date();
+      const estDate = new Date(); estDate.setDate(today.getDate() + maxEstDays);
+      document.getElementById("checkout-est-days").innerText = POS_CART.length > 0 ? (maxEstDays + " Hari (" + estDate.toISOString().slice(0,10) + ")") : "-";
     }
 
     function submitNewTransaction() {
       const custId = document.getElementById("tx-customer").value;
-      const svcId = document.getElementById("tx-service").value;
-      const qty = parseFloat(document.getElementById("tx-qty").value) || 0;
       const discount = parseFloat(document.getElementById("tx-discount").value) || 0;
       const paid = parseFloat(document.getElementById("tx-paid").value) || 0;
       const payStatus = document.getElementById("tx-payment-status").value;
       const autoWa = document.getElementById("tx-send-wa").checked;
 
-      if (!custId || !svcId || qty <= 0) {
-        return showNotification("Pengisian gagal! Verifikasi apakah klien sasaran, pilihan layanan paket dan bobot berat pakaian valid minimal 1.", "Integritas Form Pecah", "⚠️");
+      if (!custId || POS_CART.length === 0) {
+        return showNotification("Pengisian gagal! Keranjang belanja kosong atau Pelanggan belum dipilih.", "Integritas Form Pecah", "⚠️");
       }
 
-      const service = APP_STATE.services.find(s => s.id === svcId);
-      const subtotal = service.price * qty;
+      let subtotal = 0;
+      let maxEstDays = 0;
+      POS_CART.forEach(item => {
+        subtotal += item.total;
+        if(item.estimate_days > maxEstDays) maxEstDays = item.estimate_days;
+      });
+
       const total = Math.max(0, subtotal - discount);
       const change = Math.max(0, paid - total);
 
@@ -1578,7 +1870,7 @@
 
       const today = new Date();
       const dateString = today.toISOString().slice(0,10) + " " + today.toTimeString().slice(0,8);
-      const estDate = new Date(); estDate.setDate(today.getDate() + service.estimate_days);
+      const estDate = new Date(); estDate.setDate(today.getDate() + maxEstDays);
       const estDateString = estDate.toISOString().slice(0,10);
 
       const newTx = {
@@ -1590,17 +1882,27 @@
 
       APP_STATE.transactions.unshift(newTx);
 
-      const newItem = { id: "TXI-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, service_id: svcId, service_name: service.name, qty: qty, price: service.price, total: subtotal };
-      
+      const payloadItems = POS_CART.map(item => ({
+        id: "TXI-" + Math.floor(10000 + Math.random() * 90000),
+        transaction_id: newTxId,
+        service_id: item.service_id,
+        service_name: item.service_name,
+        qty: item.qty,
+        price: item.price,
+        total: item.total
+      }));
+
       const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, status: "Diterima", note: "Nota cucian telah diterbitkan dari keranjang meja registrasi mesin kasir.", updated_by: APP_STATE.currentUser.name, updated_at: dateString };
       APP_STATE.statusHistory.unshift(newHist);
 
       StorageEngine.saveStateToLocal();
-      triggerDirectPrintReceipt(newTx, service, qty);
+      triggerDirectPrintReceiptMulti(newTx, payloadItems);
+      
+      POS_CART = []; // Kosongkan keranjang setelah submit
       changeTab("transactions");
-      apiRequest("createTransaction", { transaction: newTx, item: newItem, history: newHist, auto_wa: autoWa });
+      
+      apiRequest("createTransaction", { transaction: newTx, items: payloadItems, history: newHist, auto_wa: autoWa });
     }
-
 
     // ==========================================
     // MODULE H: TRANSACTIONS LIST & FILTERING
@@ -1611,7 +1913,7 @@
       body.innerHTML = "";
 
       const filtered = APP_STATE.transactions.filter(t => {
-        if (u.role === "Owner" || u.role === "Admin") return true;
+        if (u.role === "Owner") return true;
         return t.outlet_id === u.outlet_id;
       });
 
@@ -1652,7 +1954,7 @@
       body.innerHTML = "";
       const u = APP_STATE.currentUser;
       const filtered = APP_STATE.customers.filter(c => {
-        if (u.role === "Owner" || u.role === "Admin") return true;
+        if (u.role === "Owner") return true;
         return c.outlet_id === u.outlet_id;
       });
       filtered.forEach(c => {
@@ -1714,11 +2016,11 @@
     function renderServices() {
       const body = document.getElementById("table-services-body"); body.innerHTML = "";
       const u = APP_STATE.currentUser;
-      const filtered = APP_STATE.services.filter(s => { if (u.role === "Owner" || u.role === "Admin") return true; return s.outlet_id === u.outlet_id; });
+      const filtered = APP_STATE.services.filter(s => { if (u.role === "Owner") return true; return s.outlet_id === u.outlet_id; });
       filtered.forEach(s => {
         const outlet = APP_STATE.outlets.find(o => o.id === s.outlet_id) || { name: "Central" };
         const statusClass = s.status === "Active" ? "bg-emerald-100 text-emerald-800" : "bg-slate-100 text-slate-800";
-        body.innerHTML += `<tr><td class="py-4 font-bold text-slate-800">${s.name}</td><td class="py-4 text-slate-500 font-mono text-xs uppercase">${s.type}</td><td class="py-4 font-bold text-slate-800">${formatRupiah(s.price)}</td><td class="py-4 text-slate-600 font-bold">${s.estimate_days} Hari Target</td><td class="py-4 font-medium text-slate-500">${outlet.name}</td><td class="py-4"><span class="px-2 py-0.5 rounded text-xs font-bold ${statusClass}">${s.status}</span></td><td class="py-4 text-right space-x-1.5"><button onclick="editService('${s.id}')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 rounded font-bold text-xs text-slate-700">Sunting</button><button onclick="deleteService('${s.id}')" class="px-2.5 py-1 bg-rose-50 hover:bg-rose-100 rounded font-bold text-xs text-rose-700">Mati</button></td></tr>`;
+        body.innerHTML += `<tr><td class="py-4 font-bold text-brand-600">${s.category || '-'}</td><td class="py-4 font-bold text-slate-800">${s.name}</td><td class="py-4 text-slate-500 font-mono text-xs uppercase">${s.type}</td><td class="py-4 font-bold text-slate-800">${formatRupiah(s.price)}</td><td class="py-4 text-slate-600 font-bold">${s.estimate_days} Hari Target</td><td class="py-4"><span class="px-2 py-0.5 rounded text-xs font-bold ${statusClass}">${s.status}</span></td><td class="py-4 text-right space-x-1.5"><button onclick="editService('${s.id}')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 rounded font-bold text-xs text-slate-700">Sunting</button><button onclick="deleteService('${s.id}')" class="px-2.5 py-1 bg-rose-50 hover:bg-rose-100 rounded font-bold text-xs text-rose-700">Mati</button></td></tr>`;
       });
     }
 
@@ -1728,13 +2030,15 @@
 
       if (id) {
         const s = APP_STATE.services.find(x => x.id === id);
-        document.getElementById("serv-id").value = s.id; document.getElementById("serv-name").value = s.name;
+        document.getElementById("serv-id").value = s.id; document.getElementById("serv-category").value = s.category || "";
+        document.getElementById("serv-name").value = s.name;
         document.getElementById("serv-desc").value = s.description || "";
         document.getElementById("serv-type").value = s.type; document.getElementById("serv-price").value = s.price;
         document.getElementById("serv-days").value = s.estimate_days; document.getElementById("serv-outlet").value = s.outlet_id;
         document.getElementById("serv-status").value = s.status;
       } else {
-        document.getElementById("serv-id").value = ""; document.getElementById("serv-name").value = "";
+        document.getElementById("serv-id").value = ""; document.getElementById("serv-category").value = "";
+        document.getElementById("serv-name").value = "";
         document.getElementById("serv-desc").value = "";
         document.getElementById("serv-type").value = "kilogram"; document.getElementById("serv-price").value = "";
         document.getElementById("serv-days").value = ""; document.getElementById("serv-status").value = "Active";
@@ -1746,6 +2050,7 @@
 
     function saveServiceData() {
       const id = document.getElementById("serv-id").value;
+      const category = document.getElementById("serv-category").value.trim();
       const name = document.getElementById("serv-name").value.trim();
       const desc = document.getElementById("serv-desc").value.trim();
       const type = document.getElementById("serv-type").value;
@@ -1754,14 +2059,14 @@
       const outletId = document.getElementById("serv-outlet").value;
       const status = document.getElementById("serv-status").value;
 
-      if (!name || price <= 0) return showNotification("Kegagalan mematok angka nominal tarif dan deklarasi karakter nama jualan paket servis!", "Perbaikan Data Input", "⚠️");
+      if (!name || price <= 0 || !category) return showNotification("Kegagalan mematok angka nominal tarif, nama, dan Kategori Grup jualan paket servis!", "Perbaikan Data Input", "⚠️");
 
       if (id) {
         const s = APP_STATE.services.find(x => x.id === id);
-        s.name = name; s.description = desc; s.type = type; s.price = price; s.estimate_days = estimateDays; s.outlet_id = outletId; s.status = status;
+        s.category = category; s.name = name; s.description = desc; s.type = type; s.price = price; s.estimate_days = estimateDays; s.outlet_id = outletId; s.status = status;
         apiRequest("updateService", s);
       } else {
-        const newSvc = { id: "SERV-" + Math.floor(1000 + Math.random() * 9000), name: name, description: desc, type: type, price: price, estimate_days: estimateDays, outlet_id: outletId, status: status, created_at: new Date().toISOString().slice(0,19).replace('T',' ') };
+        const newSvc = { id: "SERV-" + Math.floor(1000 + Math.random() * 9000), category: category, name: name, description: desc, type: type, price: price, estimate_days: estimateDays, outlet_id: outletId, status: status, created_at: new Date().toISOString().slice(0,19).replace('T',' ') };
         APP_STATE.services.unshift(newSvc); apiRequest("createService", newSvc);
       }
       StorageEngine.saveStateToLocal(); closeServiceModal(); renderServices();
@@ -1811,7 +2116,7 @@
     function renderExpenses() {
       const body = document.getElementById("table-expenses-body"); body.innerHTML = "";
       const u = APP_STATE.currentUser;
-      const filtered = APP_STATE.expenses.filter(e => { if (u.role === "Owner" || u.role === "Admin") return true; return e.outlet_id === u.outlet_id; });
+      const filtered = APP_STATE.expenses.filter(e => { if (u.role === "Owner") return true; return e.outlet_id === u.outlet_id; });
       filtered.forEach(e => {
         const reporter = APP_STATE.users.find(x => x.id === e.created_by) || { name: "Anonim Staff" };
         body.innerHTML += `<tr><td class="py-4 text-slate-500 font-mono text-xs">${e.created_at}</td><td class="py-4 font-bold text-slate-800">${e.category}</td><td class="py-4 text-slate-600 max-w-xs truncate">${e.description}</td><td class="py-4 font-extrabold text-rose-600">${formatRupiah(e.amount)}</td><td class="py-4 text-slate-500 font-medium">${reporter.name}</td><td class="py-4 text-right"><button onclick="deleteExpense('${e.id}')" class="px-2 py-1 bg-rose-50 hover:bg-rose-100 rounded text-rose-700 font-bold text-xs">Abaikan</button></td></tr>`;
@@ -1878,13 +2183,23 @@
       const fl = document.getElementById("report-outlet-filter");
       fl.innerHTML = "<option value='all'>Keseluruhan Cabang Global</option>";
       APP_STATE.outlets.forEach(o => fl.innerHTML += `<option value="${o.id}">${o.name}</option>`);
+      
+      if (APP_STATE.currentUser && APP_STATE.currentUser.role === "Owner") {
+        fl.disabled = false;
+        fl.classList.remove("bg-slate-100", "text-slate-400");
+      } else {
+        const myOutlet = APP_STATE.outlets.find(o => o.id === APP_STATE.currentUser.outlet_id) || { id: "", name: "Cabang Saya" };
+        fl.innerHTML = `<option value="${myOutlet.id}">${myOutlet.name}</option>`;
+        fl.disabled = true;
+        fl.classList.add("bg-slate-100", "text-slate-400");
+      }
       generateReport();
     }
 
     function generateReport() {
       const dRange = document.getElementById("report-date-filter").value;
       const outletSel = document.getElementById("report-outlet-filter").value;
-      const todayStr = "2026-06-09";
+      const todayStr = new Date().toISOString().slice(0,10);
 
       let filteredTxs = APP_STATE.transactions;
       let filteredExps = APP_STATE.expenses;
@@ -1893,8 +2208,9 @@
         filteredTxs = filteredTxs.filter(t => t.created_at.startsWith(todayStr));
         filteredExps = filteredExps.filter(e => e.created_at.startsWith(todayStr));
       } else if (dRange === "month") {
-        filteredTxs = filteredTxs.filter(t => t.created_at.startsWith("2026-06"));
-        filteredExps = filteredExps.filter(e => e.created_at.startsWith("2026-06"));
+        const monthStr = todayStr.slice(0,7);
+        filteredTxs = filteredTxs.filter(t => t.created_at.startsWith(monthStr));
+        filteredExps = filteredExps.filter(e => e.created_at.startsWith(monthStr));
       }
 
       if (outletSel !== "all") {
@@ -1941,9 +2257,32 @@
       document.getElementById("set-hero-headline").value = APP_STATE.settings.hero_headline || "";
       document.getElementById("set-hero-sub").value = APP_STATE.settings.hero_subheadline || "";
       document.getElementById("set-hero-bg-type").value = APP_STATE.settings.hero_bg_type || "gradient";
-      document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#0369a1";
-      document.getElementById("set-hero-bg-color2").value = APP_STATE.settings.hero_bg_color2 || "#22d3ee";
+      document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#fb923c";
+      document.getElementById("set-hero-bg-color2").value = APP_STATE.settings.hero_bg_color2 || "#ea580c";
       document.getElementById("set-hero-title-color").value = APP_STATE.settings.hero_title_color || "#ffffff";
+
+      document.getElementById("set-feat-title").value = APP_STATE.settings.feat_title || "";
+      document.getElementById("set-feat-sub").value = APP_STATE.settings.feat_sub || "";
+      for(let i=1; i<=4; i++){
+        document.getElementById(`set-feat${i}-icon`).value = APP_STATE.settings[`feat${i}_icon`] || "";
+        document.getElementById(`set-feat${i}-title`).value = APP_STATE.settings[`feat${i}_title`] || "";
+        document.getElementById(`set-feat${i}-desc`).value = APP_STATE.settings[`feat${i}_desc`] || "";
+      }
+
+      document.getElementById("set-ben-title").value = APP_STATE.settings.ben_title || "";
+      document.getElementById("set-ben-desc").value = APP_STATE.settings.ben_desc || "";
+      for(let i=1; i<=3; i++){
+        document.getElementById(`set-ben${i}-title`).value = APP_STATE.settings[`ben${i}_title`] || "";
+        document.getElementById(`set-ben${i}-desc`).value = APP_STATE.settings[`ben${i}_desc`] || "";
+      }
+
+      document.getElementById("set-price-footer").value = APP_STATE.settings.price_global_footer || "";
+      document.getElementById("set-testi-title").value = APP_STATE.settings.testi_title || "";
+      for(let i=1; i<=3; i++){
+        document.getElementById(`set-testi${i}-name`).value = APP_STATE.settings[`testi${i}_name`] || "";
+        document.getElementById(`set-testi${i}-role`).value = APP_STATE.settings[`testi${i}_role`] || "";
+        document.getElementById(`set-testi${i}-desc`).value = APP_STATE.settings[`testi${i}_desc`] || "";
+      }
     }
 
     function saveGlobalSettings() {
@@ -1964,8 +2303,31 @@
       APP_STATE.settings.hero_bg_color2 = document.getElementById("set-hero-bg-color2").value;
       APP_STATE.settings.hero_title_color = document.getElementById("set-hero-title-color").value;
 
+      APP_STATE.settings.feat_title = document.getElementById("set-feat-title").value.trim();
+      APP_STATE.settings.feat_sub = document.getElementById("set-feat-sub").value.trim();
+      for(let i=1; i<=4; i++){
+        APP_STATE.settings[`feat${i}_icon`] = document.getElementById(`set-feat${i}-icon`).value.trim();
+        APP_STATE.settings[`feat${i}_title`] = document.getElementById(`set-feat${i}-title`).value.trim();
+        APP_STATE.settings[`feat${i}_desc`] = document.getElementById(`set-feat${i}-desc`).value.trim();
+      }
+
+      APP_STATE.settings.ben_title = document.getElementById("set-ben-title").value.trim();
+      APP_STATE.settings.ben_desc = document.getElementById("set-ben-desc").value.trim();
+      for(let i=1; i<=3; i++){
+        APP_STATE.settings[`ben${i}_title`] = document.getElementById(`set-ben${i}-title`).value.trim();
+        APP_STATE.settings[`ben${i}_desc`] = document.getElementById(`set-ben${i}-desc`).value.trim();
+      }
+
+      APP_STATE.settings.price_global_footer = document.getElementById("set-price-footer").value.trim();
+      APP_STATE.settings.testi_title = document.getElementById("set-testi-title").value.trim();
+      for(let i=1; i<=3; i++){
+        APP_STATE.settings[`testi${i}_name`] = document.getElementById(`set-testi${i}-name`).value.trim();
+        APP_STATE.settings[`testi${i}_role`] = document.getElementById(`set-testi${i}-role`).value.trim();
+        APP_STATE.settings[`testi${i}_desc`] = document.getElementById(`set-testi${i}-desc`).value.trim();
+      }
+
       StorageEngine.saveStateToLocal();
-      showNotification("Identitas mutlak POS sentral serta penanaman mesin parameter gerbang integrasi (Gateway WhatsApp Server) diperbaharui penuh secara gemilang!", "Kompilasi Sukses Tersimpan", "✅");
+      showNotification("Identitas mutlak POS sentral, Pengaturan Landing Page Dinamis, serta penanaman mesin parameter gerbang integrasi diperbaharui penuh secara gemilang!", "Kompilasi Sukses Tersimpan", "✅");
       apiRequest("saveSettings", APP_STATE.settings);
     }
 
@@ -1996,7 +2358,7 @@
       apiRequest("updateOrderStatus", { id: txId, status_order: orderStatus, status_payment: payStatus, history: newHist, auto_wa: autoWa });
     }
 
-    function triggerDirectPrintReceipt(tx, service, qty) {
+    function triggerDirectPrintReceiptMulti(tx, itemsArray) {
       document.getElementById("rec-store-name").innerText = APP_STATE.settings.store_name;
       document.getElementById("rec-store-address").innerText = APP_STATE.settings.store_address;
       document.getElementById("rec-store-phone").innerText = "Hubungi: " + APP_STATE.settings.store_phone;
@@ -2008,12 +2370,22 @@
       document.getElementById("rec-cashier").innerText = cashierName;
       document.getElementById("rec-outlet").innerText = outlet.name;
 
-      const cust = APP_STATE.customers.find(c => c.id === tx.customer_id) || { name: "Tamu Harian", phone: "" };
+      const cust = APP_STATE.customers.find(c => c.id === tx.customer_id) || { name: "Tamu", phone: "" };
       document.getElementById("rec-customer-name").innerText = cust.name;
       document.getElementById("rec-customer-phone").innerText = cust.phone;
-      document.getElementById("rec-service-name").innerText = service.name;
-      document.getElementById("rec-qty").innerText = qty;
-      document.getElementById("rec-price").innerText = formatRupiah(service.price);
+
+      // Render Multi-Item ke Struk
+      const itemsContainer = document.getElementById("rec-items-container");
+      itemsContainer.innerHTML = "";
+      itemsArray.forEach(item => {
+        itemsContainer.innerHTML += `
+          <div class="flex justify-between">
+            <span>${item.service_name}</span>
+            <span><span>${item.qty}</span> x <span>${formatRupiah(item.price)}</span></span>
+          </div>
+        `;
+      });
+
       document.getElementById("rec-subtotal").innerText = formatRupiah(tx.subtotal);
       document.getElementById("rec-discount").innerText = `-${formatRupiah(tx.discount)}`;
       document.getElementById("rec-total").innerText = formatRupiah(tx.total);
@@ -2035,8 +2407,8 @@
 
     function reprintInvoice(txId) {
       const tx = APP_STATE.transactions.find(t => t.id === txId);
-      const service = APP_STATE.services[0]; 
-      triggerDirectPrintReceipt(tx, service, 1);
+      const dummyItemArray = [{ service_name: "Layanan Cucian", qty: 1, price: tx.subtotal, total: tx.subtotal }];
+      triggerDirectPrintReceiptMulti(tx, dummyItemArray);
     }
 
     function trackFromURL() {
@@ -2059,9 +2431,6 @@
         document.getElementById("track-customer-name").innerText = cust.name;
         document.getElementById("track-est").innerText = tx.estimated_done;
         
-        const service = APP_STATE.services[0] || { name: "Cuci Reguler Menyesuaikan" };
-        document.getElementById("track-service").innerText = service.name;
-
         const badge = document.getElementById("track-badge");
         badge.innerText = tx.status_order.toUpperCase();
         badge.className = "px-3 py-1 rounded-full text-xs font-bold ";
@@ -2085,7 +2454,7 @@
       }
     }
 
-    // Eksekusi Pemicu Awal Aplikasi Start-Up Core App Loading Let's Go
+    // Eksekusi Pemicu Awal Aplikasi Start-Up
     window.onload = function() {
       StorageEngine.init();
       initAuthCheck();
