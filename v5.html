@@ -7,24 +7,13 @@
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Tailwind Custom Colors Integration (Soft Orange Coral Theme) -->
+  <!-- Tailwind Custom Colors Integration -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: { 
-              50: '#fff7ed', 
-              100: '#ffedd5', 
-              200: '#fed7aa', 
-              300: '#fdba74', 
-              400: '#fb923c', 
-              500: '#f97316', /* Soft Orange */
-              600: '#ea580c', /* Deep Coral */
-              700: '#c2410c', 
-              800: '#9a3412', 
-              900: '#7c2d12' 
-            }
+            brand: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' }
           }
         }
       }
@@ -40,7 +29,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Mengubah font utama ke Poppins dan Heading ke Montserrat */
     body { font-family: 'Poppins', sans-serif; }
     h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
     .logo-font { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.5px; }
@@ -55,6 +43,10 @@
       #print-receipt-section, #print-receipt-section * { visibility: visible; }
       #print-receipt-section { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; }
     }
+    
+    /* Smooth Accordion */
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
@@ -80,7 +72,7 @@
       </div>
     </header>
 
-    <!-- HERO SECTION DINAMIS DENGAN SOFT ORANGE GRADIENT -->
+    <!-- HERO SECTION DINAMIS -->
     <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500" style="background: linear-gradient(135deg, #fdba74, #ea580c);">
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30"></div>
       
@@ -104,77 +96,62 @@
 
     <!-- WRAPPER UNTUK KONTEN PROMO (BISA DI ON/OFF) -->
     <div id="landing-promo-sections">
-      <!-- Pricing / Packages Section -->
-      <section id="pricing" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
-            <p class="text-slate-600 max-w-xl mx-auto">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
-          </div>
-          
-          <!-- GRID KARTU HARGA DINAMIS BERDASARKAN KATEGORI -->
-          <div id="landing-pricing-grid" class="max-w-5xl mx-auto">
-            <!-- Render via JavaScript -->
-          </div>
-        </div>
-      </section>
-
-      <!-- Services Section -->
+      <!-- Services Section (DINAMIS) -->
       <section id="services" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4">Layanan Premium Kami</h2>
-          <p class="text-slate-600 max-w-xl mx-auto mb-16">Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.</p>
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4" id="lp-feat-title">Layanan Premium Kami</h2>
+          <p class="text-slate-600 max-w-xl mx-auto mb-16" id="lp-feat-sub">Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.</p>
           <div class="grid md:grid-cols-4 gap-8">
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
-              <div class="text-3xl mb-4">🧺</div>
-              <h3 class="font-bold text-lg mb-2">Cuci & Setrika</h3>
-              <p class="text-sm text-slate-600">Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.</p>
+              <div class="text-3xl mb-4" id="lp-feat1-icon">🧺</div>
+              <h3 class="font-bold text-lg mb-2" id="lp-feat1-title">Cuci & Setrika</h3>
+              <p class="text-sm text-slate-600" id="lp-feat1-desc">Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
-              <div class="text-3xl mb-4">👔</div>
-              <h3 class="font-bold text-lg mb-2">Dry Cleaning</h3>
-              <p class="text-sm text-slate-600">Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.</p>
+              <div class="text-3xl mb-4" id="lp-feat2-icon">👔</div>
+              <h3 class="font-bold text-lg mb-2" id="lp-feat2-title">Dry Cleaning</h3>
+              <p class="text-sm text-slate-600" id="lp-feat2-desc">Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
-              <div class="text-3xl mb-4">🛏️</div>
-              <h3 class="font-bold text-lg mb-2">Bed Cover & Selimut</h3>
-              <p class="text-sm text-slate-600">Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.</p>
+              <div class="text-3xl mb-4" id="lp-feat3-icon">🛏️</div>
+              <h3 class="font-bold text-lg mb-2" id="lp-feat3-title">Bed Cover & Selimut</h3>
+              <p class="text-sm text-slate-600" id="lp-feat3-desc">Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
-              <div class="text-3xl mb-4">👟</div>
-              <h3 class="font-bold text-lg mb-2">Spa Sepatu</h3>
-              <p class="text-sm text-slate-600">Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.</p>
+              <div class="text-3xl mb-4" id="lp-feat4-icon">👟</div>
+              <h3 class="font-bold text-lg mb-2" id="lp-feat4-title">Spa Sepatu</h3>
+              <p class="text-sm text-slate-600" id="lp-feat4-desc">Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Benefits Section -->
+      <!-- Benefits Section (DINAMIS) -->
       <section id="benefits" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div class="space-y-6">
-            <h2 class="text-3xl font-extrabold text-slate-900 leading-tight">Teknologi Sinkronisasi Multi-Outlet Instan</h2>
-            <p class="text-slate-600">Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.</p>
+            <h2 class="text-3xl font-extrabold text-slate-900 leading-tight" id="lp-ben-title">Teknologi Sinkronisasi Multi-Outlet Instan</h2>
+            <p class="text-slate-600" id="lp-ben-desc">Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.</p>
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <span class="text-brand-600 text-lg">✓</span>
                 <div>
-                  <h4 class="font-bold text-slate-800">Sinkronisasi Spreadsheet Otomatis</h4>
-                  <p class="text-sm text-slate-600">Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.</p>
+                  <h4 class="font-bold text-slate-800" id="lp-ben1-title">Sinkronisasi Spreadsheet Otomatis</h4>
+                  <p class="text-sm text-slate-600" id="lp-ben1-desc">Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
                 <span class="text-brand-600 text-lg">✓</span>
                 <div>
-                  <h4 class="font-bold text-slate-800">Hak Akses Fleksibel Kasir &amp; Owner</h4>
-                  <p class="text-sm text-slate-600">Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.</p>
+                  <h4 class="font-bold text-slate-800" id="lp-ben2-title">Hak Akses Fleksibel Kasir & Owner</h4>
+                  <p class="text-sm text-slate-600" id="lp-ben2-desc">Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
                 <span class="text-brand-600 text-lg">✓</span>
                 <div>
-                  <h4 class="font-bold text-slate-800">Lacak Status via QR Code</h4>
-                  <p class="text-sm text-slate-600">Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.</p>
+                  <h4 class="font-bold text-slate-800" id="lp-ben3-title">Lacak Status via QR Code</h4>
+                  <p class="text-sm text-slate-600" id="lp-ben3-desc">Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.</p>
                 </div>
               </div>
             </div>
@@ -200,28 +177,43 @@
         </div>
       </section>
 
-      <!-- Testimonials Section -->
-      <section id="testimonials" class="py-20 bg-white">
+      <!-- Pricing / Packages Section -->
+      <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
+            <p class="text-slate-600 max-w-xl mx-auto">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
+          </div>
+          
+          <!-- GRID KARTU HARGA DINAMIS BERDASARKAN KATEGORI -->
+          <div id="landing-pricing-grid" class="max-w-5xl mx-auto">
+            <!-- Render via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section (DINAMIS) -->
+      <section id="testimonials" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-3xl font-bold text-slate-900 mb-16">Kisah Puas Pelanggan Setia kami</h2>
+          <h2 class="text-3xl font-bold text-slate-900 mb-16" id="lp-testi-title">Kisah Puas Pelanggan Setia kami</h2>
           <div class="grid md:grid-cols-3 gap-8">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-600 text-sm leading-relaxed mb-6">"Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya apakah masih dicuci atau sudah siap ambil!"</p>
-              <div class="font-bold text-slate-800 text-sm">Sarah Rahmawati</div>
-              <p class="text-xs text-slate-400">Ibu Rumah Tangga</p>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi1-desc">"Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya apakah masih dicuci atau sudah siap ambil!"</p>
+              <div class="font-bold text-slate-800 text-sm" id="lp-testi1-name">Sarah Rahmawati</div>
+              <p class="text-xs text-slate-400" id="lp-testi1-role">Ibu Rumah Tangga</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-600 text-sm leading-relaxed mb-6">"Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian dan komparasi omset antar cabang tampil transparan."</p>
-              <div class="font-bold text-slate-800 text-sm">Bambang Susanto</div>
-              <p class="text-xs text-slate-400">Pemilik Multi-Outlet</p>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi2-desc">"Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian dan komparasi omset antar cabang tampil transparan."</p>
+              <div class="font-bold text-slate-800 text-sm" id="lp-testi2-name">Bambang Susanto</div>
+              <p class="text-xs text-slate-400" id="lp-testi2-role">Pemilik Multi-Outlet</p>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
-              <p class="text-slate-600 text-sm leading-relaxed mb-6">"Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional."</p>
-              <div class="font-bold text-slate-800 text-sm">Rian Mahendra</div>
-              <p class="text-xs text-slate-400">Kasir Laundry Utama</p>
+              <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi3-desc">"Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional."</p>
+              <div class="font-bold text-slate-800 text-sm" id="lp-testi3-name">Rian Mahendra</div>
+              <p class="text-xs text-slate-400" id="lp-testi3-role">Kasir Laundry Utama</p>
             </div>
           </div>
         </div>
@@ -605,58 +597,156 @@
           </div>
         </div>
 
-        <!-- TAB: SETTINGS & WA GATEWAY -->
+        <!-- TAB: SETTINGS & WA GATEWAY (ALL DYNAMIC CONFIGS HERE) -->
         <div id="tab-settings" class="tab-content hidden space-y-6">
-          <div class="grid md:grid-cols-2 gap-6">
-            
-            <div class="space-y-6">
-              <!-- Konfigurasi Teks Landing Page -->
-              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Desain Landing Page</h3>
-                <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Landing Page Website</label>
-                  <select id="set-landing-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
-                    <option value="ON">ON - Tampilkan Semua Fitur Promo</option>
-                    <option value="OFF">OFF - Hanya Tampilkan Login Saja</option>
-                  </select>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon Emoji ATAU URL Link Gambar Logo</label><input id="set-brand-icon" type="text" placeholder="🧼 atau http://linkgambar.png" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Brand Utama</label><input id="set-store-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                </div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Deskripsi Singkat</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+          
+          <!-- Konfigurasi Teks Keterangan & Identitas -->
+          <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
+            <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
+              Identitas Toko & Konfigurasi Landing Page
+              <span class="transition group-open:rotate-180 text-slate-400">▼</span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Landing Page Website</label><select id="set-landing-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700"><option value="ON">ON - Tampilkan Semua Fitur Promo</option><option value="OFF">OFF - Hanya Tampilkan Login Saja</option></select></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon Emoji / URL Link Gambar Logo</label><input id="set-brand-icon" type="text" placeholder="🧼 atau http://linkgambar.png" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Brand Utama</label><input id="set-store-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alamat Induk Pusat</label><input id="set-store-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              </div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero Landing Page (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Hero Deskripsi Singkat</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+            </div>
+          </details>
 
-              <!-- Tema Warna Color Picker -->
-              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-800 text-lg">Tema Warna (Color Picker) Beranda</h3>
-                <div>
-                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero</label>
-                  <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
-                    <option value="gradient">Gradient (Dua Warna)</option>
-                    <option value="solid">Solid (Satu Warna Saja)</option>
-                  </select>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 1</label><input id="set-hero-bg-color1" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 2 (Jika Gradient)</label><input id="set-hero-bg-color2" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-                </div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Headline)</label><input id="set-hero-title-color" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+          <!-- Konfigurasi Layanan Premium (Features) -->
+          <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
+            <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
+              Teks Promo - 4 Layanan Premium Kami
+              <span class="transition group-open:rotate-180 text-slate-400">▼</span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Utama Section</label><input id="set-feat-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Subjudul / Penjelasan Singkat</label><input id="set-feat-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               </div>
+              <!-- Box 1 & 2 -->
+              <div class="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl">
+                <div>
+                  <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 1: Ikon & Judul</label>
+                  <div class="flex gap-2 mb-2">
+                    <input id="set-feat1-icon" type="text" class="w-16 p-2 border rounded-lg text-sm text-center" placeholder="🧺">
+                    <input id="set-feat1-title" type="text" class="flex-1 p-2 border rounded-lg text-sm">
+                  </div>
+                  <input id="set-feat1-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 1">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 2: Ikon & Judul</label>
+                  <div class="flex gap-2 mb-2">
+                    <input id="set-feat2-icon" type="text" class="w-16 p-2 border rounded-lg text-sm text-center" placeholder="👔">
+                    <input id="set-feat2-title" type="text" class="flex-1 p-2 border rounded-lg text-sm">
+                  </div>
+                  <input id="set-feat2-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 2">
+                </div>
+              </div>
+              <!-- Box 3 & 4 -->
+              <div class="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl">
+                <div>
+                  <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 3: Ikon & Judul</label>
+                  <div class="flex gap-2 mb-2">
+                    <input id="set-feat3-icon" type="text" class="w-16 p-2 border rounded-lg text-sm text-center" placeholder="🛏️">
+                    <input id="set-feat3-title" type="text" class="flex-1 p-2 border rounded-lg text-sm">
+                  </div>
+                  <input id="set-feat3-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 3">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 4: Ikon & Judul</label>
+                  <div class="flex gap-2 mb-2">
+                    <input id="set-feat4-icon" type="text" class="w-16 p-2 border rounded-lg text-sm text-center" placeholder="👟">
+                    <input id="set-feat4-title" type="text" class="flex-1 p-2 border rounded-lg text-sm">
+                  </div>
+                  <input id="set-feat4-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 4">
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Konfigurasi Benefits & Keunggulan -->
+          <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
+            <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
+              Teks Promo - Teknologi & Keunggulan (Benefits)
+              <span class="transition group-open:rotate-180 text-slate-400">▼</span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Utama Benefit</label><input id="set-ben-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deskripsi Utama Benefit</label><input id="set-ben-desc" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div class="p-4 bg-slate-50 rounded-xl space-y-3">
+                <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 1: Judul & Deskripsi</label><input id="set-ben1-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben1-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 2: Judul & Deskripsi</label><input id="set-ben2-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben2-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
+                <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 3: Judul & Deskripsi</label><input id="set-ben3-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben3-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
+              </div>
+            </div>
+          </details>
+
+          <!-- Konfigurasi Testimonial & Keterangan Harga -->
+          <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
+            <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
+              Teks Promo - Testimoni Pelanggan & Kaki Harga
+              <span class="transition group-open:rotate-180 text-slate-400">▼</span>
+            </summary>
+            <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Teks Keterangan Bawah Tabel Harga (Pengganti "Minimal 3 Kg")</label><input id="set-price-footer" type="text" class="w-full p-3 border rounded-xl bg-amber-50 text-amber-800 text-sm font-bold" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Section Testimoni</label><input id="set-testi-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              
+              <div class="grid md:grid-cols-3 gap-4">
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                  <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 1</label>
+                  <input id="set-testi1-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi1-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi1-desc" type="text" placeholder="Isi testimoni..." class="w-full p-2 border rounded-lg text-sm">
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                  <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 2</label>
+                  <input id="set-testi2-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi2-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi2-desc" type="text" placeholder="Isi testimoni..." class="w-full p-2 border rounded-lg text-sm">
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                  <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 3</label>
+                  <input id="set-testi3-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi3-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
+                  <input id="set-testi3-desc" type="text" placeholder="Isi testimoni..." class="w-full p-2 border rounded-lg text-sm">
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Tema Warna Color Picker -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+              <h3 class="font-bold text-slate-800 text-lg">Tema Warna (Color Picker) Beranda</h3>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero</label>
+                <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
+                  <option value="gradient">Gradient (Dua Warna)</option>
+                  <option value="solid">Solid (Satu Warna Saja)</option>
+                </select>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 1</label><input id="set-hero-bg-color1" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 2 (Jika Gradient)</label><input id="set-hero-bg-color2" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+              </div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Headline)</label><input id="set-hero-title-color" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
             </div>
 
             <div class="space-y-6">
-              <!-- Parameter Identitas Toko -->
-              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-800 text-lg">Parameter Identitas Toko Pusat</h3>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alamat Induk Pusat</label><input id="set-store-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan di Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              </div>
-
               <!-- Konfigurasi WhatsApp API -->
-              <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+              <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
                 <h3 class="font-bold text-slate-800 text-lg">Konfigurasi WhatsApp API Gateway</h3>
                 <div>
                   <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Penyedia Vendor Layanan Server</label>
@@ -668,9 +758,6 @@
                 </div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">API Key / Token Rahasia Akun</label><input id="set-wa-api" type="password" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor Pengirim (Hanya untuk WAPlus)</label><input id="set-wa-sender" type="text" placeholder="Contoh: 62812345..." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-                <div class="pt-4 border-t border-slate-100 mt-2">
-                  <button onclick="saveGlobalSettings()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server</button>
-                </div>
               </div>
               
               <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 text-white shadow-lg">
@@ -679,6 +766,10 @@
                 <button onclick="triggerCloudBackup()" class="px-5 py-2.5 bg-emerald-600 text-white text-xs font-bold rounded-xl hover:bg-emerald-700 transition shadow-lg w-full">💾 Picu Pencadangan Arsip Sinkron</button>
               </div>
             </div>
+          </div>
+          
+          <div class="bg-brand-50 p-6 rounded-2xl border border-brand-200">
+            <button onclick="saveGlobalSettings()" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server Sekarang</button>
           </div>
         </div>
 
@@ -802,18 +893,6 @@
   <!-- 5. DIALOGS & ACTION POPUPS (MODALS) -->
   <!-- ============================================== -->
   
-  <!-- Custom Notification Dialog (Replaces Alert) -->
-  <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
-      <div id="dialog-icon" class="text-5xl mb-2">⚠️</div>
-      <h4 id="dialog-title" class="text-xl font-bold text-slate-900">Notifikasi Sistem</h4>
-      <p id="dialog-message" class="text-sm text-slate-600 leading-relaxed pb-4"></p>
-      <div id="dialog-buttons" class="flex gap-3 justify-center pt-2 border-t border-slate-50">
-        <!-- Buttons injected dynamically -->
-      </div>
-    </div>
-  </div>
-
   <!-- Customer Create/Edit Modal -->
   <div id="modal-customer" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
@@ -950,7 +1029,6 @@
     </div>
   </div>
 
-
   <!-- ============================================== -->
   <!-- 6. RAW THERMAL RECEIPT DISPLAY FRAME (PRINTING) -->
   <!-- ============================================== -->
@@ -973,6 +1051,7 @@
       <div>WhatsApp Tertaut: <span id="rec-customer-phone">+62812345678</span></div>
     </div>
     <div class="border-t border-dashed border-slate-400 my-2"></div>
+    
     <div class="space-y-1.5 text-[10px]">
       <div class="flex justify-between font-bold border-b border-slate-200 pb-1 mb-1">
         <span>Rincian Jenis Paket</span>
@@ -982,6 +1061,7 @@
         <!-- Render from POS_CART or Single Item -->
       </div>
     </div>
+    
     <div class="border-t border-dashed border-slate-400 my-2"></div>
     <div class="space-y-1 text-[10px]">
       <div class="flex justify-between">
@@ -1096,28 +1176,26 @@
     // MODULE C: LOCALSTORAGE ENGINE
     // ==========================================
     const INITIAL_DUMMY_DATA = {
-      settings: { store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih atas kepercayaannya!", wa_provider: "none", wa_api_key: "", wa_sender: "", landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", hero_bg_type: "gradient", hero_bg_color1: "#fdba74", hero_bg_color2: "#ea580c", hero_title_color: "#ffffff" },
-      outlets: [
-        { id: "OUT-001", name: "Cabang Utama Dago", address: "Jl. Dago No. 45", phone: "08111222333", status: "Active", created_at: "2026-06-01 10:00:00" }
-      ],
-      users: [
-        { id: "USR-001", name: "Sang Pemilik Super", username: "owner", password: "owner123", role: "Owner", outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 10:00:00" }
-      ],
-      customers: [
-        { id: "CUST-001", name: "Aditya Rahman", phone: "081234567891", address: "Jl. Dipatiukur No. 10", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 08:00:00" }
-      ],
+      settings: { 
+        store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih atas kepercayaannya!", wa_provider: "none", wa_api_key: "", wa_sender: "", landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", hero_bg_type: "gradient", hero_bg_color1: "#f97316", hero_bg_color2: "#ea580c", hero_title_color: "#ffffff",
+        feat_title: "Layanan Premium Kami", feat_sub: "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.", feat1_icon: "🧺", feat1_title: "Cuci & Setrika", feat1_desc: "Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.", feat2_icon: "👔", feat2_title: "Dry Cleaning", feat2_desc: "Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.", feat3_icon: "🛏️", feat3_title: "Bed Cover & Selimut", feat3_desc: "Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.", feat4_icon: "👟", feat4_title: "Spa Sepatu", feat4_desc: "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.",
+        ben_title: "Teknologi Sinkronisasi Multi-Outlet Instan", ben_desc: "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.", ben1_title: "Sinkronisasi Spreadsheet Otomatis", ben1_desc: "Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.", ben2_title: "Hak Akses Fleksibel Kasir & Owner", ben2_desc: "Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.", ben3_title: "Lacak Status via QR Code", ben3_desc: "Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.",
+        testi_title: "Kisah Puas Pelanggan Setia kami", testi1_desc: "Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya!", testi1_name: "Sarah Rahmawati", testi1_role: "Ibu Rumah Tangga", testi2_desc: "Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian transparan.", testi2_name: "Bambang Susanto", testi2_role: "Pemilik Multi-Outlet", testi3_desc: "Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional.", testi3_name: "Rian Mahendra", testi3_role: "Kasir Laundry Utama",
+        price_global_footer: "Ketentuan: Minimal berat pengerjaan laundry kiloan adalah 3 Kg per nota."
+      },
+      outlets: [{ id: "OUT-001", name: "Cabang Utama Dago", address: "Jl. Dago No. 45", phone: "08111222333", status: "Active", created_at: "2026-06-01 10:00:00" }],
+      users: [{ id: "USR-001", name: "Sang Pemilik Super", username: "owner", password: "owner123", role: "Owner", outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 10:00:00" }],
+      customers: [{ id: "CUST-001", name: "Aditya Rahman", phone: "081234567891", address: "Jl. Dipatiukur No. 10", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 08:00:00" }],
       services: [
         { id: "SERV-001", category: "Cuci Setrika", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" },
         { id: "SERV-002", category: "Cuci Setrika", name: "Reguler Cepat", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6500, estimate_days: 2, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:05:00" },
-        { id: "SERV-003", category: "Cuci Setrika", name: "Express", description: "Minimal laundry 3 Kg", type: "kilogram", price: 8000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:10:00" },
-        { id: "SERV-004", category: "Cuci Setrika", name: "Super Express", description: "Minimal laundry 3 Kg. Selesai 6 Jam", type: "kilogram", price: 14000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:00:00" },
-        { id: "SERV-005", category: "Setrika Wangi", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 5000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:05:00" },
-        { id: "SERV-006", category: "Setrika Wangi", name: "Reguler Cepat", description: "Minimal laundry 3 Kg", type: "kilogram", price: 5500, estimate_days: 2, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:10:00" },
-        { id: "SERV-007", category: "Setrika Wangi", name: "Express", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:15:00" }
+        { id: "SERV-003", category: "Cuci Setrika", name: "Express", description: "Minimal laundry 3 Kg", type: "kilogram", price: 8000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", "created_at": "2026-06-01 12:10:00"},
+        { id: "SERV-004", category: "Cuci Setrika", name: "Super Express", "description": "Minimal laundry 3 Kg. Selesai 6 Jam", "type": "kilogram", "price": 14000, "estimate_days": 1, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:00:00"},
+        { id: "SERV-005", category: "Setrika Wangi", "name": "Reguler Biasa", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 5000, "estimate_days": 3, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:05:00"},
+        { id: "SERV-006", category: "Setrika Wangi", "name": "Reguler Cepat", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 5500, "estimate_days": 2, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:10:00"},
+        { id: "SERV-007", category: "Setrika Wangi", "name": "Express", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 6000, "estimate_days": 1, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:15:00"}
       ],
-      transactions: [],
-      expenses: [],
-      statusHistory: []
+      transactions: [], expenses: [], statusHistory: []
     };
 
     const StorageEngine = {
@@ -1282,7 +1360,7 @@
         user = APP_STATE.users.find(u => u.username === idField && u.password === passField);
       } else {
         user = APP_STATE.customers.find(c => c.phone === idField && c.password === passField);
-        if(user) user.role = "Customer"; // Virtual identitas pelacakan
+        if(user) user.role = "Customer";
       }
 
       if (user) {
@@ -1365,10 +1443,11 @@
       document.querySelector("[onclick=\"changeTab('profile-security')\"]").classList.remove("hidden");
     }
 
-    // Mengaplikasikan konfigurasi UI dan Harga untuk Landing Page (Dinamis Warna & Logo Image)
+    // Mengaplikasikan SEMUA Teks Dinamis ke Landing Page
     function applyDynamicLandingPage() {
       const set = APP_STATE.settings;
       
+      // Basic Identitas
       document.getElementById("landing-brand-text").innerText = set.store_name || "iMersLonry";
       renderBrandIcon(set.brand_icon, "landing-icon-badge");
       document.getElementById("sidebar-brand").innerText = set.store_name || "iMersLonry";
@@ -1376,10 +1455,10 @@
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
+      // Hero Section
       document.getElementById("landing-headline").innerText = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
       document.getElementById("landing-subheadline").innerText = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
       
-      // Mengubah Warna Hero Dinamis dari Color Picker
       const heroSec = document.getElementById("hero-section");
       if (set.hero_bg_type === "solid") {
         heroSec.style.background = set.hero_bg_color1 || "#fdba74";
@@ -1388,6 +1467,60 @@
       }
       document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
       
+      // Features (Layanan Premium Kami)
+      if(document.getElementById("lp-feat-title")) {
+        document.getElementById("lp-feat-title").innerText = set.feat_title || "Layanan Premium Kami";
+        document.getElementById("lp-feat-sub").innerText = set.feat_sub || "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.";
+        
+        document.getElementById("lp-feat1-icon").innerText = set.feat1_icon || "🧺";
+        document.getElementById("lp-feat1-title").innerText = set.feat1_title || "Cuci & Setrika";
+        document.getElementById("lp-feat1-desc").innerText = set.feat1_desc || "Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.";
+        
+        document.getElementById("lp-feat2-icon").innerText = set.feat2_icon || "👔";
+        document.getElementById("lp-feat2-title").innerText = set.feat2_title || "Dry Cleaning";
+        document.getElementById("lp-feat2-desc").innerText = set.feat2_desc || "Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.";
+        
+        document.getElementById("lp-feat3-icon").innerText = set.feat3_icon || "🛏️";
+        document.getElementById("lp-feat3-title").innerText = set.feat3_title || "Bed Cover & Selimut";
+        document.getElementById("lp-feat3-desc").innerText = set.feat3_desc || "Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.";
+        
+        document.getElementById("lp-feat4-icon").innerText = set.feat4_icon || "👟";
+        document.getElementById("lp-feat4-title").innerText = set.feat4_title || "Spa Sepatu";
+        document.getElementById("lp-feat4-desc").innerText = set.feat4_desc || "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.";
+      }
+
+      // Benefits (Teknologi Sinkronisasi)
+      if(document.getElementById("lp-ben-title")) {
+        document.getElementById("lp-ben-title").innerText = set.ben_title || "Teknologi Sinkronisasi Multi-Outlet Instan";
+        document.getElementById("lp-ben-desc").innerText = set.ben_desc || "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.";
+        
+        document.getElementById("lp-ben1-title").innerText = set.ben1_title || "Sinkronisasi Spreadsheet Otomatis";
+        document.getElementById("lp-ben1-desc").innerText = set.ben1_desc || "Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.";
+        
+        document.getElementById("lp-ben2-title").innerText = set.ben2_title || "Hak Akses Fleksibel Kasir & Owner";
+        document.getElementById("lp-ben2-desc").innerText = set.ben2_desc || "Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.";
+        
+        document.getElementById("lp-ben3-title").innerText = set.ben3_title || "Lacak Status via QR Code";
+        document.getElementById("lp-ben3-desc").innerText = set.ben3_desc || "Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.";
+      }
+
+      // Testimonial
+      if(document.getElementById("lp-testi-title")) {
+        document.getElementById("lp-testi-title").innerText = set.testi_title || "Kisah Puas Pelanggan Setia kami";
+        
+        document.getElementById("lp-testi1-desc").innerText = `"${set.testi1_desc || 'Sangat memuaskan dan cepat'}"`;
+        document.getElementById("lp-testi1-name").innerText = set.testi1_name || "Sarah Rahmawati";
+        document.getElementById("lp-testi1-role").innerText = set.testi1_role || "Ibu Rumah Tangga";
+        
+        document.getElementById("lp-testi2-desc").innerText = `"${set.testi2_desc || 'Sistem kasirnya keren'}"`;
+        document.getElementById("lp-testi2-name").innerText = set.testi2_name || "Bambang Susanto";
+        document.getElementById("lp-testi2-role").innerText = set.testi2_role || "Pemilik Multi-Outlet";
+        
+        document.getElementById("lp-testi3-desc").innerText = `"${set.testi3_desc || 'Pelacakan via QR code gampang banget'}"`;
+        document.getElementById("lp-testi3-name").innerText = set.testi3_name || "Rian Mahendra";
+        document.getElementById("lp-testi3-role").innerText = set.testi3_role || "Kasir Laundry Utama";
+      }
+
       const waNum = (set.store_phone || "").replace(/[^0-9]/g, "");
       const waFormatted = waNum.startsWith("0") ? "62" + waNum.slice(1) : waNum;
       document.getElementById("footer-wa-link").href = "https://wa.me/" + waFormatted;
@@ -1401,7 +1534,7 @@
       }
     }
 
-    // Render Kartu Harga dengan Format GROUPED TABLE ala Referensi Gambar
+    // Render Kartu Harga dengan Format GROUPED TABLE Tanpa Di-Slice/Dipotong
     function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
@@ -1423,7 +1556,9 @@
 
       const waNum = (APP_STATE.settings.store_phone || "").replace(/[^0-9]/g, "");
       const waFormatted = waNum.startsWith("0") ? "62" + waNum.slice(1) : waNum;
+      const footerTeks = APP_STATE.settings.price_global_footer || "Ketentuan: Minimal berat pengerjaan laundry kiloan adalah 3 Kg per nota.";
 
+      // Render setiap kelompok Kategori jadi satu Card Tabel Panjang 
       for(let cat in grouped) {
         let trs = "";
         grouped[cat].forEach(s => {
@@ -1443,7 +1578,7 @@
 
         grid.innerHTML += `
           <div class="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden mb-8 w-full transition hover:shadow-xl">
-            <div class="bg-brand-500 text-white py-4 px-6 text-center">
+            <div class="bg-brand-600 text-white py-4 px-6 text-center">
               <h3 class="font-bold text-xl uppercase tracking-wider">${cat}</h3>
             </div>
             <div class="overflow-x-auto">
@@ -1460,7 +1595,7 @@
               </table>
             </div>
             <div class="bg-brand-50 text-brand-800 text-xs font-semibold py-3 px-6 text-center border-t border-brand-100">
-              ${grouped[cat][0].description || "Dikerjakan oleh profesional laundry"}
+              ${footerTeks}
             </div>
           </div>
         `;
@@ -1525,7 +1660,7 @@
         return t.outlet_id === u.outlet_id;
       });
 
-      const todayStr = "2026-06-09"; 
+      const todayStr = new Date().toISOString().slice(0,10); 
       const todayTxs = transactions.filter(t => t.created_at.startsWith(todayStr));
 
       const totalRevenue = todayTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
@@ -1855,7 +1990,7 @@
       filtered.forEach(s => {
         const outlet = APP_STATE.outlets.find(o => o.id === s.outlet_id) || { name: "Central" };
         const statusClass = s.status === "Active" ? "bg-emerald-100 text-emerald-800" : "bg-slate-100 text-slate-800";
-        body.innerHTML += `<tr><td class="py-4 font-bold text-slate-800">${s.category || '-'}</td><td class="py-4 font-bold text-slate-800">${s.name}</td><td class="py-4 text-slate-500 font-mono text-xs uppercase">${s.type}</td><td class="py-4 font-bold text-slate-800">${formatRupiah(s.price)}</td><td class="py-4 text-slate-600 font-bold">${s.estimate_days} Hari Target</td><td class="py-4 font-medium text-slate-500">${outlet.name}</td><td class="py-4"><span class="px-2 py-0.5 rounded text-xs font-bold ${statusClass}">${s.status}</span></td><td class="py-4 text-right space-x-1.5"><button onclick="editService('${s.id}')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 rounded font-bold text-xs text-slate-700">Sunting</button><button onclick="deleteService('${s.id}')" class="px-2.5 py-1 bg-rose-50 hover:bg-rose-100 rounded font-bold text-xs text-rose-700">Mati</button></td></tr>`;
+        body.innerHTML += `<tr><td class="py-4 font-bold text-brand-600">${s.category || '-'}</td><td class="py-4 font-bold text-slate-800">${s.name}</td><td class="py-4 text-slate-500 font-mono text-xs uppercase">${s.type}</td><td class="py-4 font-bold text-slate-800">${formatRupiah(s.price)}</td><td class="py-4 text-slate-600 font-bold">${s.estimate_days} Hari Target</td><td class="py-4"><span class="px-2 py-0.5 rounded text-xs font-bold ${statusClass}">${s.status}</span></td><td class="py-4 text-right space-x-1.5"><button onclick="editService('${s.id}')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 rounded font-bold text-xs text-slate-700">Sunting</button><button onclick="deleteService('${s.id}')" class="px-2.5 py-1 bg-rose-50 hover:bg-rose-100 rounded font-bold text-xs text-rose-700">Mati</button></td></tr>`;
       });
     }
 
@@ -2010,7 +2145,6 @@
     function editUser(id) { openUserModal(id); }
     function deleteUser(id) { showConfirmDialog("Tendang kuat-kuat kartu pegawai sang personal yang tertunjuk dari jajaran birokrasi ini, tak kan mampu login selamanya kembali ke pos sistem, sungguhan tekad Anda bulat?", () => { APP_STATE.users = APP_STATE.users.filter(x => x.id !== id); StorageEngine.saveStateToLocal(); renderUsers(); apiRequest("deleteUser", { id: id }); }, "Sanksi Keras Terpilih"); }
 
-
     // ==========================================
     // MODULE M & O: REPORTS, SETTINGS & ORDERS
     // ==========================================
@@ -2024,7 +2158,7 @@
     function generateReport() {
       const dRange = document.getElementById("report-date-filter").value;
       const outletSel = document.getElementById("report-outlet-filter").value;
-      const todayStr = "2026-06-09";
+      const todayStr = new Date().toISOString().slice(0,10);
 
       let filteredTxs = APP_STATE.transactions;
       let filteredExps = APP_STATE.expenses;
@@ -2033,8 +2167,9 @@
         filteredTxs = filteredTxs.filter(t => t.created_at.startsWith(todayStr));
         filteredExps = filteredExps.filter(e => e.created_at.startsWith(todayStr));
       } else if (dRange === "month") {
-        filteredTxs = filteredTxs.filter(t => t.created_at.startsWith("2026-06"));
-        filteredExps = filteredExps.filter(e => e.created_at.startsWith("2026-06"));
+        const monthStr = todayStr.slice(0,7);
+        filteredTxs = filteredTxs.filter(t => t.created_at.startsWith(monthStr));
+        filteredExps = filteredExps.filter(e => e.created_at.startsWith(monthStr));
       }
 
       if (outletSel !== "all") {
@@ -2081,9 +2216,32 @@
       document.getElementById("set-hero-headline").value = APP_STATE.settings.hero_headline || "";
       document.getElementById("set-hero-sub").value = APP_STATE.settings.hero_subheadline || "";
       document.getElementById("set-hero-bg-type").value = APP_STATE.settings.hero_bg_type || "gradient";
-      document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#fdba74";
+      document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#f97316";
       document.getElementById("set-hero-bg-color2").value = APP_STATE.settings.hero_bg_color2 || "#ea580c";
       document.getElementById("set-hero-title-color").value = APP_STATE.settings.hero_title_color || "#ffffff";
+
+      document.getElementById("set-feat-title").value = APP_STATE.settings.feat_title || "";
+      document.getElementById("set-feat-sub").value = APP_STATE.settings.feat_sub || "";
+      for(let i=1; i<=4; i++){
+        document.getElementById(`set-feat${i}-icon`).value = APP_STATE.settings[`feat${i}_icon`] || "";
+        document.getElementById(`set-feat${i}-title`).value = APP_STATE.settings[`feat${i}_title`] || "";
+        document.getElementById(`set-feat${i}-desc`).value = APP_STATE.settings[`feat${i}_desc`] || "";
+      }
+
+      document.getElementById("set-ben-title").value = APP_STATE.settings.ben_title || "";
+      document.getElementById("set-ben-desc").value = APP_STATE.settings.ben_desc || "";
+      for(let i=1; i<=3; i++){
+        document.getElementById(`set-ben${i}-title`).value = APP_STATE.settings[`ben${i}_title`] || "";
+        document.getElementById(`set-ben${i}-desc`).value = APP_STATE.settings[`ben${i}_desc`] || "";
+      }
+
+      document.getElementById("set-price-footer").value = APP_STATE.settings.price_global_footer || "";
+      document.getElementById("set-testi-title").value = APP_STATE.settings.testi_title || "";
+      for(let i=1; i<=3; i++){
+        document.getElementById(`set-testi${i}-name`).value = APP_STATE.settings[`testi${i}_name`] || "";
+        document.getElementById(`set-testi${i}-role`).value = APP_STATE.settings[`testi${i}_role`] || "";
+        document.getElementById(`set-testi${i}-desc`).value = APP_STATE.settings[`testi${i}_desc`] || "";
+      }
     }
 
     function saveGlobalSettings() {
@@ -2104,8 +2262,31 @@
       APP_STATE.settings.hero_bg_color2 = document.getElementById("set-hero-bg-color2").value;
       APP_STATE.settings.hero_title_color = document.getElementById("set-hero-title-color").value;
 
+      APP_STATE.settings.feat_title = document.getElementById("set-feat-title").value.trim();
+      APP_STATE.settings.feat_sub = document.getElementById("set-feat-sub").value.trim();
+      for(let i=1; i<=4; i++){
+        APP_STATE.settings[`feat${i}_icon`] = document.getElementById(`set-feat${i}-icon`).value.trim();
+        APP_STATE.settings[`feat${i}_title`] = document.getElementById(`set-feat${i}-title`).value.trim();
+        APP_STATE.settings[`feat${i}_desc`] = document.getElementById(`set-feat${i}-desc`).value.trim();
+      }
+
+      APP_STATE.settings.ben_title = document.getElementById("set-ben-title").value.trim();
+      APP_STATE.settings.ben_desc = document.getElementById("set-ben-desc").value.trim();
+      for(let i=1; i<=3; i++){
+        APP_STATE.settings[`ben${i}_title`] = document.getElementById(`set-ben${i}-title`).value.trim();
+        APP_STATE.settings[`ben${i}_desc`] = document.getElementById(`set-ben${i}-desc`).value.trim();
+      }
+
+      APP_STATE.settings.price_global_footer = document.getElementById("set-price-footer").value.trim();
+      APP_STATE.settings.testi_title = document.getElementById("set-testi-title").value.trim();
+      for(let i=1; i<=3; i++){
+        APP_STATE.settings[`testi${i}_name`] = document.getElementById(`set-testi${i}-name`).value.trim();
+        APP_STATE.settings[`testi${i}_role`] = document.getElementById(`set-testi${i}-role`).value.trim();
+        APP_STATE.settings[`testi${i}_desc`] = document.getElementById(`set-testi${i}-desc`).value.trim();
+      }
+
       StorageEngine.saveStateToLocal();
-      showNotification("Identitas mutlak POS sentral serta penanaman mesin parameter gerbang integrasi (Gateway WhatsApp Server) diperbaharui penuh secara gemilang!", "Kompilasi Sukses Tersimpan", "✅");
+      showNotification("Identitas mutlak POS sentral, Pengaturan Landing Page Dinamis, serta penanaman mesin parameter gerbang integrasi diperbaharui penuh secara gemilang!", "Kompilasi Sukses Tersimpan", "✅");
       apiRequest("saveSettings", APP_STATE.settings);
     }
 
@@ -2209,9 +2390,6 @@
         document.getElementById("track-customer-name").innerText = cust.name;
         document.getElementById("track-est").innerText = tx.estimated_done;
         
-        const service = APP_STATE.services[0] || { name: "Cuci Reguler Menyesuaikan" };
-        document.getElementById("track-service").innerText = service.name;
-
         const badge = document.getElementById("track-badge");
         badge.innerText = tx.status_order.toUpperCase();
         badge.className = "px-3 py-1 rounded-full text-xs font-bold ";
@@ -2235,7 +2413,7 @@
       }
     }
 
-    // Eksekusi Pemicu Awal Aplikasi Start-Up Core App Loading Let's Go
+    // Eksekusi Pemicu Awal Aplikasi Start-Up
     window.onload = function() {
       StorageEngine.init();
       initAuthCheck();
