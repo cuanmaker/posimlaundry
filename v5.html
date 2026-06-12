@@ -7,7 +7,7 @@
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Tailwind Custom Colors Integration - Tema Soft Orange Coral -->
+  <!-- Tailwind Custom Colors Integration -->
   <script>
     tailwind.config = {
       theme: {
@@ -29,7 +29,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Mengubah font utama ke Poppins dan Heading ke Montserrat */
     body { font-family: 'Poppins', sans-serif; }
     h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
     .logo-font { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.5px; }
@@ -44,10 +43,6 @@
       #print-receipt-section, #print-receipt-section * { visibility: visible; }
       #print-receipt-section { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; }
     }
-    
-    /* Smooth Accordion Detail Setup */
-    details > summary { list-style: none; }
-    details > summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
@@ -230,7 +225,7 @@
           <p class="text-slate-400 text-sm">Sistem Kasir Modern & Pelacakan Laundry Terintegrasi.</p>
         </div>
         <div class="flex gap-4">
-          <a id="footer-wa-link" href="https://wa.me/6281234567890" target="_blank" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg text-sm transition flex items-center gap-2">
+          <a id="footer-wa-link" href="https://wa.me/6281234567890" target="_blank" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg text-sm transition flex items-center gap-2">
             💬 Hubungi CS Kami via WA
           </a>
         </div>
@@ -298,7 +293,7 @@
           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor WhatsApp Terdaftar</label>
           <input id="forgot-phone" type="text" placeholder="Contoh: 0812345..." class="w-full px-4 py-3 border rounded-xl bg-slate-50 text-sm" />
         </div>
-        <button onclick="submitForgotPassword()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm transition shadow-lg">
+        <button onclick="submitForgotPassword()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition shadow-lg">
           Kirim Sandi via WA
         </button>
       </div>
@@ -897,6 +892,18 @@
   <!-- 5. DIALOGS & ACTION POPUPS (MODALS) -->
   <!-- ============================================== -->
   
+  <!-- Custom Notification Dialog (Replaces Alert) -->
+  <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300" style="z-index: 9999;">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
+      <div id="dialog-icon" class="text-5xl mb-2">⚠️</div>
+      <h4 id="dialog-title" class="text-xl font-bold text-slate-900">Notifikasi Sistem</h4>
+      <p id="dialog-message" class="text-sm text-slate-600 leading-relaxed pb-4"></p>
+      <div id="dialog-buttons" class="flex gap-3 justify-center pt-2 border-t border-slate-50">
+        <!-- Buttons injected dynamically -->
+      </div>
+    </div>
+  </div>
+
   <!-- Customer Create/Edit Modal -->
   <div id="modal-customer" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
@@ -1556,7 +1563,7 @@
       }
     }
 
-    // Render Kartu Harga dengan Format GROUPED TABLE 
+    // Render Kartu Harga dengan Format GROUPED TABLE (Warna Soft Orange Coral)
     function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
@@ -1897,7 +1904,6 @@
       apiRequest("createTransaction", { transaction: newTx, items: payloadItems, history: newHist, auto_wa: autoWa });
     }
 
-    <!-- TAB: SETTINGS & WA GATEWAY (ALL DYNAMIC CONFIGS HERE) -->
     // ==========================================
     // MODULE H: TRANSACTIONS LIST & FILTERING
     // ==========================================
@@ -2175,11 +2181,10 @@
     // ==========================================
     function initReportsTab() {
       const fl = document.getElementById("report-outlet-filter");
-      fl.innerHTML = "";
+      fl.innerHTML = "<option value='all'>Keseluruhan Cabang Global</option>";
+      APP_STATE.outlets.forEach(o => fl.innerHTML += `<option value="${o.id}">${o.name}</option>`);
       
       if (APP_STATE.currentUser && APP_STATE.currentUser.role === "Owner") {
-        fl.innerHTML = "<option value='all'>Keseluruhan Cabang Global</option>";
-        APP_STATE.outlets.forEach(o => fl.innerHTML += `<option value="${o.id}">${o.name}</option>`);
         fl.disabled = false;
         fl.classList.remove("bg-slate-100", "text-slate-400");
       } else {
@@ -2449,6 +2454,7 @@
       }
     }
 
+    // Eksekusi Pemicu Awal Aplikasi Start-Up
     window.onload = function() {
       StorageEngine.init();
       initAuthCheck();
