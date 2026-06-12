@@ -7,13 +7,24 @@
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Tailwind Custom Colors Integration -->
+  <!-- Tailwind Custom Colors Integration (Soft Orange Coral Theme) -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: { 50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e' }
+            brand: { 
+              50: '#fff7ed', 
+              100: '#ffedd5', 
+              200: '#fed7aa', 
+              300: '#fdba74', 
+              400: '#fb923c', 
+              500: '#f97316', /* Soft Orange */
+              600: '#ea580c', /* Deep Coral */
+              700: '#c2410c', 
+              800: '#9a3412', 
+              900: '#7c2d12' 
+            }
           }
         }
       }
@@ -55,7 +66,7 @@
     <header class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-100 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div class="flex items-center space-x-2">
-          <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-brand-500/20" id="landing-icon-badge">🧼</div>
+          <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-brand-500/20 overflow-hidden" id="landing-icon-badge">🧼</div>
           <span class="text-2xl font-bold tracking-tight text-brand-600 logo-font" id="landing-brand-text">iMersLonry</span>
         </div>
         <div class="flex items-center space-x-3">
@@ -69,16 +80,14 @@
       </div>
     </header>
 
-    <!-- HERO SECTION DINAMIS (Warna Dikontrol dari Javascript/Settings) -->
-    <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500" style="background: linear-gradient(135deg, #0369a1, #22d3ee);">
-      <!-- Ornamen Pattern Transparan -->
+    <!-- HERO SECTION DINAMIS DENGAN SOFT ORANGE GRADIENT -->
+    <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500" style="background: linear-gradient(135deg, #fdba74, #ea580c);">
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30"></div>
       
       <div class="max-w-4xl mx-auto px-4 relative z-10">
         <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-md border border-white/30 mb-6 shadow-sm">
           ✨ Sistem Kasir & Pelacakan Cerdas
         </span>
-        <!-- Headline Dinamis Warnanya -->
         <h1 id="landing-headline" class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 drop-shadow-md transition-colors duration-500" style="color: #ffffff;">
           Sistem POS Kasir & Portal Pelanggan Laundry
         </h1>
@@ -95,6 +104,21 @@
 
     <!-- WRAPPER UNTUK KONTEN PROMO (BISA DI ON/OFF) -->
     <div id="landing-promo-sections">
+      <!-- Pricing / Packages Section -->
+      <section id="pricing" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
+            <p class="text-slate-600 max-w-xl mx-auto">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
+          </div>
+          
+          <!-- GRID KARTU HARGA DINAMIS BERDASARKAN KATEGORI -->
+          <div id="landing-pricing-grid" class="max-w-5xl mx-auto">
+            <!-- Render via JavaScript -->
+          </div>
+        </div>
+      </section>
+
       <!-- Services Section -->
       <section id="services" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -176,37 +200,24 @@
         </div>
       </section>
 
-      <!-- Pricing / Packages Section (BERUBAH JADI LIST TABLE CORAL) -->
-      <section id="pricing" class="py-20 bg-slate-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
-          <p class="text-slate-600 max-w-xl mx-auto mb-16">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
-          
-          <!-- DAFTAR HARGA AKAN DI-INJECT KE SINI (JS) -->
-          <div id="landing-pricing-list" class="space-y-12">
-            <!-- Dynamic Content -->
-          </div>
-        </div>
-      </section>
-
       <!-- Testimonials Section -->
       <section id="testimonials" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 class="text-3xl font-bold text-slate-900 mb-16">Kisah Puas Pelanggan Setia kami</h2>
           <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
               <p class="text-slate-600 text-sm leading-relaxed mb-6">"Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya apakah masih dicuci atau sudah siap ambil!"</p>
               <div class="font-bold text-slate-800 text-sm">Sarah Rahmawati</div>
               <p class="text-xs text-slate-400">Ibu Rumah Tangga</p>
             </div>
-            <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
               <p class="text-slate-600 text-sm leading-relaxed mb-6">"Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian dan komparasi omset antar cabang tampil transparan."</p>
               <div class="font-bold text-slate-800 text-sm">Bambang Susanto</div>
               <p class="text-xs text-slate-400">Pemilik Multi-Outlet</p>
             </div>
-            <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
               <p class="text-slate-600 text-sm leading-relaxed mb-6">"Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional."</p>
               <div class="font-bold text-slate-800 text-sm">Rian Mahendra</div>
@@ -247,7 +258,6 @@
       </div>
 
       <div class="text-center mb-6">
-        <div id="login-icon-badge" class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center text-2xl mx-auto mb-3">🧼</div>
         <h3 id="login-title" class="text-2xl font-bold text-slate-900">Masuk Kasir</h3>
         <p id="login-subtitle" class="text-sm text-slate-500">Masukkan kredensial POS Anda</p>
       </div>
@@ -366,7 +376,7 @@
     <aside class="w-full md:w-64 bg-slate-900 text-slate-200 flex flex-col flex-shrink-0">
       <div class="p-6 border-b border-slate-800 flex justify-between items-center">
         <div class="flex items-center space-x-2">
-          <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white" id="sidebar-icon">🧼</div>
+          <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white overflow-hidden" id="sidebar-icon">🧼</div>
           <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
         <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-emerald-500" title="Online Sync Active"></span>
@@ -410,7 +420,6 @@
     </aside>
 
     <main class="flex-1 bg-slate-50 flex flex-col min-h-screen overflow-hidden">
-      <!-- Top header bar inside panel -->
       <header class="bg-white border-b border-slate-100 py-4 px-8 flex justify-between items-center shadow-sm">
         <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wide" id="current-tab-title">Ringkasan</h2>
         <div class="flex items-center gap-4">
@@ -497,58 +506,59 @@
         <div id="tab-new-transaction" class="tab-content hidden grid lg:grid-cols-3 gap-8">
           <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm lg:col-span-2 space-y-6">
             <div class="flex justify-between items-center border-b pb-3">
-               <h3 class="font-bold text-slate-800 text-lg">Formulir Pendaftaran Cucian Masuk</h3>
-               <button onclick="openCustomerModal()" class="px-3 py-1.5 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg hover:bg-slate-200 transition">
-                  + Pelanggan Baru
-                </button>
+              <h3 class="font-bold text-slate-800 text-lg">Keranjang Pesanan Baru</h3>
             </div>
             
-            <div class="grid gap-4">
+            <div class="grid md:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">1. Pilih Data Pelanggan</label>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilih Data Pelanggan</label>
                 <select id="tx-customer" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select>
+              </div>
+              <div class="flex items-end">
+                <button onclick="changeTab('customers')" class="w-full p-3 bg-slate-100 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-200 transition">
+                  + Buat Pelanggan Baru
+                </button>
               </div>
             </div>
 
-            <div class="p-5 bg-brand-50 border border-brand-100 rounded-xl space-y-4">
-              <label class="block text-xs font-bold text-brand-700 uppercase mb-1">2. Tambah Layanan ke Keranjang</label>
-              <div class="grid md:grid-cols-12 gap-4">
-                <div class="md:col-span-6">
+            <!-- Input Paket ke Keranjang -->
+            <div class="bg-brand-50 p-4 rounded-xl border border-brand-100">
+              <div class="grid md:grid-cols-4 gap-4 items-end">
+                <div class="md:col-span-2">
+                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilihan Paket Layanan</label>
                   <select id="tx-service" class="w-full p-3 border rounded-xl bg-white text-sm font-medium"></select>
                 </div>
-                <div class="md:col-span-3">
-                  <input id="tx-qty" type="number" step="0.01" value="1" placeholder="Berat/Qty" class="w-full p-3 border rounded-xl bg-white text-sm font-medium" />
+                <div>
+                  <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Berat(Kg)/Jumlah(Pcs)</label>
+                  <input id="tx-qty" type="number" step="0.01" value="1" class="w-full p-3 border rounded-xl bg-white text-sm font-medium" />
                 </div>
-                <div class="md:col-span-3">
-                  <button onclick="addServiceToCart()" class="w-full p-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-sm">
+                <div>
+                  <button onclick="addCartItem()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl transition text-sm">
                     + Tambah Item
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Keranjang Belanja -->
-            <div>
-              <h4 class="text-sm font-bold text-slate-700 mb-2">Daftar Item Cucian</h4>
-              <div class="overflow-x-auto border border-slate-200 rounded-xl">
-                <table class="w-full text-left border-collapse">
-                  <thead>
-                    <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider border-b border-slate-200">
-                      <th class="p-3 font-bold">Layanan</th>
-                      <th class="p-3 font-bold">Harga</th>
-                      <th class="p-3 font-bold text-center">Qty</th>
-                      <th class="p-3 font-bold text-right">Subtotal</th>
-                      <th class="p-3 font-bold text-center">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tx-cart-body" class="divide-y divide-slate-100 text-sm font-medium text-slate-700">
-                    <!-- Dynamic cart items -->
-                  </tbody>
-                </table>
-              </div>
+            <!-- Table Daftar Keranjang (Cart) -->
+            <div class="border border-slate-200 rounded-xl overflow-hidden">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-slate-100 text-slate-500 text-xs uppercase font-bold">
+                  <tr>
+                    <th class="p-3">Nama Paket Layanan</th>
+                    <th class="p-3">Harga</th>
+                    <th class="p-3">Qty</th>
+                    <th class="p-3">Subtotal</th>
+                    <th class="p-3 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tx-cart-body" class="divide-y divide-slate-100 bg-white">
+                  <!-- Diisi pakai JS POS_CART -->
+                </tbody>
+              </table>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-4 pt-4 border-t border-slate-100 mt-4">
+            <div class="grid md:grid-cols-3 gap-4 mt-6">
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Potongan Diskon (Rp)</label>
                 <input id="tx-discount" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
@@ -567,32 +577,30 @@
               </div>
             </div>
 
-            <!-- Hidden input for estimated days calculation based on cart items -->
-            <input type="hidden" id="tx-days-est" value="1" />
-
-            <label class="flex items-center space-x-2 text-sm text-slate-600 mt-4 cursor-pointer bg-slate-50 p-3 rounded-lg border border-slate-100">
+            <label class="flex items-center space-x-2 text-sm text-slate-600 mt-4 cursor-pointer bg-slate-50 p-3 rounded-lg border border-slate-200">
               <input type="checkbox" id="tx-send-wa" class="rounded text-brand-600 focus:ring-brand-500 h-5 w-5" checked />
               <span class="font-medium">Otomatis kirim e-Nota ke WhatsApp Pelanggan saat ini juga</span>
             </label>
           </div>
 
           <!-- Checkout Cart Summary Card -->
-          <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl flex flex-col justify-between h-fit sticky top-24">
+          <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl flex flex-col justify-between">
             <div>
               <h4 class="text-sm font-bold uppercase text-brand-400 tracking-wider mb-6">RINGKASAN BIAYA</h4>
               <div class="space-y-4 text-sm border-b border-slate-800 pb-6 mb-6">
-                <div class="flex justify-between"><span class="text-slate-400">Total Item Cucian</span><span id="checkout-items-count" class="font-semibold">0</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">Subtotal Dasar</span><span id="checkout-subtotal" class="font-semibold" data-raw-subtotal="0">Rp 0</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Total Item</span><span id="checkout-total-items" class="font-semibold">0</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Subtotal Dasar</span><span id="checkout-subtotal" class="font-semibold">Rp 0</span></div>
                 <div class="flex justify-between"><span class="text-slate-400">Total Diskon</span><span id="checkout-discount" class="font-semibold text-rose-400">-Rp 0</span></div>
-                <div class="flex justify-between text-base mt-2 pt-2 border-t border-slate-800"><span class="font-bold text-white">Biaya Akhir</span><span id="checkout-total" class="font-bold text-brand-400 text-xl">Rp 0</span></div>
+                <div class="flex justify-between text-base"><span class="font-bold text-white">Biaya Akhir</span><span id="checkout-total" class="font-bold text-brand-400">Rp 0</span></div>
               </div>
               <div class="space-y-4 text-sm">
+                <div class="flex justify-between"><span class="text-slate-400">Estimasi Selesai Maks:</span><span id="checkout-est-days" class="font-medium text-amber-400">-</span></div>
                 <div class="flex justify-between"><span class="text-slate-400">Status Pembayaran:</span><span id="checkout-payment" class="font-medium text-amber-400">Belum Bayar</span></div>
                 <div class="flex justify-between"><span class="text-slate-400">Uang Kembalian:</span><span id="checkout-change" class="font-semibold text-emerald-400">Rp 0</span></div>
               </div>
             </div>
             <div class="pt-8">
-              <button onclick="submitNewTransaction()" class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition shadow-xl text-center block">Simpan Data & Cetak Struk 🖨️</button>
+              <button onclick="submitNewTransaction()" class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition shadow-xl text-center">Simpan Data & Cetak Struk 🖨️</button>
             </div>
           </div>
         </div>
@@ -613,7 +621,7 @@
                   </select>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon / Emoji Logo Toko</label><input id="set-brand-icon" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+                  <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ikon Emoji ATAU URL Link Gambar Logo</label><input id="set-brand-icon" type="text" placeholder="🧼 atau http://linkgambar.png" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                   <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Brand Utama</label><input id="set-store-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 </div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
@@ -830,9 +838,9 @@
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-service-title">Tambahkan Paket Jasa</h3>
       <div class="space-y-4">
         <input type="hidden" id="serv-id" />
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kategori Layanan Utama</label><input id="serv-category" type="text" placeholder="Contoh: Cuci Setrika" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Sub-Paket (Varian)</label><input id="serv-name" type="text" placeholder="Contoh: Reguler Biasa" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Keterangan / Aturan Khusus</label><input id="serv-desc" type="text" placeholder="Contoh: Minimal laundry 3 Kg" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kategori / Grup Layanan</label><input id="serv-category" type="text" placeholder="Contoh: Cuci Setrika / Setrika Wangi" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Paket Spesifik</label><input id="serv-name" type="text" placeholder="Contoh: Reguler Biasa / Express" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deksripsi Manfaat (Pisahkan Poin dgn Titik)</label><input id="serv-desc" type="text" placeholder="Minimal 3Kg. Wangi tahan lama." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
         <div class="grid grid-cols-2 gap-4">
           <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sistem Hitung</label><select id="serv-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="kilogram">Kiloan (Kg)</option><option value="item">Satuan Biji (Pcs)</option></select></div>
           <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tarif Harga (Rp)</label><input id="serv-price" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
@@ -970,8 +978,8 @@
         <span>Rincian Jenis Paket</span>
         <span>Harga Tarik</span>
       </div>
-      <div id="rec-items-container" class="space-y-1">
-        <!-- Render Multi-Item Keranjang Disini -->
+      <div id="rec-items-container" class="space-y-1.5">
+        <!-- Render from POS_CART or Single Item -->
       </div>
     </div>
     <div class="border-t border-dashed border-slate-400 my-2"></div>
@@ -1003,7 +1011,7 @@
     </div>
     <div class="border-t border-dashed border-slate-400 my-2"></div>
     <div class="text-center space-y-2 text-[9px]">
-      <p class="font-medium text-slate-800">Estimasi Pengembalian Siap Tuntas: <br><span id="rec-est-done" class="font-bold text-xs text-black border-b border-black inline-block mt-1">11 Juni 2026</span></p>
+      <p class="font-medium text-slate-800">Estimasi Pengembalian Siap Tuntas Maks: <br><span id="rec-est-done" class="font-bold text-xs text-black border-b border-black inline-block mt-1">11 Juni 2026</span></p>
       <div class="flex justify-center py-2">
         <div id="receipt-qr-code-box" class="p-1.5 bg-white border inline-block"></div>
       </div>
@@ -1021,7 +1029,6 @@
     // MODULE A: CONFIG & GLOBAL STATES
     // ==========================================
     const CONFIG = {
-      // URL Web App Google Apps Script Anda SUDAH AKTIF:
       API_URL: "https://script.google.com/macros/s/AKfycbyh-3ba4r8cRJkVnMC0afWPBtq92HnNAJnSMo62GoXFx9hcjQxIq7FUwNmspB-OlljO/exec", 
       MOCK_MODE: false,
     };
@@ -1029,14 +1036,11 @@
     let APP_STATE = {
       currentUser: null, currentTab: "dashboard",
       outlets: [], users: [], customers: [], services: [], transactions: [], expenses: [], statusHistory: [],
-      transactionItems: [], // Tambahan untuk mensupport riwayat multi item cetak struk ulang
-      settings: { 
-        store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih banyak!", 
-        wa_provider: "none", wa_api_key: "", wa_sender: "",
-        landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!",
-        hero_bg_type: "gradient", hero_bg_color1: "#0369a1", hero_bg_color2: "#22d3ee", hero_title_color: "#ffffff"
-      }
+      settings: {}
     };
+
+    // Keranjang Multi-Item Kasir
+    let POS_CART = [];
 
     function formatRupiah(amount) {
       return "Rp " + Math.round(amount).toLocaleString("id-ID");
@@ -1092,7 +1096,7 @@
     // MODULE C: LOCALSTORAGE ENGINE
     // ==========================================
     const INITIAL_DUMMY_DATA = {
-      settings: { store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih atas kepercayaannya!", wa_provider: "none", wa_api_key: "", wa_sender: "", landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", hero_bg_type: "gradient", hero_bg_color1: "#0369a1", hero_bg_color2: "#22d3ee", hero_title_color: "#ffffff" },
+      settings: { store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih atas kepercayaannya!", wa_provider: "none", wa_api_key: "", wa_sender: "", landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", hero_bg_type: "gradient", hero_bg_color1: "#fdba74", hero_bg_color2: "#ea580c", hero_title_color: "#ffffff" },
       outlets: [
         { id: "OUT-001", name: "Cabang Utama Dago", address: "Jl. Dago No. 45", phone: "08111222333", status: "Active", created_at: "2026-06-01 10:00:00" }
       ],
@@ -1103,50 +1107,52 @@
         { id: "CUST-001", name: "Aditya Rahman", phone: "081234567891", address: "Jl. Dipatiukur No. 10", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 08:00:00" }
       ],
       services: [
-        { id: "SERV-001", category: "Cuci Setrika", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" }
+        { id: "SERV-001", category: "Cuci Setrika", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" },
+        { id: "SERV-002", category: "Cuci Setrika", name: "Reguler Cepat", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6500, estimate_days: 2, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:05:00" },
+        { id: "SERV-003", category: "Cuci Setrika", name: "Express", description: "Minimal laundry 3 Kg", type: "kilogram", price: 8000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:10:00" },
+        { id: "SERV-004", category: "Cuci Setrika", name: "Super Express", description: "Minimal laundry 3 Kg. Selesai 6 Jam", type: "kilogram", price: 14000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:00:00" },
+        { id: "SERV-005", category: "Setrika Wangi", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 5000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:05:00" },
+        { id: "SERV-006", category: "Setrika Wangi", name: "Reguler Cepat", description: "Minimal laundry 3 Kg", type: "kilogram", price: 5500, estimate_days: 2, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:10:00" },
+        { id: "SERV-007", category: "Setrika Wangi", name: "Express", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-02 13:15:00" }
       ],
       transactions: [],
-      transactionItems: [],
       expenses: [],
       statusHistory: []
     };
 
     const StorageEngine = {
       init() {
-        if (!localStorage.getItem("iml_outlets")) {
-          localStorage.setItem("iml_settings", JSON.stringify(INITIAL_DUMMY_DATA.settings));
-          localStorage.setItem("iml_outlets", JSON.stringify(INITIAL_DUMMY_DATA.outlets));
-          localStorage.setItem("iml_users", JSON.stringify(INITIAL_DUMMY_DATA.users));
-          localStorage.setItem("iml_customers", JSON.stringify(INITIAL_DUMMY_DATA.customers));
-          localStorage.setItem("iml_services", JSON.stringify(INITIAL_DUMMY_DATA.services));
-          localStorage.setItem("iml_transactions", JSON.stringify(INITIAL_DUMMY_DATA.transactions));
-          localStorage.setItem("iml_transaction_items", JSON.stringify(INITIAL_DUMMY_DATA.transactionItems));
-          localStorage.setItem("iml_expenses", JSON.stringify(INITIAL_DUMMY_DATA.expenses));
-          localStorage.setItem("iml_status_history", JSON.stringify(INITIAL_DUMMY_DATA.statusHistory));
+        if (!localStorage.getItem("iml_outlets_v3")) {
+          localStorage.setItem("iml_settings_v3", JSON.stringify(INITIAL_DUMMY_DATA.settings));
+          localStorage.setItem("iml_outlets_v3", JSON.stringify(INITIAL_DUMMY_DATA.outlets));
+          localStorage.setItem("iml_users_v3", JSON.stringify(INITIAL_DUMMY_DATA.users));
+          localStorage.setItem("iml_customers_v3", JSON.stringify(INITIAL_DUMMY_DATA.customers));
+          localStorage.setItem("iml_services_v3", JSON.stringify(INITIAL_DUMMY_DATA.services));
+          localStorage.setItem("iml_transactions_v3", JSON.stringify(INITIAL_DUMMY_DATA.transactions));
+          localStorage.setItem("iml_expenses_v3", JSON.stringify(INITIAL_DUMMY_DATA.expenses));
+          localStorage.setItem("iml_status_history_v3", JSON.stringify(INITIAL_DUMMY_DATA.statusHistory));
         }
         this.loadStateFromLocal();
       },
       loadStateFromLocal() {
-        APP_STATE.settings = JSON.parse(localStorage.getItem("iml_settings")) || INITIAL_DUMMY_DATA.settings;
-        APP_STATE.outlets = JSON.parse(localStorage.getItem("iml_outlets")) || [];
-        APP_STATE.users = JSON.parse(localStorage.getItem("iml_users")) || [];
-        APP_STATE.customers = JSON.parse(localStorage.getItem("iml_customers")) || [];
-        APP_STATE.services = JSON.parse(localStorage.getItem("iml_services")) || [];
-        APP_STATE.transactions = JSON.parse(localStorage.getItem("iml_transactions")) || [];
-        APP_STATE.transactionItems = JSON.parse(localStorage.getItem("iml_transaction_items")) || [];
-        APP_STATE.expenses = JSON.parse(localStorage.getItem("iml_expenses")) || [];
-        APP_STATE.statusHistory = JSON.parse(localStorage.getItem("iml_status_history")) || [];
+        APP_STATE.settings = JSON.parse(localStorage.getItem("iml_settings_v3")) || INITIAL_DUMMY_DATA.settings;
+        APP_STATE.outlets = JSON.parse(localStorage.getItem("iml_outlets_v3")) || [];
+        APP_STATE.users = JSON.parse(localStorage.getItem("iml_users_v3")) || [];
+        APP_STATE.customers = JSON.parse(localStorage.getItem("iml_customers_v3")) || [];
+        APP_STATE.services = JSON.parse(localStorage.getItem("iml_services_v3")) || [];
+        APP_STATE.transactions = JSON.parse(localStorage.getItem("iml_transactions_v3")) || [];
+        APP_STATE.expenses = JSON.parse(localStorage.getItem("iml_expenses_v3")) || [];
+        APP_STATE.statusHistory = JSON.parse(localStorage.getItem("iml_status_history_v3")) || [];
       },
       saveStateToLocal() {
-        localStorage.setItem("iml_settings", JSON.stringify(APP_STATE.settings));
-        localStorage.setItem("iml_outlets", JSON.stringify(APP_STATE.outlets));
-        localStorage.setItem("iml_users", JSON.stringify(APP_STATE.users));
-        localStorage.setItem("iml_customers", JSON.stringify(APP_STATE.customers));
-        localStorage.setItem("iml_services", JSON.stringify(APP_STATE.services));
-        localStorage.setItem("iml_transactions", JSON.stringify(APP_STATE.transactions));
-        localStorage.setItem("iml_transaction_items", JSON.stringify(APP_STATE.transactionItems));
-        localStorage.setItem("iml_expenses", JSON.stringify(APP_STATE.expenses));
-        localStorage.setItem("iml_status_history", JSON.stringify(APP_STATE.statusHistory));
+        localStorage.setItem("iml_settings_v3", JSON.stringify(APP_STATE.settings));
+        localStorage.setItem("iml_outlets_v3", JSON.stringify(APP_STATE.outlets));
+        localStorage.setItem("iml_users_v3", JSON.stringify(APP_STATE.users));
+        localStorage.setItem("iml_customers_v3", JSON.stringify(APP_STATE.customers));
+        localStorage.setItem("iml_services_v3", JSON.stringify(APP_STATE.services));
+        localStorage.setItem("iml_transactions_v3", JSON.stringify(APP_STATE.transactions));
+        localStorage.setItem("iml_expenses_v3", JSON.stringify(APP_STATE.expenses));
+        localStorage.setItem("iml_status_history_v3", JSON.stringify(APP_STATE.statusHistory));
       }
     };
 
@@ -1201,6 +1207,18 @@
       } else {
         closeNotification();
         showNotification("Karena mode masih simulasi lokal (Mock), file backup otomatis disimpan aman di cache perangkat pintar Anda.", "Backup Lokal Diizinkan", "💾");
+      }
+    }
+
+    function renderBrandIcon(val, elId) {
+      const el = document.getElementById(elId);
+      if(!el) return;
+      if(val && (val.startsWith("http://") || val.startsWith("https://"))) {
+        el.innerHTML = `<img src="${val}" class="h-full w-full object-contain" onerror="this.outerHTML='🧼'" />`;
+        el.classList.replace("bg-brand-500", "bg-transparent");
+      } else {
+        el.innerHTML = val || "🧼";
+        el.classList.replace("bg-transparent", "bg-brand-500");
       }
     }
 
@@ -1347,41 +1365,26 @@
       document.querySelector("[onclick=\"changeTab('profile-security')\"]").classList.remove("hidden");
     }
 
-    // Fungsi Pembantu Merender Logo/Gambar Dinamis
-    function renderBrandIcon(iconValue) {
-      if (!iconValue) return "🧼";
-      if (iconValue.startsWith("http://") || iconValue.startsWith("https://")) {
-        return `<img src="${iconValue}" alt="Logo" class="w-full h-full object-contain p-1 rounded-xl" onerror="this.onerror=null; this.outerHTML='🧼';" />`;
-      }
-      return iconValue;
-    }
-
-    // Mengaplikasikan konfigurasi UI dan Harga untuk Landing Page
+    // Mengaplikasikan konfigurasi UI dan Harga untuk Landing Page (Dinamis Warna & Logo Image)
     function applyDynamicLandingPage() {
       const set = APP_STATE.settings;
       
-      const renderedIcon = renderBrandIcon(set.brand_icon);
-
       document.getElementById("landing-brand-text").innerText = set.store_name || "iMersLonry";
-      document.getElementById("landing-icon-badge").innerHTML = renderedIcon;
+      renderBrandIcon(set.brand_icon, "landing-icon-badge");
       document.getElementById("sidebar-brand").innerText = set.store_name || "iMersLonry";
-      document.getElementById("sidebar-icon").innerHTML = renderedIcon;
-      
-      const loginIcon = document.getElementById("login-icon-badge");
-      if(loginIcon) loginIcon.innerHTML = renderedIcon;
-
+      renderBrandIcon(set.brand_icon, "sidebar-icon");
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
       document.getElementById("landing-headline").innerText = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
       document.getElementById("landing-subheadline").innerText = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
       
-      // Mengubah Warna Hero
+      // Mengubah Warna Hero Dinamis dari Color Picker
       const heroSec = document.getElementById("hero-section");
       if (set.hero_bg_type === "solid") {
-        heroSec.style.background = set.hero_bg_color1 || "#0369a1";
+        heroSec.style.background = set.hero_bg_color1 || "#fdba74";
       } else {
-        heroSec.style.background = `linear-gradient(135deg, ${set.hero_bg_color1 || '#0369a1'}, ${set.hero_bg_color2 || '#22d3ee'})`;
+        heroSec.style.background = `linear-gradient(135deg, ${set.hero_bg_color1 || '#fdba74'}, ${set.hero_bg_color2 || '#ea580c'})`;
       }
       document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
       
@@ -1394,88 +1397,71 @@
         promoWrapper.classList.add("hidden");
       } else {
         promoWrapper.classList.remove("hidden");
-        renderDynamicPricingList(); // Call tabel grup render
+        renderDynamicPricingList();
       }
     }
 
-    // Render List Harga ke Landing Page (Grouped by Category) dengan tema Coral Soft
+    // Render Kartu Harga dengan Format GROUPED TABLE ala Referensi Gambar
     function renderDynamicPricingList() {
-      const listContainer = document.getElementById("landing-pricing-list");
-      if (!listContainer) return;
-      listContainer.innerHTML = "";
+      const grid = document.getElementById("landing-pricing-grid");
+      if (!grid) return;
+      grid.innerHTML = "";
 
       const activeServices = APP_STATE.services.filter(s => s.status === "Active");
       if (activeServices.length === 0) {
-        listContainer.innerHTML = `<p class="text-slate-400">Belum ada paket layanan yang aktif di sistem kasir.</p>`;
+        grid.innerHTML = `<p class="text-slate-400 text-center w-full">Belum ada paket layanan yang aktif di sistem kasir.</p>`;
         return;
       }
 
-      // Grouping by Category
+      // Grouping layanan berdasarkan Kategori
       const grouped = {};
       activeServices.forEach(s => {
-        const cat = s.category || "Layanan Reguler";
-        if (!grouped[cat]) grouped[cat] = [];
+        const cat = s.category || "Layanan Umum";
+        if(!grouped[cat]) grouped[cat] = [];
         grouped[cat].push(s);
       });
 
       const waNum = (APP_STATE.settings.store_phone || "").replace(/[^0-9]/g, "");
       const waFormatted = waNum.startsWith("0") ? "62" + waNum.slice(1) : waNum;
 
-      // Render each category as a table group
-      for (const cat in grouped) {
-        let rowsHtml = "";
-        let commonDesc = ""; // We'll take the first description as the footer note
-
+      for(let cat in grouped) {
+        let trs = "";
         grouped[cat].forEach(s => {
-          if(!commonDesc && s.description) commonDesc = s.description;
-          const unitLabel = s.type === "kilogram" ? "/ Kg" : "/ Pcs";
-          
-          // Menggunakan warna Coral/Orange untuk icon WA agar serasi
-          rowsHtml += `
-            <tr class="border-b border-slate-100 last:border-0 hover:bg-orange-50/50 transition">
-              <td class="py-4 px-6 text-sm text-slate-600 font-medium">${s.name}</td>
-              <td class="py-4 px-6 text-sm text-slate-500">${s.estimate_days} Hari Selesai</td>
-              <td class="py-4 px-6 text-sm font-bold text-slate-800 text-right">
-                ${formatRupiah(s.price)} <span class="text-xs font-normal text-slate-400">${unitLabel}</span>
-              </td>
+          trs += `
+            <tr class="border-b border-slate-100 hover:bg-slate-50 transition">
+              <td class="py-4 px-6 font-semibold text-slate-800">${s.name}</td>
+              <td class="py-4 px-6 text-slate-600 text-center font-medium">${s.estimate_days} Hari Selesai</td>
+              <td class="py-4 px-6 font-bold text-slate-800 text-right">${formatRupiah(s.price)} <span class="text-xs font-normal text-slate-500">/${s.type==='kilogram'?'Kg':'Pcs'}</span></td>
               <td class="py-4 px-6 text-right w-16">
-                <a href="https://wa.me/${waFormatted}?text=Halo%20saya%20mau%20pesan%20layanan%20${encodeURIComponent(s.name)}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#FFE5D9] text-[#FF7F50] hover:bg-[#FF7F50] hover:text-white transition shadow-sm" title="Pesan via WhatsApp">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.305-.885-.653-1.48-1.459-1.653-1.756-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                <a href="https://wa.me/${waFormatted}?text=Halo%20saya%20mau%20order%20Layanan%20${encodeURIComponent(cat + ' - ' + s.name)}" target="_blank" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-500 hover:bg-brand-600 text-white transition shadow-md hover:-translate-y-1">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.305-.88-.653-1.474-1.46-1.646-1.757-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg>
                 </a>
               </td>
             </tr>
           `;
         });
 
-        // Tema Soft Orange / Coral untuk Footer Info
-        const footerHtml = commonDesc ? `
-          <div class="bg-[#FFF0EB] text-[#CC5500] text-xs font-bold text-right px-6 py-4 border-t border-orange-100 uppercase tracking-wider">
-            ${commonDesc}
-          </div>
-        ` : '';
-
-        // Tema Soft Orange / Coral (#FF7F50) untuk Header Tabel
-        listContainer.innerHTML += `
-          <div class="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden text-left hover:shadow-md transition duration-300">
-            <div class="bg-[#FF7F50] px-6 py-4 text-center">
-              <h3 class="text-lg font-bold text-white tracking-wide">${cat}</h3>
+        grid.innerHTML += `
+          <div class="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden mb-8 w-full transition hover:shadow-xl">
+            <div class="bg-brand-500 text-white py-4 px-6 text-center">
+              <h3 class="font-bold text-xl uppercase tracking-wider">${cat}</h3>
             </div>
             <div class="overflow-x-auto">
-              <table class="w-full text-left border-collapse">
-                <thead>
-                  <tr class="text-xs font-bold uppercase tracking-wider text-slate-400 bg-slate-50 border-b border-slate-100">
-                    <th class="py-3 px-6">Layanan</th>
-                    <th class="py-3 px-6">Waktu</th>
-                    <th class="py-3 px-6 text-right">Harga</th>
-                    <th class="py-3 px-6 w-16"></th>
+              <table class="w-full text-left whitespace-nowrap">
+                <thead class="bg-slate-50 text-slate-500 text-xs uppercase font-extrabold border-b border-slate-200">
+                  <tr>
+                    <th class="py-4 px-6">Layanan</th>
+                    <th class="py-4 px-6 text-center">Waktu</th>
+                    <th class="py-4 px-6 text-right">Harga /Satuan</th>
+                    <th class="py-4 px-6 text-right">Order</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-50">
-                  ${rowsHtml}
-                </tbody>
+                <tbody>${trs}</tbody>
               </table>
             </div>
-            ${footerHtml}
+            <div class="bg-brand-50 text-brand-800 text-xs font-semibold py-3 px-6 text-center border-t border-brand-100">
+              ${grouped[cat][0].description || "Dikerjakan oleh profesional laundry"}
+            </div>
           </div>
         `;
       }
@@ -1576,17 +1562,12 @@
 
 
     // ==========================================
-    // MODULE G: INTAKE MULTI-ITEM TRANSACTION INPUT
+    // MODULE G: INTAKE SALE TRANSACTION INPUT (MULTI-ITEM CART)
     // ==========================================
-    let currentCart = []; // Global variable untuk keranjang
-
     function initNewTransactionForm() {
-      currentCart = []; // Kosongkan keranjang setiap masuk form baru
-      document.getElementById("tx-qty").value = "1";
-      document.getElementById("tx-discount").value = "0";
-      document.getElementById("tx-paid").value = "0";
-      document.getElementById("tx-payment-status").value = "Belum Bayar";
-      document.getElementById("checkout-subtotal").setAttribute("data-raw-subtotal", "0");
+      // Clear Cart First
+      POS_CART = [];
+      renderCartTable();
 
       const custSelect = document.getElementById("tx-customer");
       custSelect.innerHTML = "";
@@ -1602,101 +1583,99 @@
         if (APP_STATE.currentUser.role === "Owner") return true;
         return s.outlet_id === APP_STATE.currentUser.outlet_id && s.status === "Active";
       });
-      filteredServices.forEach(s => { svcSelect.innerHTML += `<option value="${s.id}">${s.name} (${formatRupiah(s.price)}/${s.type === 'kilogram' ? 'kg' : 'pcs'})</option>`; });
+      filteredServices.forEach(s => { 
+        const catLabel = s.category ? `[${s.category}] ` : "";
+        svcSelect.innerHTML += `<option value="${s.id}">${catLabel}${s.name} (${formatRupiah(s.price)}/${s.type === 'kilogram' ? 'kg' : 'pcs'})</option>`; 
+      });
 
-      renderCart();
+      document.getElementById("tx-qty").value = "1";
+      document.getElementById("tx-discount").value = "0";
+      document.getElementById("tx-paid").value = "0";
+      calculateNewTxTotal();
     }
 
-    function addServiceToCart() {
+    function addCartItem() {
       const svcId = document.getElementById("tx-service").value;
       const qty = parseFloat(document.getElementById("tx-qty").value) || 0;
-      
-      if (!svcId || qty <= 0) {
-        showNotification("Harap pilih layanan dan masukkan jumlah berat atau kuantitas barang minimal 1.", "Data Tidak Valid", "⚠️");
-        return;
-      }
-      
+      if (!svcId || qty <= 0) return showNotification("Pastikan layanan dipilih dan Qty lebih dari 0", "Input Ditolak", "⚠️");
+
       const service = APP_STATE.services.find(s => s.id === svcId);
-      if (!service) return;
-      
-      // Jika item sudah ada di keranjang, tambahkan quantity-nya aja
-      const existingItemIndex = currentCart.findIndex(item => item.service_id === svcId);
-      if (existingItemIndex > -1) {
-        currentCart[existingItemIndex].qty += qty;
-        currentCart[existingItemIndex].total = currentCart[existingItemIndex].qty * currentCart[existingItemIndex].price;
-      } else {
-        // Jika belum ada, masukin item baru
-        currentCart.push({
-          service_id: service.id,
-          service_name: service.name,
-          qty: qty,
-          price: service.price,
-          total: service.price * qty,
-          estimate_days: service.estimate_days
-        });
-      }
-      
-      document.getElementById("tx-qty").value = "1"; // Reset input qty ke 1
-      renderCart();
-    }
-    
-    function removeFromCart(index) {
-      currentCart.splice(index, 1);
-      renderCart();
+      if(!service) return;
+
+      const subtotal = service.price * qty;
+      const newItem = {
+        cart_id: "CART-" + Date.now() + Math.floor(Math.random()*100),
+        service_id: service.id,
+        service_name: service.name,
+        price: service.price,
+        qty: qty,
+        total: subtotal,
+        estimate_days: service.estimate_days
+      };
+
+      POS_CART.push(newItem);
+      document.getElementById("tx-qty").value = "1"; // reset qty input
+      renderCartTable();
+      calculateNewTxTotal();
     }
 
-    function renderCart() {
+    function removeCartItem(cartId) {
+      POS_CART = POS_CART.filter(i => i.cart_id !== cartId);
+      renderCartTable();
+      calculateNewTxTotal();
+    }
+
+    function renderCartTable() {
       const body = document.getElementById("tx-cart-body");
       body.innerHTML = "";
       
-      let cartSubtotal = 0;
-      let maxDays = 0;
-      
-      if (currentCart.length === 0) {
-        body.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 font-normal">Keranjang masih kosong. Pilih layanan di atas lalu klik Tambah.</td></tr>`;
-      } else {
-        currentCart.forEach((item, index) => {
-          cartSubtotal += item.total;
-          if (item.estimate_days > maxDays) maxDays = item.estimate_days; // Cari hari pengerjaan paling lama
-          
-          body.innerHTML += `
-            <tr class="hover:bg-slate-50 transition">
-              <td class="p-3 truncate max-w-[150px]" title="${item.service_name}">${item.service_name}</td>
-              <td class="p-3">${formatRupiah(item.price)}</td>
-              <td class="p-3 text-center bg-brand-50 rounded-md font-bold text-brand-700">${item.qty}</td>
-              <td class="p-3 text-right font-bold">${formatRupiah(item.total)}</td>
-              <td class="p-3 text-center">
-                <button onclick="removeFromCart(${index})" class="w-8 h-8 rounded-full bg-rose-50 text-rose-500 hover:bg-rose-500 hover:text-white transition inline-flex items-center justify-center font-bold text-lg" title="Hapus Item">×</button>
-              </td>
-            </tr>
-          `;
-        });
+      if(POS_CART.length === 0) {
+        body.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 text-xs italic">Keranjang masih kosong, silakan tambah item di atas.</td></tr>`;
+        return;
       }
-      
-      // Simpan subtotal dasar ke atribut tersembunyi
-      document.getElementById("checkout-subtotal").setAttribute("data-raw-subtotal", cartSubtotal);
-      document.getElementById("tx-days-est").value = maxDays || 1; // Untuk referensi pas disimpan
-      document.getElementById("checkout-items-count").innerText = currentCart.length;
-      
-      calculateNewTxTotal(); // Update potongan dan kembalian
+
+      POS_CART.forEach(item => {
+        body.innerHTML += `
+          <tr class="border-b border-slate-100 hover:bg-slate-50">
+            <td class="p-3 font-semibold text-slate-800">${item.service_name}</td>
+            <td class="p-3 text-slate-500">${formatRupiah(item.price)}</td>
+            <td class="p-3 font-bold">${item.qty}</td>
+            <td class="p-3 font-bold text-brand-600">${formatRupiah(item.total)}</td>
+            <td class="p-3 text-center">
+              <button onclick="removeCartItem('${item.cart_id}')" class="text-rose-500 hover:text-rose-700 bg-rose-50 px-2 py-1 rounded text-xs font-bold transition">Hapus</button>
+            </td>
+          </tr>
+        `;
+      });
     }
 
     function calculateNewTxTotal() {
-      const rawSubtotal = parseFloat(document.getElementById("checkout-subtotal").getAttribute("data-raw-subtotal")) || 0;
       const discount = parseFloat(document.getElementById("tx-discount").value) || 0;
       const paid = parseFloat(document.getElementById("tx-paid").value) || 0;
 
-      const total = Math.max(0, rawSubtotal - discount);
+      let subtotal = 0;
+      let maxEstDays = 0;
+
+      POS_CART.forEach(item => {
+        subtotal += item.total;
+        if(item.estimate_days > maxEstDays) maxEstDays = item.estimate_days;
+      });
+
+      const total = Math.max(0, subtotal - discount);
       const change = Math.max(0, paid - total);
 
-      document.getElementById("checkout-subtotal").innerText = formatRupiah(rawSubtotal);
+      document.getElementById("checkout-total-items").innerText = POS_CART.length + " Macam Layanan";
+      document.getElementById("checkout-subtotal").innerText = formatRupiah(subtotal);
       document.getElementById("checkout-discount").innerText = `-${formatRupiah(discount)}`;
       document.getElementById("checkout-total").innerText = formatRupiah(total);
       
       const payStatus = document.getElementById("tx-payment-status").value;
-      const displayStatusIndo = payStatus === "Paid" ? "Lunas" : (payStatus === "Down Payment" ? "DP (Uang Muka)" : "Belum Bayar");
-      document.getElementById("checkout-payment").innerText = displayStatusIndo;
+      document.getElementById("checkout-payment").innerText = payStatus;
       document.getElementById("checkout-change").innerText = formatRupiah(change);
+
+      const today = new Date();
+      const estDate = new Date(); estDate.setDate(today.getDate() + maxEstDays);
+      document.getElementById("checkout-est-days").innerText = POS_CART.length > 0 ? (maxEstDays + " Hari (" + estDate.toISOString().slice(0,10) + ")") : "-";
     }
 
     function submitNewTransaction() {
@@ -1706,16 +1685,18 @@
       const payStatus = document.getElementById("tx-payment-status").value;
       const autoWa = document.getElementById("tx-send-wa").checked;
 
-      if (!custId) {
-        return showNotification("Harap daftarkan atau pilih nama pelanggan terlebih dahulu!", "Data Kurang", "⚠️");
-      }
-      
-      if (currentCart.length === 0) {
-        return showNotification("Tidak dapat menyimpan karena keranjang belanja masih kosong! Silakan tambahkan minimal 1 paket layanan.", "Keranjang Kosong", "⚠️");
+      if (!custId || POS_CART.length === 0) {
+        return showNotification("Pengisian gagal! Keranjang belanja kosong atau Pelanggan belum dipilih.", "Integritas Form Pecah", "⚠️");
       }
 
-      const rawSubtotal = parseFloat(document.getElementById("checkout-subtotal").getAttribute("data-raw-subtotal")) || 0;
-      const total = Math.max(0, rawSubtotal - discount);
+      let subtotal = 0;
+      let maxEstDays = 0;
+      POS_CART.forEach(item => {
+        subtotal += item.total;
+        if(item.estimate_days > maxEstDays) maxEstDays = item.estimate_days;
+      });
+
+      const total = Math.max(0, subtotal - discount);
       const change = Math.max(0, paid - total);
 
       const invoiceCode = "INV-" + Math.floor(10000000 + Math.random() * 90000000);
@@ -1723,44 +1704,38 @@
 
       const today = new Date();
       const dateString = today.toISOString().slice(0,10) + " " + today.toTimeString().slice(0,8);
-      
-      const estDays = parseInt(document.getElementById("tx-days-est").value) || 1;
-      const estDate = new Date(); estDate.setDate(today.getDate() + estDays);
+      const estDate = new Date(); estDate.setDate(today.getDate() + maxEstDays);
       const estDateString = estDate.toISOString().slice(0,10);
 
       const newTx = {
         id: newTxId, invoice: invoiceCode, customer_id: custId, outlet_id: APP_STATE.currentUser.outlet_id,
         cashier_id: APP_STATE.currentUser.id, status_order: "Diterima", status_payment: payStatus,
-        subtotal: rawSubtotal, discount: discount, total: total, paid: paid, change: change,
+        subtotal: subtotal, discount: discount, total: total, paid: paid, change: change,
         estimated_done: estDateString, created_at: dateString
       };
 
       APP_STATE.transactions.unshift(newTx);
 
-      // Siapkan array data untuk transaction_items
-      const newItems = currentCart.map(item => {
-        return {
-          id: "TXI-" + Math.floor(1000 + Math.random() * 9000),
-          transaction_id: newTxId,
-          service_id: item.service_id,
-          service_name: item.service_name,
-          qty: item.qty,
-          price: item.price,
-          total: item.total
-        };
-      });
+      const payloadItems = POS_CART.map(item => ({
+        id: "TXI-" + Math.floor(10000 + Math.random() * 90000),
+        transaction_id: newTxId,
+        service_id: item.service_id,
+        service_name: item.service_name,
+        qty: item.qty,
+        price: item.price,
+        total: item.total
+      }));
 
-      APP_STATE.transactionItems.push(...newItems);
-
-      const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, status: "Diterima", note: "Nota cucian diterbitkan dari keranjang kasir.", updated_by: APP_STATE.currentUser.name, updated_at: dateString };
+      const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, status: "Diterima", note: "Nota cucian telah diterbitkan dari keranjang meja registrasi mesin kasir.", updated_by: APP_STATE.currentUser.name, updated_at: dateString };
       APP_STATE.statusHistory.unshift(newHist);
 
       StorageEngine.saveStateToLocal();
-      triggerDirectPrintReceipt(newTx, currentCart, true); 
+      triggerDirectPrintReceiptMulti(newTx, payloadItems);
+      
+      POS_CART = []; // Kosongkan keranjang setelah submit
       changeTab("transactions");
       
-      // Kirim Array items ke backend, bukan cuma 1 item
-      apiRequest("createTransaction", { transaction: newTx, items: newItems, history: newHist, auto_wa: autoWa });
+      apiRequest("createTransaction", { transaction: newTx, items: payloadItems, history: newHist, auto_wa: autoWa });
     }
 
 
@@ -1890,16 +1865,14 @@
 
       if (id) {
         const s = APP_STATE.services.find(x => x.id === id);
-        document.getElementById("serv-id").value = s.id; 
-        document.getElementById("serv-category").value = s.category || "";
+        document.getElementById("serv-id").value = s.id; document.getElementById("serv-category").value = s.category || "";
         document.getElementById("serv-name").value = s.name;
         document.getElementById("serv-desc").value = s.description || "";
         document.getElementById("serv-type").value = s.type; document.getElementById("serv-price").value = s.price;
         document.getElementById("serv-days").value = s.estimate_days; document.getElementById("serv-outlet").value = s.outlet_id;
         document.getElementById("serv-status").value = s.status;
       } else {
-        document.getElementById("serv-id").value = ""; 
-        document.getElementById("serv-category").value = "";
+        document.getElementById("serv-id").value = ""; document.getElementById("serv-category").value = "";
         document.getElementById("serv-name").value = "";
         document.getElementById("serv-desc").value = "";
         document.getElementById("serv-type").value = "kilogram"; document.getElementById("serv-price").value = "";
@@ -1921,7 +1894,7 @@
       const outletId = document.getElementById("serv-outlet").value;
       const status = document.getElementById("serv-status").value;
 
-      if (!name || price <= 0) return showNotification("Kegagalan mematok angka nominal tarif dan deklarasi karakter nama jualan paket servis!", "Perbaikan Data Input", "⚠️");
+      if (!name || price <= 0 || !category) return showNotification("Kegagalan mematok angka nominal tarif, nama, dan Kategori Grup jualan paket servis!", "Perbaikan Data Input", "⚠️");
 
       if (id) {
         const s = APP_STATE.services.find(x => x.id === id);
@@ -2108,8 +2081,8 @@
       document.getElementById("set-hero-headline").value = APP_STATE.settings.hero_headline || "";
       document.getElementById("set-hero-sub").value = APP_STATE.settings.hero_subheadline || "";
       document.getElementById("set-hero-bg-type").value = APP_STATE.settings.hero_bg_type || "gradient";
-      document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#0369a1";
-      document.getElementById("set-hero-bg-color2").value = APP_STATE.settings.hero_bg_color2 || "#22d3ee";
+      document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#fdba74";
+      document.getElementById("set-hero-bg-color2").value = APP_STATE.settings.hero_bg_color2 || "#ea580c";
       document.getElementById("set-hero-title-color").value = APP_STATE.settings.hero_title_color || "#ffffff";
     }
 
@@ -2163,7 +2136,7 @@
       apiRequest("updateOrderStatus", { id: txId, status_order: orderStatus, status_payment: payStatus, history: newHist, auto_wa: autoWa });
     }
 
-    function triggerDirectPrintReceipt(tx, cartItems, isNew = false) {
+    function triggerDirectPrintReceiptMulti(tx, itemsArray) {
       document.getElementById("rec-store-name").innerText = APP_STATE.settings.store_name;
       document.getElementById("rec-store-address").innerText = APP_STATE.settings.store_address;
       document.getElementById("rec-store-phone").innerText = "Hubungi: " + APP_STATE.settings.store_phone;
@@ -2175,39 +2148,21 @@
       document.getElementById("rec-cashier").innerText = cashierName;
       document.getElementById("rec-outlet").innerText = outlet.name;
 
-      const cust = APP_STATE.customers.find(c => c.id === tx.customer_id) || { name: "Tamu Harian", phone: "" };
+      const cust = APP_STATE.customers.find(c => c.id === tx.customer_id) || { name: "Tamu", phone: "" };
       document.getElementById("rec-customer-name").innerText = cust.name;
       document.getElementById("rec-customer-phone").innerText = cust.phone;
 
-      // Render keranjang multi-item
-      const recItemsContainer = document.getElementById("rec-items-container");
-      recItemsContainer.innerHTML = "";
-      
-      let itemsToPrint = [];
-      if (isNew) {
-         itemsToPrint = cartItems;
-      } else {
-         itemsToPrint = APP_STATE.transactionItems.filter(i => i.transaction_id === tx.id);
-      }
-
-      if (itemsToPrint.length > 0) {
-         itemsToPrint.forEach(item => {
-           recItemsContainer.innerHTML += `
-             <div class="flex justify-between">
-                <span>${item.qty}x ${item.service_name}</span>
-                <span>${formatRupiah(item.total)}</span>
-             </div>
-           `;
-         });
-      } else {
-         // Jika item lawas (sebelum update fitur keranjang) maka berikan info global
-         recItemsContainer.innerHTML += `
-             <div class="flex justify-between">
-                <span>1x Paket Global Sistem Lama</span>
-                <span>${formatRupiah(tx.subtotal)}</span>
-             </div>
-         `;
-      }
+      // Render Multi-Item ke Struk
+      const itemsContainer = document.getElementById("rec-items-container");
+      itemsContainer.innerHTML = "";
+      itemsArray.forEach(item => {
+        itemsContainer.innerHTML += `
+          <div class="flex justify-between">
+            <span>${item.service_name}</span>
+            <span><span>${item.qty}</span> x <span>${formatRupiah(item.price)}</span></span>
+          </div>
+        `;
+      });
 
       document.getElementById("rec-subtotal").innerText = formatRupiah(tx.subtotal);
       document.getElementById("rec-discount").innerText = `-${formatRupiah(tx.discount)}`;
@@ -2230,7 +2185,8 @@
 
     function reprintInvoice(txId) {
       const tx = APP_STATE.transactions.find(t => t.id === txId);
-      triggerDirectPrintReceipt(tx, [], false);
+      const dummyItemArray = [{ service_name: "Layanan Cucian", qty: 1, price: tx.subtotal, total: tx.subtotal }];
+      triggerDirectPrintReceiptMulti(tx, dummyItemArray);
     }
 
     function trackFromURL() {
@@ -2252,6 +2208,9 @@
         document.getElementById("track-invoice-num").innerText = tx.invoice;
         document.getElementById("track-customer-name").innerText = cust.name;
         document.getElementById("track-est").innerText = tx.estimated_done;
+        
+        const service = APP_STATE.services[0] || { name: "Cuci Reguler Menyesuaikan" };
+        document.getElementById("track-service").innerText = service.name;
 
         const badge = document.getElementById("track-badge");
         badge.innerText = tx.status_order.toUpperCase();
