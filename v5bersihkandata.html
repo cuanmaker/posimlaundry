@@ -367,7 +367,7 @@
           <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white overflow-hidden" id="sidebar-icon">🧼</div>
           <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
-        <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-sky-500" title="Online Sync Active"></span>
+        <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-brand-500" title="Online Sync Active"></span>
       </div>
 
       <div class="p-4 border-b border-slate-800 bg-slate-950/40">
@@ -414,7 +414,7 @@
       <header class="bg-white border-b border-slate-100 py-4 px-8 flex justify-between items-center shadow-sm">
         <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wide" id="current-tab-title">Ringkasan</h2>
         <div class="flex items-center gap-4">
-          <span id="sync-status" class="text-xs bg-slate-100 text-slate-500 px-3 py-1.5 rounded-full font-medium">Mode Offline Terbatas</span>
+          <span id="sync-status" class="text-xs bg-brand-50 text-brand-700 border border-brand-100 px-3 py-1.5 rounded-full font-bold">Sistem Aktif ⚡</span>
           <button onclick="triggerForceSync()" class="p-2 hover:bg-slate-100 rounded-lg text-sm" title="Paksa Sinkronisasi Cloud">🔄</button>
         </div>
       </header>
@@ -893,7 +893,7 @@
   <!-- ============================================== -->
   
   <!-- Custom Notification Dialog (Replaces Alert) -->
-  <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300" style="z-index: 9999;">
+  <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
       <div id="dialog-icon" class="text-5xl mb-2">⚠️</div>
       <h4 id="dialog-title" class="text-xl font-bold text-slate-900">Notifikasi Sistem</h4>
@@ -1165,7 +1165,7 @@
       const btnArea = document.getElementById("dialog-buttons");
       btnArea.innerHTML = `
         <button onclick="closeNotification()" class="flex-1 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-sm transition">Batalkan</button>
-        <button id="dialog-confirm-btn" class="flex-1 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-bold text-sm transition shadow-lg">Ya, Lanjutkan!</button>
+        <button id="dialog-confirm-btn" class="flex-1 px-4 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-sm transition shadow-lg">Ya, Lanjutkan!</button>
       `;
       
       document.getElementById("dialog-confirm-btn").onclick = () => {
@@ -1281,13 +1281,13 @@
           body: JSON.stringify(payload)
         });
         const data = await response.json();
-        document.getElementById("sync-status").innerText = "Cloud Online Synced 🟢";
+        document.getElementById("sync-status").innerText = "Sinkron Cloud 🟢";
         if(data.wa_info && data.wa_info.success) {
           showNotification("Sistem berhasil menembakkan notifikasi WhatsApp otomatis via API Server ke pelanggan terkait!", "Tembakan WA Terkirim Sukses", "✅");
         }
         return data;
       } catch (e) {
-        document.getElementById("sync-status").innerText = "Mode Offline Cache 🔴";
+        document.getElementById("sync-status").innerText = "Memori Lokal Aktif 💾";
         return { success: false, error: e.message };
       }
     }
@@ -1563,7 +1563,7 @@
       }
     }
 
-    // Render Kartu Harga dengan Format GROUPED TABLE
+    // Render Kartu Harga dengan Format GROUPED TABLE (Warna Tema)
     function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
