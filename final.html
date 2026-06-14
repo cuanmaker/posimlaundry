@@ -22,6 +22,8 @@
 
   <!-- QRCode.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- HTML2PDF Library for Report Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Google Fonts: Montserrat & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -367,6 +369,7 @@
           <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white overflow-hidden" id="sidebar-icon">🧼</div>
           <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
+        <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-sky-500" title="Online Sync Active"></span>
       </div>
 
       <div class="p-4 border-b border-slate-800 bg-slate-950/40">
@@ -403,7 +406,7 @@
         <button onclick="changeTab('profile-security')" class="nav-item flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🛡️</span> <span>Ganti Sandi Akun</span></button>
 
         <div class="pt-4 border-t border-slate-800 mt-4">
-          <button onclick="handleLogout()" class="flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-950/40 hover:text-red-300 transition"><span>🚪</span> <span>Keluar Aplikasi</span></button>
+          <button onclick="handleLogout()" class="flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-rose-400 hover:bg-rose-950/40 hover:text-rose-300 transition"><span>🚪</span> <span>Keluar Aplikasi</span></button>
         </div>
       </nav>
     </aside>
@@ -414,7 +417,7 @@
         <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wide" id="current-tab-title">Ringkasan</h2>
         <div class="flex items-center gap-4">
           <span id="sync-status" class="text-xs bg-brand-50 text-brand-700 px-3 py-1.5 rounded-full font-bold">Sistem Aktif ⚡</span>
-          <button onclick="triggerForceSync()" class="p-2 hover:bg-slate-100 rounded-lg text-sm bg-white border shadow-sm" title="Tarik Sinkronisasi Cloud">Tarik Data Cloud 🔄</button>
+          <button onclick="triggerForceSync(true)" class="p-2 hover:bg-slate-100 rounded-lg text-sm bg-white border shadow-sm" title="Tarik Sinkronisasi Cloud">Tarik Data Cloud 🔄</button>
         </div>
       </header>
 
@@ -587,9 +590,9 @@
                 <div class="flex justify-between text-base"><span class="font-bold text-white">Biaya Akhir</span><span id="checkout-total" class="font-bold text-brand-400">Rp 0</span></div>
               </div>
               <div class="space-y-4 text-sm">
-                <div class="flex justify-between"><span class="text-slate-400">Estimasi Selesai Maks:</span><span id="checkout-est-days" class="font-medium text-amber-400">-</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">Status Pembayaran:</span><span id="checkout-payment" class="font-medium text-amber-400">Belum Bayar</span></div>
-                <div class="flex justify-between"><span class="text-slate-400">Uang Kembalian:</span><span id="checkout-change" class="font-semibold text-brand-400">Rp 0</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Estimasi Selesai Maks:</span><span id="checkout-est-days" class="font-medium text-brand-400">-</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Status Pembayaran:</span><span id="checkout-payment" class="font-medium text-brand-400">Belum Bayar</span></div>
+                <div class="flex justify-between"><span class="text-slate-400">Uang Kembalian:</span><span id="checkout-change" class="font-semibold text-sky-400">Rp 0</span></div>
               </div>
             </div>
             <div class="pt-8">
@@ -772,6 +775,14 @@
           <div class="bg-brand-50 p-6 rounded-2xl border border-brand-200">
             <button onclick="saveGlobalSettings()" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server Sekarang</button>
           </div>
+
+          <div class="mt-8 border-t border-rose-100 pt-8">
+            <div class="bg-rose-50 p-6 rounded-2xl border border-rose-200 text-center">
+              <h4 class="font-bold text-rose-800 text-sm mb-2">Pembersihan Memori Aplikasi (Troubleshooting)</h4>
+              <p class="text-xs text-rose-600 mb-4 max-w-lg mx-auto">Jika aplikasi terasa berat, atau ada perubahan menu yang tidak muncul (nyangkut), gunakan tombol di bawah untuk membersihkan cache lokal paksa. Data di Cloud akan tetap aman.</p>
+              <button onclick="hardResetApp()" class="px-6 py-3 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-sm transition shadow-lg">⚠️ Bersihkan Data Lokal & Muat Ulang</button>
+            </div>
+          </div>
         </div>
 
         <!-- TAB: PROFILE & SECURITY (GANTI SANDI) -->
@@ -860,18 +871,28 @@
 
         <!-- TAB: REPORTS -->
         <div id="tab-reports" class="tab-content hidden space-y-6">
-          <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+          <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4 print:hidden">
             <h3 class="font-bold text-slate-800 text-lg">Laporan & Rekapitulasi Keuangan Total</h3>
             <div class="grid md:grid-cols-4 gap-4">
               <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Filter Waktu</label><select id="report-date-filter" class="w-full p-2.5 border rounded-xl text-sm font-medium bg-slate-50"><option value="all">Sepanjang Waktu (Semua Data)</option><option value="today" selected>Hanya Hari Ini</option><option value="month">Laporan Bulan Ini</option></select></div>
               <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Filter Cabang Target</label><select id="report-outlet-filter" class="w-full p-2.5 border rounded-xl text-sm font-medium bg-slate-50"></select></div>
-              <div class="flex items-end gap-2"><button onclick="generateReport()" class="px-4 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-bold hover:bg-brand-700 transition flex-1">Eksekusi Rekap</button><button onclick="exportReportToCSV()" class="px-4 py-2.5 bg-slate-800 text-white rounded-xl text-sm font-bold hover:bg-slate-900 transition flex-1">Unduh .CSV Ekspor</button></div>
+              <div class="flex items-end gap-2">
+                <button onclick="generateReport()" class="px-4 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-bold hover:bg-brand-700 transition flex-1 shadow-md">Eksekusi Rekap</button>
+                <button onclick="exportReportToPDF()" class="px-4 py-2.5 bg-slate-800 text-white rounded-xl text-sm font-bold hover:bg-slate-900 transition flex-1 shadow-md">Unduh .PDF Laporan</button>
+              </div>
             </div>
           </div>
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"><span class="text-xs text-slate-400 font-bold block uppercase">Akumulasi Omset Kotor</span><span class="text-3xl font-extrabold text-brand-600 block mt-2" id="rep-total-revenue">Rp 0</span></div>
-            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"><span class="text-xs text-slate-400 font-bold block uppercase">Total Reduksi Beban Keluar</span><span class="text-3xl font-extrabold text-rose-600 block mt-2" id="rep-total-expense">Rp 0</span></div>
-            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"><span class="text-xs text-slate-400 font-bold block uppercase">Laba Bersih Neto (Profit)</span><span class="text-3xl font-extrabold text-brand-600 block mt-2" id="rep-net-profit">Rp 0</span></div>
+
+          <!-- Printable Area P&L Report -->
+          <div id="printable-report" class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
+            <div class="text-center mb-8 border-b border-slate-200 pb-6">
+                <h2 class="text-2xl font-bold text-slate-800 uppercase tracking-wide" id="rep-print-title">LAPORAN LABA RUGI</h2>
+                <p class="text-sm text-slate-500" id="rep-print-subtitle">Periode: Semua Waktu | Cabang: Keseluruhan</p>
+            </div>
+            
+            <div id="rep-dynamic-content">
+                <!-- Injected via JS based on selected view (Global/Single) -->
+            </div>
           </div>
         </div>
 
@@ -966,13 +987,25 @@
     </div>
   </div>
 
-  <!-- Expense Modal -->
+  <!-- Expense Modal (With Lainnya Logic) -->
   <div id="modal-expense" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
       <h3 class="text-xl font-bold text-slate-900 mb-4">Pelaporan Pengeluaran Uang Laci</h3>
       <div class="space-y-4">
         <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Beban Pemotongan Cabang</label><select id="exp-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Jenis Kebutuhan</label><select id="exp-category" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="Bahan Baku">Pembelian Bahan Baku & Sabun</option><option value="Tagihan Utilitas">Listrik, Internet, & Tagihan Air</option><option value="Servis Maintenance">Perbaikan Mesin Mesin Rusak</option><option value="Gaji Insentif">Bonus Lembur & Gaji Staf Karyawan</option></select></div>
+        
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Jenis Kebutuhan</label>
+          <select id="exp-category" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" onchange="toggleCustomExpense()">
+            <option value="Bahan Baku">Pembelian Bahan Baku & Sabun</option>
+            <option value="Tagihan Utilitas">Listrik, Internet, & Tagihan Air</option>
+            <option value="Servis Maintenance">Perbaikan Mesin Mesin Rusak</option>
+            <option value="Gaji Insentif">Bonus Lembur & Gaji Staf Karyawan</option>
+            <option value="Lainnya">Lainnya (Ketik Manual)...</option>
+          </select>
+          <input id="exp-category-custom" type="text" placeholder="Ketik jenis pengeluaran..." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium mt-3 hidden" />
+        </div>
+        
         <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Detail Rincian Teks Singkat</label><input id="exp-description" type="text" placeholder="Cth: Beli sabun deterjen colek 10 koli" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
         <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Total Nominal Tarik Tunai (Rp)</label><input id="exp-amount" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
         <div class="flex gap-3 pt-4">
@@ -1275,6 +1308,7 @@
         return { success: true, message: "Mock complete cache override." };
       }
 
+      document.getElementById("sync-status").innerText = "Sinkronisasi... 🔄";
       try {
         const response = await fetch(`${CONFIG.API_URL}?action=${action}`, {
           method: "POST",
@@ -1282,12 +1316,13 @@
           body: JSON.stringify(payload)
         });
         const data = await response.json();
-        
+        document.getElementById("sync-status").innerText = "Cloud Online Synced 🟢";
         if(data.wa_info && data.wa_info.success) {
           showNotification("Sistem berhasil menembakkan notifikasi WhatsApp otomatis via API Server ke pelanggan terkait!", "Tembakan WA Terkirim Sukses", "✅");
         }
         return data;
       } catch (e) {
+        document.getElementById("sync-status").innerText = "Mode Offline Cache 🔴";
         return { success: false, error: e.message };
       }
     }
@@ -1319,7 +1354,7 @@
         applyDynamicLandingPage();
         
         if(APP_STATE.currentUser) {
-          changeTab(APP_STATE.currentTab); // Re-render layar sekarang
+          changeTab(APP_STATE.currentTab);
           setupUIAccessRights();
         }
         
@@ -1335,6 +1370,13 @@
         }
         document.getElementById("sync-status").innerText = "Gagal Sync 🔴";
       }
+    }
+
+    function hardResetApp() {
+      showConfirmDialog("Yakin ingin mereset total seluruh cache memori browser? Aplikasi akan logout paksa dan dimuat ulang dari awal (Data di Google Sheets tetap 100% aman).", () => {
+        localStorage.clear();
+        window.location.reload();
+      }, "Hard Reset Lokal", "⚠️");
     }
 
     async function triggerCloudBackup() {
@@ -1420,7 +1462,7 @@
       if (type === "karyawan") {
         user = APP_STATE.users.find(u => u.username === idField && u.password === passField);
       } else {
-        user = APP_STATE.customers.find(c => c.phone === idField && c.password === passField);
+        user = APP_STATE.customers.find(c => String(c.phone) === idField && String(c.password) === passField);
         if(user) user.role = "Customer";
       }
 
@@ -1434,8 +1476,8 @@
         closeLoginModal();
         setupUIAccessRights();
         switchView("app");
-        // Otomatis tarik data saat login biar langsung fresh!
-        setTimeout(() => triggerForceSync(), 500);
+        // Silent Pull on background without popup
+        triggerForceSync(false);
       } else {
         showNotification("Kredensial Username ID atau Kata Sandi Security salah kombinasinya! Ulangi atau intip contekan", "Gagal Identifikasi", "❌");
       }
@@ -1447,14 +1489,6 @@
         APP_STATE.currentUser = null;
         switchView("landing");
       }, "Log Out Pengguna Keluar");
-    }
-
-    // FUNGSI BARU UNTUK NGE-RESET CACHE BANDEL BROWSER LAMA
-    function hardResetApp() {
-      showConfirmDialog("Yakin ingin mereset total seluruh cache memori browser? Aplikasi akan logout paksa dan dimuat ulang dari awal (Data di Google Sheets tetap 100% aman).", () => {
-        localStorage.clear();
-        window.location.reload();
-      }, "Hard Reset Lokal", "⚠️");
     }
 
     function executeChangePassword() {
@@ -1607,7 +1641,7 @@
       }
     }
 
-    // Render Kartu Harga dengan Format GROUPED TABLE (Warna Soft Orange Coral)
+    // Render Kartu Harga dengan Format GROUPED TABLE
     function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
@@ -1719,7 +1753,6 @@
       if (tabName === "settings") loadSettingsForm();
       if (tabName === "customer-portal") renderCustomerPortal();
     }
-
 
     // ==========================================
     // MODULE F: DASHBOARD & CUSTOMER PORTAL RENDER
@@ -1992,7 +2025,6 @@
       });
     }
 
-
     // ==========================================
     // MODULE I & J: CUSTOMERS & SERVICES CRUD
     // ==========================================
@@ -2126,7 +2158,6 @@
       }, "Hapus Total Menu");
     }
 
-
     // ==========================================
     // MODULE K, L & N: OUTLETS, EXPENSES, USERS
     // ==========================================
@@ -2169,18 +2200,46 @@
         body.innerHTML += `<tr><td class="py-4 text-slate-500 font-mono text-xs">${e.created_at}</td><td class="py-4 font-bold text-slate-800">${e.category}</td><td class="py-4 text-slate-600 max-w-xs truncate">${e.description}</td><td class="py-4 font-extrabold text-rose-600">${formatRupiah(e.amount)}</td><td class="py-4 text-slate-500 font-medium">${reporter.name}</td><td class="py-4 text-right"><button onclick="deleteExpense('${e.id}')" class="px-2 py-1 bg-rose-50 hover:bg-rose-100 rounded text-rose-700 font-bold text-xs">Abaikan</button></td></tr>`;
       });
     }
+
+    function toggleCustomExpense() {
+      const cat = document.getElementById("exp-category").value;
+      const customInput = document.getElementById("exp-category-custom");
+      if(cat === "Lainnya") {
+        customInput.classList.remove("hidden");
+      } else {
+        customInput.classList.add("hidden");
+      }
+    }
+
     function openExpenseModal() {
       const outSelect = document.getElementById("exp-outlet"); outSelect.innerHTML = "";
       APP_STATE.outlets.forEach(o => outSelect.innerHTML += `<option value="${o.id}">${o.name}</option>`);
       if (APP_STATE.currentUser) outSelect.value = APP_STATE.currentUser.outlet_id;
-      document.getElementById("exp-description").value = ""; document.getElementById("exp-amount").value = "";
+      
+      document.getElementById("exp-category").value = "Bahan Baku";
+      document.getElementById("exp-category-custom").value = "";
+      document.getElementById("exp-category-custom").classList.add("hidden");
+      document.getElementById("exp-description").value = ""; 
+      document.getElementById("exp-amount").value = "";
+      
       document.getElementById("modal-expense").classList.remove("hidden");
     }
+    
     function closeExpenseModal() { document.getElementById("modal-expense").classList.add("hidden"); }
+    
     function saveExpenseData() {
-      const outletId = document.getElementById("exp-outlet").value; const category = document.getElementById("exp-category").value;
-      const description = document.getElementById("exp-description").value.trim(); const amount = parseFloat(document.getElementById("exp-amount").value) || 0;
+      const outletId = document.getElementById("exp-outlet").value; 
+      let category = document.getElementById("exp-category").value;
+      if(category === "Lainnya") {
+        category = document.getElementById("exp-category-custom").value.trim();
+        if(!category) return showNotification("Kategori manual tidak boleh kosong!", "Peringatan", "⚠️");
+      }
+
+      const description = document.getElementById("exp-description").value.trim(); 
+      const amount = parseFloat(document.getElementById("exp-amount").value) || 0;
+      
       if (!description || amount <= 0) return showNotification("Pastikan pencatatan jumlah pengeluaran bernilai tidak nihil kosong dan dilengkapi pelampiran dekskripsi rincian logis!", "Tolak Catat Rugi Uang", "⚠️");
+      
       const newExp = { id: "EXP-" + Math.floor(1000 + Math.random() * 9000), outlet_id: outletId, category: category, description: description, amount: amount, created_by: APP_STATE.currentUser.id, created_at: new Date().toISOString().slice(0,19).replace('T',' ') };
       APP_STATE.expenses.unshift(newExp); StorageEngine.saveStateToLocal(); closeExpenseModal(); renderExpenses(); apiRequest("createExpense", newExp);
     }
@@ -2251,43 +2310,176 @@
       let filteredTxs = APP_STATE.transactions;
       let filteredExps = APP_STATE.expenses;
 
+      let periodText = "Sepanjang Waktu";
       if (dRange === "today") {
         filteredTxs = filteredTxs.filter(t => t.created_at.startsWith(todayStr));
         filteredExps = filteredExps.filter(e => e.created_at.startsWith(todayStr));
+        periodText = "Hari Ini (" + todayStr + ")";
       } else if (dRange === "month") {
         const monthStr = todayStr.slice(0,7);
         filteredTxs = filteredTxs.filter(t => t.created_at.startsWith(monthStr));
         filteredExps = filteredExps.filter(e => e.created_at.startsWith(monthStr));
+        periodText = "Bulan Ini (" + monthStr + ")";
       }
 
+      let outletText = "Keseluruhan Cabang Global";
       if (outletSel !== "all") {
-        filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
-        filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
+        const o = APP_STATE.outlets.find(x => x.id === outletSel);
+        if (o) outletText = "Cabang: " + o.name;
       }
+      document.getElementById("rep-print-subtitle").innerText = `Periode: ${periodText} | ${outletText}`;
 
-      const totalEarnings = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
-      const totalExpenses = filteredExps.reduce((sum, e) => sum + e.amount, 0);
-      const netProfit = totalEarnings - totalExpenses;
+      const contentDiv = document.getElementById("rep-dynamic-content");
+      contentDiv.innerHTML = "";
 
-      document.getElementById("rep-total-revenue").innerText = formatRupiah(totalEarnings);
-      document.getElementById("rep-total-expense").innerText = formatRupiah(totalExpenses);
-      
-      const profitEl = document.getElementById("rep-net-profit");
-      profitEl.innerText = formatRupiah(netProfit);
-      profitEl.className = netProfit < 0 ? "text-3xl font-extrabold text-rose-600 block mt-2" : "text-3xl font-extrabold text-brand-600 block mt-2";
+      // IF GLOBAL IS SELECTED (SHOW COMPARISON TABLE)
+      if (outletSel === "all") {
+         let tableHTML = `
+            <table class="w-full text-left border-collapse mb-8">
+              <thead>
+                <tr class="bg-slate-100 text-slate-500 text-xs uppercase font-bold border-b border-slate-200">
+                  <th class="py-3 px-4">Nama Cabang</th>
+                  <th class="py-3 px-4 text-right">Total Pendapatan</th>
+                  <th class="py-3 px-4 text-right">Total Pengeluaran</th>
+                  <th class="py-3 px-4 text-right">Laba Bersih (Profit)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-sm">
+         `;
+         
+         let grandRev = 0;
+         let grandExp = 0;
+         
+         APP_STATE.outlets.forEach(out => {
+             const oTxs = filteredTxs.filter(t => t.outlet_id === out.id);
+             const oExps = filteredExps.filter(e => e.outlet_id === out.id);
+             
+             const oRev = oTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
+             const oExp = oExps.reduce((sum, e) => sum + e.amount, 0);
+             const oProfit = oRev - oExp;
+             
+             grandRev += oRev;
+             grandExp += oExp;
+             
+             const profitColor = oProfit < 0 ? 'text-rose-600' : 'text-brand-600';
+             
+             tableHTML += `
+                <tr>
+                  <td class="py-4 px-4 font-bold text-slate-800">${out.name}</td>
+                  <td class="py-4 px-4 text-right font-medium text-slate-600">${formatRupiah(oRev)}</td>
+                  <td class="py-4 px-4 text-right font-medium text-rose-500">${formatRupiah(oExp)}</td>
+                  <td class="py-4 px-4 text-right font-bold ${profitColor}">${formatRupiah(oProfit)}</td>
+                </tr>
+             `;
+         });
+         
+         const grandProfit = grandRev - grandExp;
+         const grandProfitColor = grandProfit < 0 ? 'text-rose-600' : 'text-brand-600';
+         
+         tableHTML += `
+              </tbody>
+              <tfoot>
+                <tr class="bg-slate-50 font-bold text-base border-t-2 border-slate-300">
+                  <td class="py-4 px-4">GRAND TOTAL KESELURUHAN</td>
+                  <td class="py-4 px-4 text-right text-slate-800">${formatRupiah(grandRev)}</td>
+                  <td class="py-4 px-4 text-right text-rose-600">${formatRupiah(grandExp)}</td>
+                  <td class="py-4 px-4 text-right ${grandProfitColor} text-lg">${formatRupiah(grandProfit)}</td>
+                </tr>
+              </tfoot>
+            </table>
+         `;
+         contentDiv.innerHTML = tableHTML;
+
+      } else {
+         // IF SINGLE BRANCH IS SELECTED (SHOW P&L BREAKDOWN)
+         filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
+         filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
+
+         const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
+         
+         let expGroups = {};
+         let totalExp = 0;
+         filteredExps.forEach(e => {
+             if (!expGroups[e.category]) expGroups[e.category] = 0;
+             expGroups[e.category] += e.amount;
+             totalExp += e.amount;
+         });
+         
+         let expTableRows = "";
+         if (Object.keys(expGroups).length === 0) {
+             expTableRows = `<tr><td colspan="2" class="py-3 italic text-slate-400">Tidak ada pengeluaran operasional tercatat pada periode ini.</td></tr>`;
+         } else {
+             for(let cat in expGroups) {
+                 expTableRows += `
+                    <tr class="border-b border-dashed border-slate-100">
+                       <td class="py-3 text-slate-600 font-medium pl-4">- ${cat}</td>
+                       <td class="py-3 text-right font-medium text-rose-500">${formatRupiah(expGroups[cat])}</td>
+                    </tr>
+                 `;
+             }
+         }
+         
+         const netProfit = totalRev - totalExp;
+
+         contentDiv.innerHTML = `
+            <div class="space-y-8 max-w-3xl mx-auto">
+                <!-- Pemasukan -->
+                <div>
+                    <h4 class="font-bold text-brand-600 uppercase tracking-wide border-b-2 border-brand-200 pb-2 mb-4">A. Pemasukan (Omset)</h4>
+                    <table class="w-full text-sm">
+                        <tr class="border-b border-slate-200">
+                            <td class="py-3 font-semibold text-slate-800 pl-4">- Total Pembayaran Masuk Kasir</td>
+                            <td class="py-3 text-right font-bold text-slate-800 text-base">${formatRupiah(totalRev)}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Pengeluaran -->
+                <div>
+                    <h4 class="font-bold text-rose-600 uppercase tracking-wide border-b-2 border-rose-200 pb-2 mb-4">B. Pengeluaran (Beban Operasional)</h4>
+                    <table class="w-full text-sm">
+                        ${expTableRows}
+                        <tr class="bg-rose-50 font-bold border-t border-rose-200">
+                            <td class="py-3 px-4 text-rose-800 uppercase">Total Keseluruhan Pengeluaran</td>
+                            <td class="py-3 px-4 text-right text-rose-600 text-base">${formatRupiah(totalExp)}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Laba Bersih -->
+                <div class="bg-slate-900 text-white rounded-xl p-6 mt-8 flex justify-between items-center shadow-lg print:border print:border-slate-800 print:text-black print:bg-white print:shadow-none">
+                    <span class="font-bold text-lg uppercase tracking-widest">LABA BERSIH (A - B)</span>
+                    <span class="font-extrabold text-2xl ${netProfit < 0 ? 'text-rose-400 print:text-rose-600' : 'text-sky-400 print:text-brand-600'}">${formatRupiah(netProfit)}</span>
+                </div>
+            </div>
+         `;
+      }
     }
 
-    function exportReportToCSV() {
-      let csv = "Invoice Kode,Tanggal Dipesan,Klien Customer,Duit Total Transaksi,Pengerjaan,Status Tagihan\n";
-      APP_STATE.transactions.forEach(t => {
-        const cust = APP_STATE.customers.find(c => c.id === t.customer_id) || { name: "Anom" };
-        csv += `${t.invoice},${t.created_at},"${cust.name}",${t.total},${t.status_order},${t.status_payment}\n`;
-      });
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a"); link.setAttribute("href", url);
-      link.setAttribute("download", `imlaundry-report-2026.csv`); document.body.appendChild(link);
-      link.click(); document.body.removeChild(link);
+    function exportReportToPDF() {
+        showNotification("Sistem sedang mencetak dokumen ke PDF. Harap tunggu sebentar...", "Membuat PDF", "⏳");
+        
+        const element = document.getElementById('printable-report');
+        const outletSel = document.getElementById("report-outlet-filter").value;
+        const outletName = outletSel === 'all' ? 'Global' : (APP_STATE.outlets.find(o => o.id === outletSel)?.name || 'Cabang').replace(/ /g, '_');
+        const dRange = document.getElementById("report-date-filter").value;
+        
+        const opt = {
+          margin:       [15, 15, 15, 15],
+          filename:     `Laporan_LabaRugi_${outletName}_${dRange}.pdf`,
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2 },
+          jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        if(window.html2pdf) {
+            html2pdf().set(opt).from(element).save().then(() => {
+                closeNotification();
+            });
+        } else {
+            closeNotification();
+            showNotification("Library pencetak PDF gagal dimuat. Pastikan koneksi internet aktif.", "Gagal Ekspor", "❌");
+        }
     }
 
     function loadSettingsForm() {
@@ -2514,20 +2706,16 @@
     }
 
     // Eksekusi Pemicu Awal Aplikasi Start-Up Core App Loading Let's Go
-    window.onload = async function() {
+    window.onload = function() {
       StorageEngine.init();
       initAuthCheck();
-      
       const params = new URLSearchParams(window.location.search);
-      if (params.get("invoice")) { 
-        switchView("tracking"); 
-      } else if (!APP_STATE.currentUser) { 
-        switchView("landing"); 
-      }
-
-      // Jalankan fetch otomatis ke cloud pas app dibuka
+      if (params.get("invoice")) { switchView("tracking"); }
+      else if (!APP_STATE.currentUser) { switchView("landing"); }
+      
+      // Auto-sync diam-diam di background (silent mode)
       if (CONFIG.API_URL && !CONFIG.MOCK_MODE) {
-        await triggerForceSync();
+        triggerForceSync(false);
       }
     };
   </script>
