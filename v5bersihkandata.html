@@ -23,6 +23,10 @@
   <!-- QRCode.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
+  <!-- Quill WYSIWYG Editor (Untuk Teks Dinamis Warna-Warni) -->
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
   <!-- Google Fonts: Montserrat & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +47,10 @@
       #print-receipt-section, #print-receipt-section * { visibility: visible; }
       #print-receipt-section { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; }
     }
+    
+    /* Tambahan modifikasi Quill Editor agar membaur dengan Tailwind */
+    .ql-toolbar { border-radius: 0.75rem 0.75rem 0 0; background-color: #f8fafc; border-color: #e2e8f0 !important; }
+    .ql-container { border-radius: 0 0 0.75rem 0.75rem; border-color: #e2e8f0 !important; font-family: 'Poppins', sans-serif; font-size: 0.875rem; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
@@ -79,9 +87,9 @@
         <h1 id="landing-headline" class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 drop-shadow-md transition-colors duration-500" style="color: #ffffff;">
           Sistem POS Kasir & Portal Pelanggan Laundry
         </h1>
-        <p id="landing-subheadline" class="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
+        <div id="landing-subheadline" class="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
           Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!
-        </p>
+        </div>
         <div class="flex justify-center">
           <button onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 bg-white text-brand-700 hover:text-brand-800 font-extrabold rounded-xl transition shadow-2xl hover:-translate-y-1">
             💰 Lihat Daftar Harga
@@ -367,7 +375,7 @@
           <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white overflow-hidden" id="sidebar-icon">🧼</div>
           <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
-        <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-brand-500" title="Online Sync Active"></span>
+        <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-sky-500" title="Online Sync Active"></span>
       </div>
 
       <div class="p-4 border-b border-slate-800 bg-slate-950/40">
@@ -414,7 +422,7 @@
       <header class="bg-white border-b border-slate-100 py-4 px-8 flex justify-between items-center shadow-sm">
         <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wide" id="current-tab-title">Ringkasan</h2>
         <div class="flex items-center gap-4">
-          <span id="sync-status" class="text-xs bg-brand-50 text-brand-700 border border-brand-100 px-3 py-1.5 rounded-full font-bold">Sistem Aktif ⚡</span>
+          <span id="sync-status" class="text-xs bg-slate-100 text-slate-500 px-3 py-1.5 rounded-full font-medium">Mode Offline Terbatas</span>
           <button onclick="triggerForceSync()" class="p-2 hover:bg-slate-100 rounded-lg text-sm" title="Paksa Sinkronisasi Cloud">🔄</button>
         </div>
       </header>
@@ -618,8 +626,22 @@
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               </div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero Landing Page (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Hero Deskripsi Singkat</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              
+              <!-- QUILL WYSIWYG EDITOR CONTAINERS -->
+              <div class="space-y-2">
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero Landing Page (Bisa Diwarnai/Tebal)</label>
+                <div class="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                  <div id="editor-hero-headline" class="h-20 text-base font-normal"></div>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Hero Deskripsi (Bisa Diwarnai/Tebal)</label>
+                <div class="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                  <div id="editor-hero-sub" class="h-28 text-base font-normal"></div>
+                </div>
+              </div>
+              <!-- Akhir WYSIWYG -->
+
             </div>
           </details>
 
@@ -740,7 +762,7 @@
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 1</label><input id="set-hero-bg-color1" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 2 (Jika Gradient)</label><input id="set-hero-bg-color2" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
               </div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Headline)</label><input id="set-hero-title-color" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Jika Editor Kosong)</label><input id="set-hero-title-color" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
             </div>
 
             <div class="space-y-6">
@@ -893,7 +915,7 @@
   <!-- ============================================== -->
   
   <!-- Custom Notification Dialog (Replaces Alert) -->
-  <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+  <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300" style="z-index: 9999;">
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
       <div id="dialog-icon" class="text-5xl mb-2">⚠️</div>
       <h4 id="dialog-title" class="text-xl font-bold text-slate-900">Notifikasi Sistem</h4>
@@ -1133,6 +1155,10 @@
 
     // Keranjang Multi-Item Kasir
     let POS_CART = [];
+    
+    // Editor WYSIWYG
+    let quillHeadline;
+    let quillSubheadline;
 
     function formatRupiah(amount) {
       return "Rp " + Math.round(amount).toLocaleString("id-ID");
@@ -1165,7 +1191,7 @@
       const btnArea = document.getElementById("dialog-buttons");
       btnArea.innerHTML = `
         <button onclick="closeNotification()" class="flex-1 px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold text-sm transition">Batalkan</button>
-        <button id="dialog-confirm-btn" class="flex-1 px-4 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-sm transition shadow-lg">Ya, Lanjutkan!</button>
+        <button id="dialog-confirm-btn" class="flex-1 px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-bold text-sm transition shadow-lg">Ya, Lanjutkan!</button>
       `;
       
       document.getElementById("dialog-confirm-btn").onclick = () => {
@@ -1281,13 +1307,13 @@
           body: JSON.stringify(payload)
         });
         const data = await response.json();
-        document.getElementById("sync-status").innerText = "Sinkron Cloud 🟢";
+        document.getElementById("sync-status").innerText = "Cloud Online Synced 🟢";
         if(data.wa_info && data.wa_info.success) {
           showNotification("Sistem berhasil menembakkan notifikasi WhatsApp otomatis via API Server ke pelanggan terkait!", "Tembakan WA Terkirim Sukses", "✅");
         }
         return data;
       } catch (e) {
-        document.getElementById("sync-status").innerText = "Memori Lokal Aktif 💾";
+        document.getElementById("sync-status").innerText = "Mode Offline Cache 🔴";
         return { success: false, error: e.message };
       }
     }
@@ -1484,9 +1510,9 @@
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
-      // Hero Section Update
-      document.getElementById("landing-headline").innerText = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
-      document.getElementById("landing-subheadline").innerText = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
+      // Hero Section Update (Dinamis via Editor WYSIWYG)
+      document.getElementById("landing-headline").innerHTML = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
+      document.getElementById("landing-subheadline").innerHTML = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
       
       const heroSec = document.getElementById("hero-section");
       if (set.hero_bg_type === "solid") {
@@ -1494,6 +1520,7 @@
       } else {
         heroSec.style.background = `linear-gradient(135deg, ${set.hero_bg_color1 || '#fb923c'}, ${set.hero_bg_color2 || '#ea580c'})`;
       }
+      // Jika warna judul di-set, berlaku untuk teks yang tidak diwarnai spesifik oleh editor Quill
       document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
 
       // Features Update (Layanan Premium Kami)
@@ -1563,7 +1590,7 @@
       }
     }
 
-    // Render Kartu Harga dengan Format GROUPED TABLE (Warna Tema)
+    // Render Kartu Harga dengan Format GROUPED TABLE (Warna Soft Orange Coral)
     function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
@@ -2254,8 +2281,10 @@
       
       document.getElementById("set-landing-status").value = APP_STATE.settings.landing_status || "ON";
       document.getElementById("set-brand-icon").value = APP_STATE.settings.brand_icon || "🧼";
-      document.getElementById("set-hero-headline").value = APP_STATE.settings.hero_headline || "";
-      document.getElementById("set-hero-sub").value = APP_STATE.settings.hero_subheadline || "";
+      
+      if (quillHeadline) quillHeadline.root.innerHTML = APP_STATE.settings.hero_headline || "";
+      if (quillSubheadline) quillSubheadline.root.innerHTML = APP_STATE.settings.hero_subheadline || "";
+      
       document.getElementById("set-hero-bg-type").value = APP_STATE.settings.hero_bg_type || "gradient";
       document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#fb923c";
       document.getElementById("set-hero-bg-color2").value = APP_STATE.settings.hero_bg_color2 || "#ea580c";
@@ -2302,8 +2331,10 @@
 
       APP_STATE.settings.landing_status = document.getElementById("set-landing-status").value;
       APP_STATE.settings.brand_icon = document.getElementById("set-brand-icon").value.trim() || "🧼";
-      APP_STATE.settings.hero_headline = document.getElementById("set-hero-headline").value.trim();
-      APP_STATE.settings.hero_subheadline = document.getElementById("set-hero-sub").value.trim();
+      
+      APP_STATE.settings.hero_headline = quillHeadline.root.innerHTML;
+      APP_STATE.settings.hero_subheadline = quillSubheadline.root.innerHTML;
+      
       APP_STATE.settings.hero_bg_type = document.getElementById("set-hero-bg-type").value;
       APP_STATE.settings.hero_bg_color1 = document.getElementById("set-hero-bg-color1").value;
       APP_STATE.settings.hero_bg_color2 = document.getElementById("set-hero-bg-color2").value;
@@ -2446,7 +2477,7 @@
         const badge = document.getElementById("track-badge");
         badge.innerText = tx.status_order.toUpperCase();
         badge.className = "px-3 py-1 rounded-full text-xs font-bold ";
-        if (tx.status_order === "Diterima") badge.className += "bg-amber-100 text-amber-800";
+        if (tx.status_order === "Diterima") badge.className += "bg-brand-100 text-brand-800";
         if (tx.status_order === "Diproses") badge.className += "bg-indigo-100 text-indigo-800";
         if (tx.status_order === "Selesai") badge.className += "bg-brand-100 text-brand-800";
         if (tx.status_order === "Diambil") badge.className += "bg-slate-200 text-slate-800";
@@ -2468,6 +2499,23 @@
 
     // Eksekusi Pemicu Awal Aplikasi Start-Up Core App Loading Let's Go
     window.onload = function() {
+      // Setup Quill WYSIWYG Editors
+      const quillOptions = {
+        theme: 'snow',
+        modules: {
+          toolbar: [
+            ['bold', 'italic', 'underline'],
+            [{ 'color': [] }],
+            ['clean']
+          ]
+        }
+      };
+      
+      if(document.getElementById("editor-hero-headline")) {
+        quillHeadline = new Quill('#editor-hero-headline', quillOptions);
+        quillSubheadline = new Quill('#editor-hero-sub', quillOptions);
+      }
+
       StorageEngine.init();
       initAuthCheck();
       const params = new URLSearchParams(window.location.search);
