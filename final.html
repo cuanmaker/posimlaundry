@@ -1292,14 +1292,16 @@
       }
     }
 
-    async function triggerForceSync() {
+    async function triggerForceSync(isManual = false) {
       if (!CONFIG.API_URL) {
-        showNotification("URL Apps Script kosong di dalam kode index.html. Mohon pasang tautan eksekutor agar sinkronisasi cloud aktif penuh.", "Perhatian Integrasi Google", "⚠️");
+        if(isManual) showNotification("URL Apps Script kosong di dalam kode index.html. Mohon pasang tautan eksekutor agar sinkronisasi cloud aktif penuh.", "Perhatian Integrasi Google", "⚠️");
         return;
       }
       
-      showNotification("Sedang menarik riwayat transaksi & data terbaru dari Google Sheets...", "Sinkronisasi Cloud", "⏳");
       document.getElementById("sync-status").innerText = "Menarik Data... ⬇️";
+      if (isManual) {
+        showNotification("Sedang menarik riwayat transaksi & data terbaru dari Google Sheets...", "Sinkronisasi Cloud", "⏳");
+      }
 
       const res = await apiRequest("getAllData");
       if(res.success && res.data) {
@@ -1321,12 +1323,16 @@
           setupUIAccessRights();
         }
         
-        closeNotification();
-        showNotification("Data berhasil diperbarui dari Google Sheets! Layar Dasbor kini menampilkan angka terbaru.", "Sinkronisasi Berhasil", "✅");
+        if (isManual) {
+          closeNotification();
+          showNotification("Data berhasil diperbarui dari Google Sheets! Layar Dasbor kini menampilkan angka terbaru.", "Sinkronisasi Berhasil", "✅");
+        }
         document.getElementById("sync-status").innerText = "Sistem Aktif ⚡";
       } else {
-        closeNotification();
-        showNotification("Gagal terhubung. Pastikan internet lancar dan URL Google Apps Script Anda valid.", "Error Sync", "❌");
+        if (isManual) {
+          closeNotification();
+          showNotification("Gagal terhubung. Pastikan internet lancar dan URL Google Apps Script Anda valid.", "Error Sync", "❌");
+        }
         document.getElementById("sync-status").innerText = "Gagal Sync 🔴";
       }
     }
@@ -1441,6 +1447,14 @@
         APP_STATE.currentUser = null;
         switchView("landing");
       }, "Log Out Pengguna Keluar");
+    }
+
+    // FUNGSI BARU UNTUK NGE-RESET CACHE BANDEL BROWSER LAMA
+    function hardResetApp() {
+      showConfirmDialog("Yakin ingin mereset total seluruh cache memori browser? Aplikasi akan logout paksa dan dimuat ulang dari awal (Data di Google Sheets tetap 100% aman).", () => {
+        localStorage.clear();
+        window.location.reload();
+      }, "Hard Reset Lokal", "⚠️");
     }
 
     function executeChangePassword() {
