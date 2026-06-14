@@ -1162,7 +1162,7 @@
 
     let APP_STATE = {
       currentUser: null, currentTab: "dashboard",
-      outlets: [], users: [], customers: [], services: [], transactions: [], expenses: [], statusHistory: [],
+      outlets: [], users: [], customers: [], services: [], transactions: [], transactionItems: [], expenses: [], statusHistory: [],
       settings: {}
     };
 
@@ -1256,6 +1256,7 @@
         { id: "SERV-007", category: "Setrika Wangi", "name": "Express", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 6000, "estimate_days": 1, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:15:00"}
       ],
       transactions: [],
+      transactionItems: [],
       expenses: [],
       statusHistory: []
     };
@@ -1269,6 +1270,7 @@
           localStorage.setItem("iml_customers", JSON.stringify(INITIAL_DUMMY_DATA.customers));
           localStorage.setItem("iml_services", JSON.stringify(INITIAL_DUMMY_DATA.services));
           localStorage.setItem("iml_transactions", JSON.stringify(INITIAL_DUMMY_DATA.transactions));
+          localStorage.setItem("iml_transaction_items", JSON.stringify(INITIAL_DUMMY_DATA.transactionItems));
           localStorage.setItem("iml_expenses", JSON.stringify(INITIAL_DUMMY_DATA.expenses));
           localStorage.setItem("iml_status_history", JSON.stringify(INITIAL_DUMMY_DATA.statusHistory));
         }
@@ -1281,6 +1283,7 @@
         APP_STATE.customers = JSON.parse(localStorage.getItem("iml_customers")) || [];
         APP_STATE.services = JSON.parse(localStorage.getItem("iml_services")) || [];
         APP_STATE.transactions = JSON.parse(localStorage.getItem("iml_transactions")) || [];
+        APP_STATE.transactionItems = JSON.parse(localStorage.getItem("iml_transaction_items")) || [];
         APP_STATE.expenses = JSON.parse(localStorage.getItem("iml_expenses")) || [];
         APP_STATE.statusHistory = JSON.parse(localStorage.getItem("iml_status_history")) || [];
       },
@@ -1291,6 +1294,7 @@
         localStorage.setItem("iml_customers", JSON.stringify(APP_STATE.customers));
         localStorage.setItem("iml_services", JSON.stringify(APP_STATE.services));
         localStorage.setItem("iml_transactions", JSON.stringify(APP_STATE.transactions));
+        localStorage.setItem("iml_transaction_items", JSON.stringify(APP_STATE.transactionItems));
         localStorage.setItem("iml_expenses", JSON.stringify(APP_STATE.expenses));
         localStorage.setItem("iml_status_history", JSON.stringify(APP_STATE.statusHistory));
       }
@@ -1347,6 +1351,7 @@
         APP_STATE.customers = res.data.customers || [];
         APP_STATE.services = res.data.services || [];
         APP_STATE.transactions = res.data.transactions || [];
+        APP_STATE.transactionItems = res.data.transaction_items || []; // PULLING ITEMS NOW!
         APP_STATE.expenses = res.data.expenses || [];
         APP_STATE.statusHistory = res.data.status_history || [];
         
@@ -1971,6 +1976,9 @@
         price: item.price,
         total: item.total
       }));
+      
+      // SAVE TO LOCAL APP_STATE IMMEDIATELY FOR P&L REPORT
+      APP_STATE.transactionItems = APP_STATE.transactionItems.concat(payloadItems);
 
       const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, status: "Diterima", note: "Nota cucian telah diterbitkan dari keranjang meja registrasi mesin kasir.", updated_by: APP_STATE.currentUser.name, updated_at: dateString };
       APP_STATE.statusHistory.unshift(newHist);
@@ -2281,7 +2289,6 @@
     function editUser(id) { openUserModal(id); }
     function deleteUser(id) { showConfirmDialog("Tendang kuat-kuat kartu pegawai sang personal yang tertunjuk dari jajaran birokrasi ini, tak kan mampu login selamanya kembali ke pos sistem, sungguhan tekad Anda bulat?", () => { APP_STATE.users = APP_STATE.users.filter(x => x.id !== id); StorageEngine.saveStateToLocal(); renderUsers(); apiRequest("deleteUser", { id: id }); }, "Sanksi Keras Terpilih"); }
 
-
     // ==========================================
     // MODULE M & O: REPORTS, SETTINGS & ORDERS
     // ==========================================
@@ -2391,12 +2398,52 @@
          contentDiv.innerHTML = tableHTML;
 
       } else {
-         // IF SINGLE BRANCH IS SELECTED (SHOW P&L BREAKDOWN)
+         // IF SINGLE BRANCH IS SELECTED (SHOW DETAILED P&L BREAKDOWN)
          filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
          filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
 
+         // Calculate Total Revenue (just to verify)
          const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
          
+         // 1. Group Revenue by Service Name using transactionItems
+         let revGroups = {};
+         let calcRev = 0; // Calculated revenue from items
+         
+         filteredTxs.forEach(t => {
+            if (t.status_payment === "Lunas" || t.status_payment === "DP") {
+               // Find items for this transaction
+               const txItems = APP_STATE.transactionItems.filter(item => item.transaction_id === t.id);
+               
+               if (txItems.length > 0) {
+                   txItems.forEach(item => {
+                       if (!revGroups[item.service_name]) revGroups[item.service_name] = 0;
+                       revGroups[item.service_name] += item.total;
+                       calcRev += item.total;
+                   });
+               } else {
+                   // Fallback for old dummy data that might not have items linked yet
+                   if (!revGroups["Layanan Umum / Lama"]) revGroups["Layanan Umum / Lama"] = 0;
+                   revGroups["Layanan Umum / Lama"] += t.paid;
+                   calcRev += t.paid;
+               }
+            }
+         });
+
+         let revTableRows = "";
+         if (Object.keys(revGroups).length === 0) {
+             revTableRows = `<tr><td colspan="2" class="py-3 italic text-slate-400">Tidak ada pemasukan tercatat pada periode ini.</td></tr>`;
+         } else {
+             for(let svc in revGroups) {
+                 revTableRows += `
+                    <tr class="border-b border-dashed border-slate-100">
+                       <td class="py-3 text-slate-600 font-medium pl-4">- ${svc}</td>
+                       <td class="py-3 text-right font-medium text-slate-800">${formatRupiah(revGroups[svc])}</td>
+                    </tr>
+                 `;
+             }
+         }
+
+         // 2. Group Expenses by Category
          let expGroups = {};
          let totalExp = 0;
          filteredExps.forEach(e => {
@@ -2419,7 +2466,7 @@
              }
          }
          
-         const netProfit = totalRev - totalExp;
+         const netProfit = calcRev - totalExp;
 
          contentDiv.innerHTML = `
             <div class="space-y-8 max-w-3xl mx-auto">
@@ -2427,9 +2474,10 @@
                 <div>
                     <h4 class="font-bold text-brand-600 uppercase tracking-wide border-b-2 border-brand-200 pb-2 mb-4">A. Pemasukan (Omset)</h4>
                     <table class="w-full text-sm">
-                        <tr class="border-b border-slate-200">
-                            <td class="py-3 font-semibold text-slate-800 pl-4">- Total Pembayaran Masuk Kasir</td>
-                            <td class="py-3 text-right font-bold text-slate-800 text-base">${formatRupiah(totalRev)}</td>
+                        ${revTableRows}
+                        <tr class="bg-brand-50 font-bold border-t border-brand-200">
+                            <td class="py-3 px-4 text-brand-800 uppercase">Total Pemasukan Layanan</td>
+                            <td class="py-3 px-4 text-right text-brand-600 text-base">${formatRupiah(calcRev)}</td>
                         </tr>
                     </table>
                 </div>
@@ -2658,8 +2706,16 @@
 
     function reprintInvoice(txId) {
       const tx = APP_STATE.transactions.find(t => t.id === txId);
-      const dummyItemArray = [{ service_name: "Layanan Cucian", qty: 1, price: tx.subtotal, total: tx.subtotal }];
-      triggerDirectPrintReceiptMulti(tx, dummyItemArray);
+      // We must fetch the actual items to reprint accurately
+      const itemsForTx = APP_STATE.transactionItems.filter(item => item.transaction_id === txId);
+      
+      if(itemsForTx.length > 0) {
+          triggerDirectPrintReceiptMulti(tx, itemsForTx);
+      } else {
+          // Fallback if older transaction didn't have items mapped
+          const dummyItemArray = [{ service_name: "Layanan Umum (Data Lama)", qty: 1, price: tx.subtotal, total: tx.subtotal }];
+          triggerDirectPrintReceiptMulti(tx, dummyItemArray);
+      }
     }
 
     function trackFromURL() {
