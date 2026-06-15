@@ -625,8 +625,8 @@
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               </div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero Landing Page (Headline Besar)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Hero Deskripsi Singkat</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero Landing Page (HTML Supported)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Hero Deskripsi Singkat (HTML Supported)</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
             </div>
           </details>
 
@@ -916,7 +916,6 @@
   <!-- ============================================== -->
   <!-- 5. DIALOGS & ACTION POPUPS (MODALS) -->
   <!-- ============================================== -->
-  
   <!-- Custom Notification Dialog (Replaces Alert) -->
   <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300" style="z-index: 9999;">
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
@@ -1187,7 +1186,7 @@
     }
 
     // ==========================================
-    // MODULE B: NOTIFIKASI KUSTOM (DIALOGS & TOAST)
+    // MODULE B: NOTIFIKASI KUSTOM PENGGANTI ALERT() & CONFIRM()
     // ==========================================
     function showNotification(msg, title = "Informasi Sistem", icon = "💡") {
       const modal = document.getElementById("custom-dialog");
@@ -1240,7 +1239,6 @@
       
       toast.classList.remove("translate-y-24", "opacity-0");
       
-      // Auto hide toast after 3 seconds
       setTimeout(() => {
         toast.classList.add("translate-y-24", "opacity-0");
       }, 3000);
@@ -1376,7 +1374,7 @@
         APP_STATE.customers = res.data.customers || [];
         APP_STATE.services = res.data.services || [];
         APP_STATE.transactions = res.data.transactions || [];
-        APP_STATE.transactionItems = res.data.transaction_items || [];
+        APP_STATE.transactionItems = res.data.transaction_items || []; 
         APP_STATE.expenses = res.data.expenses || [];
         APP_STATE.statusHistory = res.data.status_history || [];
         
@@ -1505,7 +1503,6 @@
         closeLoginModal();
         setupUIAccessRights();
         switchView("app");
-        // Silent Pull on background without popup
         triggerForceSync(false);
       } else {
         showNotification("Kredensial Username ID atau Kata Sandi Security salah kombinasinya! Ulangi atau intip contekan", "Gagal Identifikasi", "❌");
@@ -1591,9 +1588,9 @@
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
-      // Hero Section Update
-      document.getElementById("landing-headline").innerText = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
-      document.getElementById("landing-subheadline").innerText = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
+      // Hero Section Update (MENGGUNAKAN innerHTML BIAR SPAN WARNA BISA DIBACA)
+      document.getElementById("landing-headline").innerHTML = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
+      document.getElementById("landing-subheadline").innerHTML = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
       
       const heroSec = document.getElementById("hero-section");
       if (set.hero_bg_type === "solid") {
@@ -1603,7 +1600,7 @@
       }
       document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
 
-      // Features Update (Layanan Premium Kami)
+      // Features Update
       if(document.getElementById("lp-feat-title")) {
         document.getElementById("lp-feat-title").innerText = set.feat_title || "Layanan Premium Kami";
         document.getElementById("lp-feat-sub").innerText = set.feat_sub || "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.";
@@ -1625,7 +1622,7 @@
         document.getElementById("lp-feat4-desc").innerText = set.feat4_desc || "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.";
       }
 
-      // Benefits Update (Teknologi Sinkronisasi)
+      // Benefits Update 
       if(document.getElementById("lp-ben-title")) {
         document.getElementById("lp-ben-title").innerText = set.ben_title || "Teknologi Sinkronisasi Multi-Outlet Instan";
         document.getElementById("lp-ben-desc").innerText = set.ben_desc || "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.";
@@ -1670,7 +1667,6 @@
       }
     }
 
-    // Render Kartu Harga dengan Format GROUPED TABLE
     function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
@@ -1682,7 +1678,6 @@
         return;
       }
 
-      // Grouping layanan berdasarkan Kategori
       const grouped = {};
       activeServices.forEach(s => {
         const cat = s.category || "Layanan Umum";
@@ -1840,7 +1835,6 @@
     // MODULE G: INTAKE SALE TRANSACTION INPUT (MULTI-ITEM CART)
     // ==========================================
     function initNewTransactionForm() {
-      // Clear Cart First
       POS_CART = [];
       renderCartTable();
 
@@ -2010,7 +2004,7 @@
       StorageEngine.saveStateToLocal();
       triggerDirectPrintReceiptMulti(newTx, payloadItems);
       
-      POS_CART = []; // Kosongkan keranjang setelah submit
+      POS_CART = []; 
       changeTab("transactions");
       
       apiRequest("createTransaction", { transaction: newTx, items: payloadItems, history: newHist, auto_wa: autoWa });
@@ -2363,7 +2357,6 @@
       const contentDiv = document.getElementById("rep-dynamic-content");
       contentDiv.innerHTML = "";
 
-      // IF GLOBAL IS SELECTED (SHOW COMPARISON TABLE)
       if (outletSel === "all") {
          let tableHTML = `
             <table class="w-full text-left border-collapse mb-8">
@@ -2422,20 +2415,14 @@
          contentDiv.innerHTML = tableHTML;
 
       } else {
-         // IF SINGLE BRANCH IS SELECTED (SHOW DETAILED P&L BREAKDOWN)
          filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
          filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
 
-         // Calculate Total Revenue (just to verify)
-         const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
-         
-         // 1. Group Revenue by Service Name using transactionItems
          let revGroups = {};
-         let calcRev = 0; // Calculated revenue from items
+         let calcRev = 0; 
          
          filteredTxs.forEach(t => {
             if (t.status_payment === "Lunas" || t.status_payment === "DP") {
-               // Find items for this transaction
                const txItems = APP_STATE.transactionItems.filter(item => item.transaction_id === t.id);
                
                if (txItems.length > 0) {
@@ -2445,7 +2432,6 @@
                        calcRev += item.total;
                    });
                } else {
-                   // Fallback for old dummy data that might not have items linked yet
                    if (!revGroups["Layanan Umum / Lama"]) revGroups["Layanan Umum / Lama"] = 0;
                    revGroups["Layanan Umum / Lama"] += t.paid;
                    calcRev += t.paid;
@@ -2467,7 +2453,6 @@
              }
          }
 
-         // 2. Group Expenses by Category
          let expGroups = {};
          let totalExp = 0;
          filteredExps.forEach(e => {
@@ -2603,14 +2588,12 @@
     }
 
     async function saveGlobalSettings() {
-      // Ubah tombol jadi status loading biar user sabar
       const btn = document.getElementById("btn-save-settings");
       const originalText = btn.innerText;
       btn.innerText = "Menyimpan & Sinkronisasi ke Cloud... ⏳";
       btn.disabled = true;
       btn.classList.add("opacity-70", "cursor-not-allowed");
 
-      // Ambil nilai pengaturan dari form
       APP_STATE.settings.store_name = document.getElementById("set-store-name").value.trim();
       APP_STATE.settings.store_address = document.getElementById("set-store-address").value.trim();
       APP_STATE.settings.store_phone = document.getElementById("set-store-phone").value.trim();
@@ -2657,23 +2640,16 @@
         }
       }
 
-      // 1. Simpan ke local storage
       StorageEngine.saveStateToLocal();
       
-      // 2. AWAIT API REQUEST - Sistem bakal "nahan napas" di sini nunggu konfirmasi server
       const res = await apiRequest("saveSettings", APP_STATE.settings);
       
-      // 3. JIKA SUKSES
       if (res && res.success) {
-        showToast("Pengaturan Disimpan!", "Data 100% aman di Google Sheets. Memuat ulang sistem...", "💾");
-        
-        // Kasih jeda 2 detik biar toast notifnya kebaca, abis itu baru reload instan
+        showToast("Pengaturan Disimpan!", "Data aman di Google Sheets. Memuat ulang sistem...", "💾");
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
-      } 
-      // JIKA GAGAL / ERROR DARI SERVER
-      else {
+        }, 1500);
+      } else {
         btn.innerText = originalText;
         btn.disabled = false;
         btn.classList.remove("opacity-70", "cursor-not-allowed");
@@ -2724,7 +2700,6 @@
       document.getElementById("rec-customer-name").innerText = cust.name;
       document.getElementById("rec-customer-phone").innerText = cust.phone;
 
-      // Render Multi-Item ke Struk
       const itemsContainer = document.getElementById("rec-items-container");
       itemsContainer.innerHTML = "";
       itemsArray.forEach(item => {
@@ -2757,13 +2732,11 @@
 
     function reprintInvoice(txId) {
       const tx = APP_STATE.transactions.find(t => t.id === txId);
-      // We must fetch the actual items to reprint accurately
       const itemsForTx = APP_STATE.transactionItems.filter(item => item.transaction_id === txId);
       
       if(itemsForTx.length > 0) {
           triggerDirectPrintReceiptMulti(tx, itemsForTx);
       } else {
-          // Fallback if older transaction didn't have items mapped
           const dummyItemArray = [{ service_name: "Layanan Umum (Data Lama)", qty: 1, price: tx.subtotal, total: tx.subtotal }];
           triggerDirectPrintReceiptMulti(tx, dummyItemArray);
       }
@@ -2820,7 +2793,6 @@
       if (params.get("invoice")) { switchView("tracking"); }
       else if (!APP_STATE.currentUser) { switchView("landing"); }
       
-      // Auto-sync diam-diam di background (silent mode)
       if (CONFIG.API_URL && !CONFIG.MOCK_MODE) {
         triggerForceSync(false);
       }
