@@ -40,6 +40,8 @@
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     
+    /* Aturan Khusus Saat Nge-Print (Menghilangkan link browser dan merapikan layout) */
+    @page { margin: 0; }
     @media print {
       body * { visibility: hidden; }
       #print-receipt-section, #print-receipt-section * { visibility: visible; }
@@ -2401,9 +2403,6 @@
          // IF SINGLE BRANCH IS SELECTED (SHOW DETAILED P&L BREAKDOWN)
          filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
          filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
-
-         // Calculate Total Revenue (just to verify)
-         const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
          
          // 1. Group Revenue by Service Name using transactionItems
          let revGroups = {};
@@ -2626,8 +2625,10 @@
       }
 
       StorageEngine.saveStateToLocal();
-      showNotification("Identitas mutlak POS sentral, Pengaturan Landing Page Dinamis, serta penanaman mesin parameter gerbang integrasi diperbaharui penuh secara gemilang!", "Kompilasi Sukses Tersimpan", "✅");
       apiRequest("saveSettings", APP_STATE.settings);
+      
+      // Reload halaman langsung tanpa pop-up biar tema langsung nerap
+      window.location.reload();
     }
 
     function openStatusModal(txId) {
