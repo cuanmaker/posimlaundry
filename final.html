@@ -775,7 +775,7 @@
           </div>
           
           <div class="bg-brand-50 p-6 rounded-2xl border border-brand-200">
-            <button onclick="saveGlobalSettings()" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server Sekarang</button>
+            <button id="btn-save-settings" onclick="saveGlobalSettings()" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server Sekarang</button>
           </div>
 
           <div class="mt-8 border-t border-rose-100 pt-8">
@@ -925,6 +925,17 @@
       <p id="dialog-message" class="text-sm text-slate-600 leading-relaxed pb-4"></p>
       <div id="dialog-buttons" class="flex gap-3 justify-center pt-2 border-t border-slate-50">
         <!-- Buttons injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification (Kanan Bawah) -->
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-[9999] transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-slate-900/95 backdrop-blur-md text-white px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-slate-700">
+      <div id="toast-icon-box" class="text-3xl bg-slate-800 p-2 rounded-xl">✅</div>
+      <div>
+        <h4 id="toast-title-box" class="font-bold text-sm text-brand-400">Sukses</h4>
+        <p id="toast-message-box" class="text-xs text-slate-300 max-w-[250px] leading-relaxed"></p>
       </div>
     </div>
   </div>
@@ -1176,7 +1187,7 @@
     }
 
     // ==========================================
-    // MODULE B: NOTIFIKASI KUSTOM PENGGANTI ALERT() & CONFIRM()
+    // MODULE B: NOTIFIKASI KUSTOM (DIALOGS & TOAST)
     // ==========================================
     function showNotification(msg, title = "Informasi Sistem", icon = "💡") {
       const modal = document.getElementById("custom-dialog");
@@ -1219,6 +1230,20 @@
       const box = document.getElementById("custom-dialog-box");
       modal.classList.add("opacity-0"); box.classList.add("scale-95");
       setTimeout(() => { modal.classList.add("hidden"); }, 300);
+    }
+
+    function showToast(title, message, icon = "✅") {
+      const toast = document.getElementById("toast-notification");
+      document.getElementById("toast-icon-box").innerText = icon;
+      document.getElementById("toast-title-box").innerText = title;
+      document.getElementById("toast-message-box").innerText = message;
+      
+      toast.classList.remove("translate-y-24", "opacity-0");
+      
+      // Auto hide toast after 3 seconds
+      setTimeout(() => {
+        toast.classList.add("translate-y-24", "opacity-0");
+      }, 3000);
     }
 
     // ==========================================
@@ -1302,7 +1327,6 @@
       }
     };
 
-
     // ==========================================
     // MODULE D: API INTEGRATION CLOUD ENGINE
     // ==========================================
@@ -1346,14 +1370,13 @@
 
       const res = await apiRequest("getAllData");
       if(res.success && res.data) {
-        // Gabungkan setting dari cloud
         APP_STATE.settings = Object.keys(res.data.settings || {}).length ? res.data.settings : APP_STATE.settings;
         APP_STATE.outlets = res.data.outlets || [];
         APP_STATE.users = res.data.users || [];
         APP_STATE.customers = res.data.customers || [];
         APP_STATE.services = res.data.services || [];
         APP_STATE.transactions = res.data.transactions || [];
-        APP_STATE.transactionItems = res.data.transaction_items || []; // PULLING ITEMS NOW!
+        APP_STATE.transactionItems = res.data.transaction_items || [];
         APP_STATE.expenses = res.data.expenses || [];
         APP_STATE.statusHistory = res.data.status_history || [];
         
@@ -1409,7 +1432,6 @@
         el.classList.replace("bg-transparent", "bg-brand-500");
       }
     }
-
 
     // ==========================================
     // MODULE E: AUTHENTICATION & LOGIN LOGIC
@@ -2403,6 +2425,9 @@
          // IF SINGLE BRANCH IS SELECTED (SHOW DETAILED P&L BREAKDOWN)
          filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
          filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
+
+         // Calculate Total Revenue (just to verify)
+         const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
          
          // 1. Group Revenue by Service Name using transactionItems
          let revGroups = {};
@@ -2577,7 +2602,15 @@
       }
     }
 
-    function saveGlobalSettings() {
+    async function saveGlobalSettings() {
+      // Ubah tombol jadi status loading biar user sabar
+      const btn = document.getElementById("btn-save-settings");
+      const originalText = btn.innerText;
+      btn.innerText = "Menyimpan & Sinkronisasi ke Cloud... ⏳";
+      btn.disabled = true;
+      btn.classList.add("opacity-70", "cursor-not-allowed");
+
+      // Ambil nilai pengaturan dari form
       APP_STATE.settings.store_name = document.getElementById("set-store-name").value.trim();
       APP_STATE.settings.store_address = document.getElementById("set-store-address").value.trim();
       APP_STATE.settings.store_phone = document.getElementById("set-store-phone").value.trim();
@@ -2624,11 +2657,28 @@
         }
       }
 
+      // 1. Simpan ke local storage
       StorageEngine.saveStateToLocal();
-      apiRequest("saveSettings", APP_STATE.settings);
       
-      // Reload halaman langsung tanpa pop-up biar tema langsung nerap
-      window.location.reload();
+      // 2. AWAIT API REQUEST - Sistem bakal "nahan napas" di sini nunggu konfirmasi server
+      const res = await apiRequest("saveSettings", APP_STATE.settings);
+      
+      // 3. JIKA SUKSES
+      if (res && res.success) {
+        showToast("Pengaturan Disimpan!", "Data 100% aman di Google Sheets. Memuat ulang sistem...", "💾");
+        
+        // Kasih jeda 2 detik biar toast notifnya kebaca, abis itu baru reload instan
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } 
+      // JIKA GAGAL / ERROR DARI SERVER
+      else {
+        btn.innerText = originalText;
+        btn.disabled = false;
+        btn.classList.remove("opacity-70", "cursor-not-allowed");
+        showNotification("Gagal menyimpan ke server: " + (res.error || "Terjadi kesalahan"), "Error Jaringan", "❌");
+      }
     }
 
     function openStatusModal(txId) {
