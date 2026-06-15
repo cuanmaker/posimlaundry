@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-theme="orange">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,13 +7,65 @@
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Tailwind Custom Colors Integration -->
+  
+  <!-- Tailwind Dynamic Variables Integration -->
+  <style>
+    /* DEFINISI TEMA WARNA GLOBAL */
+    :root, [data-theme="orange"] {
+      --b-50: 255 247 237; --b-100: 255 237 213; --b-200: 254 215 170; --b-300: 253 186 116; --b-400: 251 146 60;
+      --b-500: 249 115 22; --b-600: 234 88 12; --b-700: 194 65 12; --b-800: 154 52 18; --b-900: 124 45 18;
+    }
+    [data-theme="blue"] {
+      --b-50: 239 246 255; --b-100: 219 234 254; --b-200: 191 219 254; --b-300: 147 197 253; --b-400: 96 165 250;
+      --b-500: 59 130 246; --b-600: 37 99 235; --b-700: 29 78 216; --b-800: 30 64 175; --b-900: 30 58 138;
+    }
+    [data-theme="emerald"] {
+      --b-50: 236 253 245; --b-100: 209 250 229; --b-200: 167 243 208; --b-300: 110 231 183; --b-400: 52 211 153;
+      --b-500: 16 185 129; --b-600: 5 150 105; --b-700: 4 120 87; --b-800: 6 95 70; --b-900: 6 78 59;
+    }
+    [data-theme="violet"] {
+      --b-50: 245 243 255; --b-100: 237 233 254; --b-200: 221 214 254; --b-300: 196 181 253; --b-400: 167 139 250;
+      --b-500: 139 92 246; --b-600: 124 58 237; --b-700: 109 40 217; --b-800: 91 33 182; --b-900: 76 29 149;
+    }
+    [data-theme="rose"] {
+      --b-50: 255 241 242; --b-100: 255 228 230; --b-200: 254 205 211; --b-300: 253 164 175; --b-400: 251 113 133;
+      --b-500: 244 63 94; --b-600: 225 29 72; --b-700: 190 18 60; --b-800: 159 18 57; --b-900: 136 19 55;
+    }
+
+    body { font-family: 'Poppins', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+    .logo-font { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.5px; }
+    
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    
+    @page { margin: 0; }
+    @media print {
+      body * { visibility: hidden; }
+      #print-receipt-section, #print-receipt-section * { visibility: visible; }
+      #print-receipt-section { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; }
+    }
+  </style>
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' }
+            brand: {
+              50: 'rgb(var(--b-50) / <alpha-value>)',
+              100: 'rgb(var(--b-100) / <alpha-value>)',
+              200: 'rgb(var(--b-200) / <alpha-value>)',
+              300: 'rgb(var(--b-300) / <alpha-value>)',
+              400: 'rgb(var(--b-400) / <alpha-value>)',
+              500: 'rgb(var(--b-500) / <alpha-value>)',
+              600: 'rgb(var(--b-600) / <alpha-value>)',
+              700: 'rgb(var(--b-700) / <alpha-value>)',
+              800: 'rgb(var(--b-800) / <alpha-value>)',
+              900: 'rgb(var(--b-900) / <alpha-value>)'
+            }
           }
         }
       }
@@ -29,25 +81,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    body { font-family: 'Poppins', sans-serif; }
-    h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
-    .logo-font { font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: -0.5px; }
-    
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #f1f5f9; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    
-    /* Aturan Khusus Saat Nge-Print (Menghilangkan link browser dan merapikan layout) */
-    @page { margin: 0; }
-    @media print {
-      body * { visibility: hidden; }
-      #print-receipt-section, #print-receipt-section * { visibility: visible; }
-      #print-receipt-section { position: absolute; left: 0; top: 0; width: 80mm; padding: 5mm; }
-    }
-  </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
 
@@ -65,22 +98,22 @@
           <button onclick="switchView('tracking')" class="px-4 py-2 border border-brand-200 text-brand-600 text-sm font-semibold rounded-lg hover:bg-brand-50 transition">
             Lacak 🔍
           </button>
-          <button onclick="openLoginModal('karyawan')" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-lg shadow-lg transition">
+          <button onclick="openLoginModal('karyawan')" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold rounded-lg shadow-lg shadow-brand-500/30 transition">
             Login 🚪
           </button>
         </div>
       </div>
     </header>
 
-    <!-- HERO SECTION DINAMIS -->
-    <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500" style="background: linear-gradient(135deg, #fb923c, #ea580c);">
+    <!-- HERO SECTION DINAMIS (Warna otomatis ikut Theme) -->
+    <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500 bg-gradient-to-br from-brand-400 to-brand-600">
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30"></div>
       
       <div class="max-w-4xl mx-auto px-4 relative z-10">
         <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-md border border-white/30 mb-6 shadow-sm">
           ✨ Sistem Kasir & Pelacakan Cerdas
         </span>
-        <h1 id="landing-headline" class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 drop-shadow-md transition-colors duration-500" style="color: #ffffff;">
+        <h1 id="landing-headline" class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 drop-shadow-md transition-colors duration-500 text-white">
           Sistem POS Kasir & Portal Pelanggan Laundry
         </h1>
         <p id="landing-subheadline" class="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-sm">
@@ -105,22 +138,22 @@
           <div class="grid md:grid-cols-4 gap-8">
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
               <div class="text-3xl mb-4" id="lp-feat1-icon">🧺</div>
-              <h3 class="font-bold text-lg mb-2" id="lp-feat1-title">Cuci & Setrika</h3>
+              <h3 class="font-bold text-lg mb-2 text-slate-800" id="lp-feat1-title">Cuci & Setrika</h3>
               <p class="text-sm text-slate-600" id="lp-feat1-desc">Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
               <div class="text-3xl mb-4" id="lp-feat2-icon">👔</div>
-              <h3 class="font-bold text-lg mb-2" id="lp-feat2-title">Dry Cleaning</h3>
+              <h3 class="font-bold text-lg mb-2 text-slate-800" id="lp-feat2-title">Dry Cleaning</h3>
               <p class="text-sm text-slate-600" id="lp-feat2-desc">Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
               <div class="text-3xl mb-4" id="lp-feat3-icon">🛏️</div>
-              <h3 class="font-bold text-lg mb-2" id="lp-feat3-title">Bed Cover & Selimut</h3>
+              <h3 class="font-bold text-lg mb-2 text-slate-800" id="lp-feat3-title">Bed Cover & Selimut</h3>
               <p class="text-sm text-slate-600" id="lp-feat3-desc">Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.</p>
             </div>
             <div class="p-6 rounded-2xl bg-brand-50 border border-brand-100 text-left hover:scale-[1.02] transition">
               <div class="text-3xl mb-4" id="lp-feat4-icon">👟</div>
-              <h3 class="font-bold text-lg mb-2" id="lp-feat4-title">Spa Sepatu</h3>
+              <h3 class="font-bold text-lg mb-2 text-slate-800" id="lp-feat4-title">Spa Sepatu</h3>
               <p class="text-sm text-slate-600" id="lp-feat4-desc">Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.</p>
             </div>
           </div>
@@ -186,7 +219,7 @@
             <p class="text-slate-600 max-w-xl mx-auto">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
           </div>
           
-          <!-- GRID KARTU HARGA DINAMIS BERDASARKAN KATEGORI (MENGGUNAKAN TEMA WARNA BRAND) -->
+          <!-- GRID KARTU HARGA DINAMIS BERDASARKAN KATEGORI -->
           <div id="landing-pricing-grid" class="max-w-5xl mx-auto">
             <!-- Render via JavaScript Grouped Table -->
           </div>
@@ -198,23 +231,23 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 class="text-3xl font-bold text-slate-900 mb-16" id="lp-testi-title">Kisah Puas Pelanggan Setia kami</h2>
           <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left hover:border-brand-200 transition">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
               <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi1-desc">"Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya apakah masih dicuci atau sudah siap ambil!"</p>
               <div class="font-bold text-slate-800 text-sm" id="lp-testi1-name">Sarah Rahmawati</div>
-              <p class="text-xs text-slate-400" id="lp-testi1-role">Ibu Rumah Tangga</p>
+              <p class="text-xs text-brand-600 font-medium" id="lp-testi1-role">Ibu Rumah Tangga</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left hover:border-brand-200 transition">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
               <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi2-desc">"Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian dan komparasi omset antar cabang tampil transparan."</p>
               <div class="font-bold text-slate-800 text-sm" id="lp-testi2-name">Bambang Susanto</div>
-              <p class="text-xs text-slate-400" id="lp-testi2-role">Pemilik Multi-Outlet</p>
+              <p class="text-xs text-brand-600 font-medium" id="lp-testi2-role">Pemilik Multi-Outlet</p>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-left hover:border-brand-200 transition">
               <div class="flex text-amber-400 mb-4">★★★★★</div>
               <p class="text-slate-600 text-sm leading-relaxed mb-6" id="lp-testi3-desc">"Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional."</p>
               <div class="font-bold text-slate-800 text-sm" id="lp-testi3-name">Rian Mahendra</div>
-              <p class="text-xs text-slate-400" id="lp-testi3-role">Kasir Laundry Utama</p>
+              <p class="text-xs text-brand-600 font-medium" id="lp-testi3-role">Kasir Laundry Utama</p>
             </div>
           </div>
         </div>
@@ -229,7 +262,7 @@
           <p class="text-slate-400 text-sm">Sistem Kasir Modern & Pelacakan Laundry Terintegrasi.</p>
         </div>
         <div class="flex gap-4">
-          <a id="footer-wa-link" href="https://wa.me/6281234567890" target="_blank" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg text-sm transition flex items-center gap-2">
+          <a id="footer-wa-link" href="https://wa.me/6281234567890" target="_blank" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-lg text-sm shadow-lg shadow-brand-500/20 transition flex items-center gap-2">
             💬 Hubungi CS Kami via WA
           </a>
         </div>
@@ -297,7 +330,7 @@
           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor WhatsApp Terdaftar</label>
           <input id="forgot-phone" type="text" placeholder="Contoh: 0812345..." class="w-full px-4 py-3 border rounded-xl bg-slate-50 text-sm" />
         </div>
-        <button onclick="submitForgotPassword()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition shadow-lg">
+        <button onclick="submitForgotPassword()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">
           Kirim Sandi via WA
         </button>
       </div>
@@ -334,7 +367,7 @@
         <div class="p-5 bg-brand-50 border border-brand-100 rounded-xl">
           <div class="flex justify-between items-center mb-4">
             <span class="text-xs font-bold text-brand-700 uppercase tracking-wider">Status Terkini</span>
-            <span id="track-badge" class="px-3 py-1 rounded-full text-xs font-bold"></span>
+            <span id="track-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-brand-100 text-brand-800"></span>
           </div>
           <div class="grid grid-cols-2 gap-4 text-sm">
             <div><span class="text-slate-500 block">No. Invoice:</span><span id="track-invoice-num" class="font-mono font-bold text-slate-800"></span></div>
@@ -345,7 +378,7 @@
 
         <div class="space-y-4">
           <h4 class="font-bold text-slate-800 text-sm">Riwayat Progres Pengerjaan</h4>
-          <div id="tracking-timeline-list" class="relative pl-6 border-l-2 border-brand-100 space-y-6">
+          <div id="tracking-timeline-list" class="relative pl-6 border-l-2 border-brand-200 space-y-6">
             <!-- Timeline Item Rendered Here -->
           </div>
         </div>
@@ -419,7 +452,7 @@
         <h2 class="text-xl font-bold text-slate-800 uppercase tracking-wide" id="current-tab-title">Ringkasan</h2>
         <div class="flex items-center gap-4">
           <span id="sync-status" class="text-xs bg-brand-50 text-brand-700 px-3 py-1.5 rounded-full font-bold">Sistem Aktif ⚡</span>
-          <button onclick="triggerForceSync(true)" class="p-2 hover:bg-slate-100 rounded-lg text-sm bg-white border shadow-sm" title="Tarik Sinkronisasi Cloud">Tarik Data Cloud 🔄</button>
+          <button onclick="triggerForceSync(true)" class="p-2 hover:bg-brand-50 hover:text-brand-600 rounded-lg text-sm bg-white border shadow-sm transition" title="Tarik Sinkronisasi Cloud">Tarik Data Cloud 🔄</button>
         </div>
       </header>
 
@@ -471,7 +504,7 @@
 
         <!-- TAB: CUSTOMER PORTAL -->
         <div id="tab-customer-portal" class="tab-content hidden space-y-6">
-          <div class="bg-brand-600 rounded-2xl p-8 text-white shadow-lg relative overflow-hidden">
+          <div class="bg-gradient-to-r from-brand-500 to-brand-700 rounded-2xl p-8 text-white shadow-lg relative overflow-hidden">
             <div class="relative z-10">
               <h3 class="text-3xl font-bold mb-2">Halo, <span id="portal-cust-name">Pelanggan</span>! 👋</h3>
               <p class="text-brand-100 text-sm">Selamat datang di portal pelacakan cucian pribadi Anda.</p>
@@ -510,7 +543,7 @@
             <div class="grid md:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilih Data Pelanggan</label>
-                <select id="tx-customer" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select>
+                <select id="tx-customer" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"></select>
               </div>
               <div class="flex items-end">
                 <button onclick="changeTab('customers')" class="w-full p-3 bg-slate-100 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-200 transition">
@@ -524,11 +557,11 @@
               <div class="grid md:grid-cols-4 gap-4 items-end">
                 <div class="md:col-span-2">
                   <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pilihan Paket Layanan</label>
-                  <select id="tx-service" class="w-full p-3 border rounded-xl bg-white text-sm font-medium"></select>
+                  <select id="tx-service" class="w-full p-3 border rounded-xl bg-white text-sm font-medium focus:ring-2 focus:ring-brand-500"></select>
                 </div>
                 <div>
                   <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Berat(Kg)/Jumlah(Pcs)</label>
-                  <input id="tx-qty" type="number" step="0.01" value="1" class="w-full p-3 border rounded-xl bg-white text-sm font-medium" />
+                  <input id="tx-qty" type="number" step="0.01" value="1" class="w-full p-3 border rounded-xl bg-white text-sm font-medium focus:ring-2 focus:ring-brand-500" />
                 </div>
                 <div>
                   <button onclick="addCartItem()" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl transition text-sm shadow-md">
@@ -559,15 +592,15 @@
             <div class="grid md:grid-cols-3 gap-4 mt-6">
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Potongan Diskon (Rp)</label>
-                <input id="tx-discount" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
+                <input id="tx-discount" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" />
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Uang Diterima (Rp)</label>
-                <input id="tx-paid" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
+                <input id="tx-paid" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" />
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Pembayaran</label>
-                <select id="tx-payment-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" onchange="calculateNewTxTotal()">
+                <select id="tx-payment-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" onchange="calculateNewTxTotal()">
                   <option value="Lunas">Lunas Sepenuhnya</option>
                   <option value="DP">Bayar DP Uang Muka</option>
                   <option value="Belum Bayar" selected>Belum Bayar Sama Sekali</option>
@@ -625,8 +658,8 @@
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">No. WhatsApp / Telepon Hotline</label><input id="set-store-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pesan Tambahan Kaki Struk</label><input id="set-receipt-footer" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               </div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero Landing Page (HTML Supported)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Hero Deskripsi Singkat (HTML Supported)</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Hero Landing Page (HTML Didukung)</label><input id="set-hero-headline" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sub-Judul Hero Deskripsi Singkat (HTML Didukung)</label><input id="set-hero-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
             </div>
           </details>
 
@@ -642,7 +675,7 @@
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Subjudul / Penjelasan Singkat</label><input id="set-feat-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               </div>
               <!-- Box 1 & 2 -->
-              <div class="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl">
+              <div class="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
                 <div>
                   <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 1: Ikon & Judul</label>
                   <div class="flex gap-2 mb-2">
@@ -661,7 +694,7 @@
                 </div>
               </div>
               <!-- Box 3 & 4 -->
-              <div class="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl">
+              <div class="grid grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
                 <div>
                   <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 3: Ikon & Judul</label>
                   <div class="flex gap-2 mb-2">
@@ -691,7 +724,7 @@
             <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
               <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Utama Benefit</label><input id="set-ben-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deskripsi Utama Benefit</label><input id="set-ben-desc" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-              <div class="p-4 bg-slate-50 rounded-xl space-y-3">
+              <div class="p-4 bg-slate-50 rounded-xl space-y-3 border border-slate-200">
                 <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 1: Judul & Deskripsi</label><input id="set-ben1-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben1-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
                 <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 2: Judul & Deskripsi</label><input id="set-ben2-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben2-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
                 <div><label class="block text-xs font-bold text-brand-600 uppercase mb-1">Poin 3: Judul & Deskripsi</label><input id="set-ben3-title" type="text" class="w-full p-2 border rounded-lg text-sm mb-2"><input id="set-ben3-desc" type="text" class="w-full p-2 border rounded-lg text-sm"></div>
@@ -706,23 +739,23 @@
               <span class="transition group-open:rotate-180 text-slate-400">▼</span>
             </summary>
             <div class="mt-4 pt-4 border-t border-slate-100 space-y-4">
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Teks Keterangan Bawah Tabel Harga (Pengganti "Minimal 3 Kg")</label><input id="set-price-footer" type="text" class="w-full p-3 border rounded-xl bg-brand-50 text-brand-800 text-sm font-bold" /></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Teks Keterangan Bawah Tabel Harga (Pengganti "Minimal 3 Kg")</label><input id="set-price-footer" type="text" class="w-full p-3 border rounded-xl bg-brand-50 text-brand-800 text-sm font-bold focus:ring-2 focus:ring-brand-500" /></div>
               <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Section Testimoni</label><input id="set-testi-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               
               <div class="grid md:grid-cols-3 gap-4">
-                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2 border border-slate-200">
                   <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 1</label>
                   <input id="set-testi1-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
                   <input id="set-testi1-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
                   <input id="set-testi1-desc" type="text" placeholder="Isi testimoni..." class="w-full p-2 border rounded-lg text-sm">
                 </div>
-                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2 border border-slate-200">
                   <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 2</label>
                   <input id="set-testi2-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
                   <input id="set-testi2-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
                   <input id="set-testi2-desc" type="text" placeholder="Isi testimoni..." class="w-full p-2 border rounded-lg text-sm">
                 </div>
-                <div class="p-4 bg-slate-50 rounded-xl space-y-2">
+                <div class="p-4 bg-slate-50 rounded-xl space-y-2 border border-slate-200">
                   <label class="block text-xs font-bold text-brand-600 uppercase">Testimoni 3</label>
                   <input id="set-testi3-name" type="text" placeholder="Nama Pelanggan" class="w-full p-2 border rounded-lg text-sm">
                   <input id="set-testi3-role" type="text" placeholder="Peran/Pekerjaan" class="w-full p-2 border rounded-lg text-sm">
@@ -733,21 +766,19 @@
           </details>
 
           <div class="grid md:grid-cols-2 gap-6">
-            <!-- Tema Warna Color Picker -->
+            <!-- TEMA WARNA GLOBAL -->
             <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-              <h3 class="font-bold text-slate-800 text-lg">Tema Warna (Color Picker) Beranda</h3>
+              <h3 class="font-bold text-slate-800 text-lg">Tema Warna Utama (Global Theme)</h3>
+              <p class="text-xs text-slate-500 mb-4 leading-relaxed">Pilih satu warna dasar kesukaan Anda. Seluruh elemen website dari Landing Page, Tombol, Tabel, hingga Panel Kasir akan langsung menyesuaikan warnanya secara otomatis.</p>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero</label>
-                <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
-                  <option value="gradient">Gradient (Dua Warna)</option>
-                  <option value="solid">Solid (Satu Warna Saja)</option>
+                <select id="set-global-theme" class="w-full p-3 border border-slate-200 rounded-xl bg-slate-50 text-sm font-bold text-slate-700 cursor-pointer focus:ring-2 focus:ring-brand-500">
+                  <option value="orange">🟠 Orange (Bawaan)</option>
+                  <option value="blue">🔵 Biru Modern</option>
+                  <option value="emerald">🟢 Hijau Segar</option>
+                  <option value="violet">🟣 Ungu Elegan</option>
+                  <option value="rose">🔴 Merah Berani</option>
                 </select>
               </div>
-              <div class="grid grid-cols-2 gap-4">
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 1</label><input id="set-hero-bg-color1" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Latar 2 (Jika Gradient)</label><input id="set-hero-bg-color2" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-              </div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Headline)</label><input id="set-hero-title-color" type="color" class="w-full h-12 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
             </div>
 
             <div class="space-y-6">
@@ -797,11 +828,11 @@
           <div class="space-y-4">
             <div>
               <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kata Sandi Baru</label>
-              <input id="prof-new-pwd" type="password" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
+              <input id="prof-new-pwd" type="password" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" />
             </div>
             <div>
               <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Konfirmasi Ulang Kata Sandi</label>
-              <input id="prof-conf-pwd" type="password" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
+              <input id="prof-conf-pwd" type="password" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" />
             </div>
             <button onclick="executeChangePassword()" class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition mt-4">Simpan Perubahan Kata Sandi</button>
           </div>
@@ -812,7 +843,7 @@
           <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <h3 class="font-bold text-slate-800 text-lg">Histori Aktivitas Transaksi</h3>
             <div class="flex flex-wrap gap-2 w-full md:w-auto">
-              <input id="search-tx-query" type="text" placeholder="Cari nomor nota, pelanggan..." oninput="filterTransactions()" class="p-2.5 border rounded-xl text-sm flex-1 md:w-64 font-medium" />
+              <input id="search-tx-query" type="text" placeholder="Cari nomor nota, pelanggan..." oninput="filterTransactions()" class="p-2.5 border rounded-xl text-sm flex-1 md:w-64 font-medium focus:ring-2 focus:ring-brand-500" />
             </div>
           </div>
           <div class="overflow-x-auto">
@@ -876,8 +907,8 @@
           <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm space-y-4 print:hidden">
             <h3 class="font-bold text-slate-800 text-lg">Laporan & Rekapitulasi Keuangan Total</h3>
             <div class="grid md:grid-cols-4 gap-4">
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Filter Waktu</label><select id="report-date-filter" class="w-full p-2.5 border rounded-xl text-sm font-medium bg-slate-50"><option value="all">Sepanjang Waktu (Semua Data)</option><option value="today" selected>Hanya Hari Ini</option><option value="month">Laporan Bulan Ini</option></select></div>
-              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Filter Cabang Target</label><select id="report-outlet-filter" class="w-full p-2.5 border rounded-xl text-sm font-medium bg-slate-50"></select></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Filter Waktu</label><select id="report-date-filter" class="w-full p-2.5 border rounded-xl text-sm font-medium bg-slate-50 focus:ring-2 focus:ring-brand-500"><option value="all">Sepanjang Waktu (Semua Data)</option><option value="today" selected>Hanya Hari Ini</option><option value="month">Laporan Bulan Ini</option></select></div>
+              <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Filter Cabang Target</label><select id="report-outlet-filter" class="w-full p-2.5 border rounded-xl text-sm font-medium bg-slate-50 focus:ring-2 focus:ring-brand-500"></select></div>
               <div class="flex items-end gap-2">
                 <button onclick="generateReport()" class="px-4 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-bold hover:bg-brand-700 transition flex-1 shadow-md">Eksekusi Rekap</button>
                 <button onclick="exportReportToPDF()" class="px-4 py-2.5 bg-slate-800 text-white rounded-xl text-sm font-bold hover:bg-slate-900 transition flex-1 shadow-md">Unduh .PDF Laporan</button>
@@ -916,6 +947,7 @@
   <!-- ============================================== -->
   <!-- 5. DIALOGS & ACTION POPUPS (MODALS) -->
   <!-- ============================================== -->
+  
   <!-- Custom Notification Dialog (Replaces Alert) -->
   <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300" style="z-index: 9999;">
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
@@ -945,10 +977,10 @@
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-customer-title">Registrasi Pelanggan</h3>
       <div class="space-y-4">
         <input type="hidden" id="cust-id" />
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Lengkap</label><input id="cust-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor WhatsApp Aktif</label><input id="cust-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alamat Domisili Lengkap</label><input id="cust-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pemilik Cabang Pendaftar</label><select id="cust-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Lengkap</label><input id="cust-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor WhatsApp Aktif</label><input id="cust-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Alamat Domisili Lengkap</label><input id="cust-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pemilik Cabang Pendaftar</label><select id="cust-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"></select></div>
         <div class="flex gap-3 pt-4">
           <button onclick="closeCustomerModal()" class="w-1/2 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition">Batal Simpan</button>
           <button onclick="saveCustomerData()" class="w-1/2 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Identitas</button>
@@ -963,16 +995,16 @@
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-service-title">Tambahkan Paket Jasa</h3>
       <div class="space-y-4">
         <input type="hidden" id="serv-id" />
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kategori / Grup Layanan</label><input id="serv-category" type="text" placeholder="Contoh: Cuci Setrika / Setrika Wangi" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Paket Spesifik</label><input id="serv-name" type="text" placeholder="Contoh: Reguler Biasa / Express" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deksripsi Manfaat (Pisahkan Poin dgn Titik)</label><input id="serv-desc" type="text" placeholder="Minimal 3Kg. Wangi tahan lama." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kategori / Grup Layanan</label><input id="serv-category" type="text" placeholder="Contoh: Cuci Setrika / Setrika Wangi" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Paket Spesifik</label><input id="serv-name" type="text" placeholder="Contoh: Reguler Biasa / Express" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Deksripsi Manfaat (Pisahkan Poin dgn Titik)</label><input id="serv-desc" type="text" placeholder="Minimal 3Kg. Wangi tahan lama." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
         <div class="grid grid-cols-2 gap-4">
-          <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sistem Hitung</label><select id="serv-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="kilogram">Kiloan (Kg)</option><option value="item">Satuan Biji (Pcs)</option></select></div>
-          <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tarif Harga (Rp)</label><input id="serv-price" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+          <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sistem Hitung</label><select id="serv-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"><option value="kilogram">Kiloan (Kg)</option><option value="item">Satuan Biji (Pcs)</option></select></div>
+          <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tarif Harga (Rp)</label><input id="serv-price" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
         </div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Target Waktu Selesai (Hitungan Hari)</label><input id="serv-days" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Berlaku Untuk Cabang</label><select id="serv-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ketersediaan Publik</label><select id="serv-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="Active">Tersedia (Aktif)</option><option value="Inactive">Hentikan Sementara</option></select></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Target Waktu Selesai (Hitungan Hari)</label><input id="serv-days" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Berlaku Untuk Cabang</label><select id="serv-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"></select></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Ketersediaan Publik</label><select id="serv-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"><option value="Active">Tersedia (Aktif)</option><option value="Inactive">Hentikan Sementara</option></select></div>
         <div class="flex gap-3 pt-4">
           <button onclick="closeServiceModal()" class="w-1/2 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition">Batal</button>
           <button onclick="saveServiceData()" class="w-1/2 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Publikasi Paket</button>
@@ -987,10 +1019,10 @@
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-outlet-title">Ekspansi Posisi Cabang Baru</h3>
       <div class="space-y-4">
         <input type="hidden" id="out-id" />
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kode Identitas Lokasi Cabang</label><input id="out-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Jalan Alamat Detail Fisik</label><input id="out-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor Meja Pelayanan (Telepon)</label><input id="out-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Siklus Jam Buka</label><select id="out-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="Active">Normal Buka</option><option value="Inactive">Sedang Tutup Renovasi</option></select></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Kode Identitas Lokasi Cabang</label><input id="out-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Jalan Alamat Detail Fisik</label><input id="out-address" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nomor Meja Pelayanan (Telepon)</label><input id="out-phone" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Siklus Jam Buka</label><select id="out-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"><option value="Active">Normal Buka</option><option value="Inactive">Sedang Tutup Renovasi</option></select></div>
         <div class="flex gap-3 pt-4">
           <button onclick="closeOutletModal()" class="w-1/2 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition">Urungkan Niat</button>
           <button onclick="saveOutletData()" class="w-1/2 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Dirikan Cabang</button>
@@ -1004,22 +1036,22 @@
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
       <h3 class="text-xl font-bold text-slate-900 mb-4">Pelaporan Pengeluaran Uang Laci</h3>
       <div class="space-y-4">
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Beban Pemotongan Cabang</label><select id="exp-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Beban Pemotongan Cabang</label><select id="exp-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"></select></div>
         
         <div>
           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Jenis Kebutuhan</label>
-          <select id="exp-category" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" onchange="toggleCustomExpense()">
+          <select id="exp-category" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" onchange="toggleCustomExpense()">
             <option value="Bahan Baku">Pembelian Bahan Baku & Sabun</option>
             <option value="Tagihan Utilitas">Listrik, Internet, & Tagihan Air</option>
             <option value="Servis Maintenance">Perbaikan Mesin Mesin Rusak</option>
             <option value="Gaji Insentif">Bonus Lembur & Gaji Staf Karyawan</option>
             <option value="Lainnya">Lainnya (Ketik Manual)...</option>
           </select>
-          <input id="exp-category-custom" type="text" placeholder="Ketik jenis pengeluaran..." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium mt-3 hidden" />
+          <input id="exp-category-custom" type="text" placeholder="Ketik jenis pengeluaran..." class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium mt-3 hidden focus:ring-2 focus:ring-brand-500" />
         </div>
         
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Detail Rincian Teks Singkat</label><input id="exp-description" type="text" placeholder="Cth: Beli sabun deterjen colek 10 koli" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Total Nominal Tarik Tunai (Rp)</label><input id="exp-amount" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Detail Rincian Teks Singkat</label><input id="exp-description" type="text" placeholder="Cth: Beli sabun deterjen colek 10 koli" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Total Nominal Tarik Tunai (Rp)</label><input id="exp-amount" type="number" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
         <div class="flex gap-3 pt-4">
           <button onclick="closeExpenseModal()" class="w-1/2 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition">Batal Setor</button>
           <button onclick="saveExpenseData()" class="w-1/2 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Catat Pemotongan</button>
@@ -1034,12 +1066,12 @@
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-user-title">Pembuatan Akses Karyawan Baru</h3>
       <div class="space-y-4">
         <input type="hidden" id="user-id" />
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Asli Pegawai</label><input id="user-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Username Unik (Tanpa Spasi)</label><input id="user-username" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pin Sandi Password Default</label><input id="user-password" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pemberian Level Hirarki</label><select id="user-role" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="Cashier">Tingkat Kasir (Pencatatan Struk)</option><option value="Admin">Tingkat Manajer (Olah Data & Klien)</option><option value="Owner">Tingkat Investor Penuh (Laporan Pusat)</option></select></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Penugasan Berdiri di Cabang</label><select id="user-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"></select></div>
-        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sistem Pemecatan</label><select id="user-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium"><option value="Active">Masih Kerja Bersama</option><option value="Inactive">Sudah Dipecat Nonaktif</option></select></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Nama Asli Pegawai</label><input id="user-name" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Username Unik (Tanpa Spasi)</label><input id="user-username" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pin Sandi Password Default</label><input id="user-password" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" /></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Pemberian Level Hirarki</label><select id="user-role" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"><option value="Cashier">Tingkat Kasir (Pencatatan Struk)</option><option value="Admin">Tingkat Manajer (Olah Data & Klien)</option><option value="Owner">Tingkat Investor Penuh (Laporan Pusat)</option></select></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Penugasan Berdiri di Cabang</label><select id="user-outlet" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"></select></div>
+        <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sistem Pemecatan</label><select id="user-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500"><option value="Active">Masih Kerja Bersama</option><option value="Inactive">Sudah Dipecat Nonaktif</option></select></div>
         <div class="flex gap-3 pt-4">
           <button onclick="closeUserModal()" class="w-1/2 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition">Batal Rekrut</button>
           <button onclick="saveUserData()" class="w-1/2 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Patenkan Karyawan</button>
@@ -1056,7 +1088,7 @@
         <input type="hidden" id="status-tx-id" />
         <div>
           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Laju Kondisi Berjalan</label>
-          <select id="status-order-select" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium">
+          <select id="status-order-select" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500">
             <option value="Diterima">Baru Masuk Di Meja Kasir</option>
             <option value="Diproses">Sedang Masuk Ke Mesin Cuci Mesin Pengering</option>
             <option value="Selesai">Proses Selesai Sempurna Siap Diambil Menunggu Lemari</option>
@@ -1065,7 +1097,7 @@
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Situasi Penagihan Uang</label>
-          <select id="status-payment-select" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium">
+          <select id="status-payment-select" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500">
             <option value="Lunas">Transaksi Lunas Penuh Menyeluruh</option>
             <option value="DP">Masih Ada Sisa Hutang Tergantung Uang Muka DP</option>
             <option value="Belum Bayar">Belum Melunasi Sama Sekali Tagihan Pembayaran</option>
@@ -1073,7 +1105,7 @@
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Jejak Memo Catatan Riwayat Pegawai</label>
-          <input id="status-note" type="text" placeholder="Contoh teks pendek: Pakaian kelar disetrika rapi dimasukin plastik bening" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
+          <input id="status-note" type="text" placeholder="Contoh teks pendek: Pakaian kelar disetrika rapi dimasukin plastik bening" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium focus:ring-2 focus:ring-brand-500" />
         </div>
         <label class="flex items-center space-x-2 text-sm text-slate-600 mt-2 cursor-pointer bg-brand-50 p-2 rounded-lg border border-brand-100">
           <input type="checkbox" id="status-send-wa" class="rounded text-brand-600 focus:ring-brand-500 h-4 w-4" checked />
@@ -1252,7 +1284,7 @@
         store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih telah mempercayakan pakaian Anda di iMersLonry!", 
         wa_provider: "none", wa_api_key: "", wa_sender: "", 
         landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", 
-        hero_bg_type: "gradient", hero_bg_color1: "#fb923c", hero_bg_color2: "#ea580c", hero_title_color: "#ffffff",
+        global_theme: "orange",
         feat_title: "Layanan Premium Kami", feat_sub: "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.", feat1_icon: "🧺", feat1_title: "Cuci & Setrika", feat1_desc: "Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.", feat2_icon: "👔", feat2_title: "Dry Cleaning", feat2_desc: "Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.", feat3_icon: "🛏️", feat3_title: "Bed Cover & Selimut", feat3_desc: "Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.", feat4_icon: "👟", feat4_title: "Spa Sepatu", feat4_desc: "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.",
         ben_title: "Teknologi Sinkronisasi Multi-Outlet Instan", ben_desc: "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.", ben1_title: "Sinkronisasi Spreadsheet Otomatis", ben1_desc: "Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.", ben2_title: "Hak Akses Fleksibel Kasir & Owner", ben2_desc: "Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.", ben3_title: "Lacak Status via QR Code", ben3_desc: "Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.",
         testi_title: "Kisah Puas Pelanggan Setia kami", testi1_desc: "Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya!", testi1_name: "Sarah Rahmawati", testi1_role: "Ibu Rumah Tangga", testi2_desc: "Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian transparan.", testi2_name: "Bambang Susanto", testi2_role: "Pemilik Multi-Outlet", testi3_desc: "Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional.", testi3_name: "Rian Mahendra", testi3_role: "Kasir Laundry Utama",
@@ -1580,6 +1612,9 @@
     function applyDynamicLandingPage() {
       const set = APP_STATE.settings;
       
+      // APPLY THEME GLOBALLY
+      document.documentElement.setAttribute('data-theme', set.global_theme || 'orange');
+      
       // Update Title & Icons
       document.getElementById("landing-brand-text").innerText = set.store_name || "iMersLonry";
       renderBrandIcon(set.brand_icon, "landing-icon-badge");
@@ -1588,17 +1623,9 @@
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
-      // Hero Section Update (MENGGUNAKAN innerHTML BIAR SPAN WARNA BISA DIBACA)
+      // Hero Section Update (innerHTML is safe for rendering HTML tags)
       document.getElementById("landing-headline").innerHTML = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
       document.getElementById("landing-subheadline").innerHTML = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
-      
-      const heroSec = document.getElementById("hero-section");
-      if (set.hero_bg_type === "solid") {
-        heroSec.style.background = set.hero_bg_color1 || "#fb923c";
-      } else {
-        heroSec.style.background = `linear-gradient(135deg, ${set.hero_bg_color1 || '#fb923c'}, ${set.hero_bg_color2 || '#ea580c'})`;
-      }
-      document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
 
       // Features Update
       if(document.getElementById("lp-feat-title")) {
@@ -1835,6 +1862,7 @@
     // MODULE G: INTAKE SALE TRANSACTION INPUT (MULTI-ITEM CART)
     // ==========================================
     function initNewTransactionForm() {
+      // Clear Cart First
       POS_CART = [];
       renderCartTable();
 
@@ -2004,7 +2032,7 @@
       StorageEngine.saveStateToLocal();
       triggerDirectPrintReceiptMulti(newTx, payloadItems);
       
-      POS_CART = []; 
+      POS_CART = []; // Kosongkan keranjang setelah submit
       changeTab("transactions");
       
       apiRequest("createTransaction", { transaction: newTx, items: payloadItems, history: newHist, auto_wa: autoWa });
@@ -2357,6 +2385,7 @@
       const contentDiv = document.getElementById("rep-dynamic-content");
       contentDiv.innerHTML = "";
 
+      // IF GLOBAL IS SELECTED (SHOW COMPARISON TABLE)
       if (outletSel === "all") {
          let tableHTML = `
             <table class="w-full text-left border-collapse mb-8">
@@ -2415,14 +2444,20 @@
          contentDiv.innerHTML = tableHTML;
 
       } else {
+         // IF SINGLE BRANCH IS SELECTED (SHOW DETAILED P&L BREAKDOWN)
          filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
          filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
 
+         // Calculate Total Revenue (just to verify)
+         const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
+         
+         // 1. Group Revenue by Service Name using transactionItems
          let revGroups = {};
-         let calcRev = 0; 
+         let calcRev = 0; // Calculated revenue from items
          
          filteredTxs.forEach(t => {
             if (t.status_payment === "Lunas" || t.status_payment === "DP") {
+               // Find items for this transaction
                const txItems = APP_STATE.transactionItems.filter(item => item.transaction_id === t.id);
                
                if (txItems.length > 0) {
@@ -2432,6 +2467,7 @@
                        calcRev += item.total;
                    });
                } else {
+                   // Fallback for old dummy data that might not have items linked yet
                    if (!revGroups["Layanan Umum / Lama"]) revGroups["Layanan Umum / Lama"] = 0;
                    revGroups["Layanan Umum / Lama"] += t.paid;
                    calcRev += t.paid;
@@ -2453,6 +2489,7 @@
              }
          }
 
+         // 2. Group Expenses by Category
          let expGroups = {};
          let totalExp = 0;
          filteredExps.forEach(e => {
@@ -2552,10 +2589,9 @@
       document.getElementById("set-brand-icon").value = APP_STATE.settings.brand_icon || "🧼";
       document.getElementById("set-hero-headline").value = APP_STATE.settings.hero_headline || "";
       document.getElementById("set-hero-sub").value = APP_STATE.settings.hero_subheadline || "";
-      document.getElementById("set-hero-bg-type").value = APP_STATE.settings.hero_bg_type || "gradient";
-      document.getElementById("set-hero-bg-color1").value = APP_STATE.settings.hero_bg_color1 || "#fb923c";
-      document.getElementById("set-hero-bg-color2").value = APP_STATE.settings.hero_bg_color2 || "#ea580c";
-      document.getElementById("set-hero-title-color").value = APP_STATE.settings.hero_title_color || "#ffffff";
+      
+      // Load Global Theme Value
+      document.getElementById("set-global-theme").value = APP_STATE.settings.global_theme || "orange";
 
       if(document.getElementById("set-feat-title")) {
         document.getElementById("set-feat-title").value = APP_STATE.settings.feat_title || "";
@@ -2588,6 +2624,7 @@
     }
 
     async function saveGlobalSettings() {
+      // Tombol state (opsional jika ingin visual feedback saat nunggu)
       const btn = document.getElementById("btn-save-settings");
       const originalText = btn.innerText;
       btn.innerText = "Menyimpan & Sinkronisasi ke Cloud... ⏳";
@@ -2606,10 +2643,9 @@
       APP_STATE.settings.brand_icon = document.getElementById("set-brand-icon").value.trim() || "🧼";
       APP_STATE.settings.hero_headline = document.getElementById("set-hero-headline").value.trim();
       APP_STATE.settings.hero_subheadline = document.getElementById("set-hero-sub").value.trim();
-      APP_STATE.settings.hero_bg_type = document.getElementById("set-hero-bg-type").value;
-      APP_STATE.settings.hero_bg_color1 = document.getElementById("set-hero-bg-color1").value;
-      APP_STATE.settings.hero_bg_color2 = document.getElementById("set-hero-bg-color2").value;
-      APP_STATE.settings.hero_title_color = document.getElementById("set-hero-title-color").value;
+      
+      // Save Global Theme
+      APP_STATE.settings.global_theme = document.getElementById("set-global-theme").value;
 
       if(document.getElementById("set-feat-title")) {
         APP_STATE.settings.feat_title = document.getElementById("set-feat-title").value.trim();
@@ -2642,6 +2678,7 @@
 
       StorageEngine.saveStateToLocal();
       
+      // AWAIT the save to Google Sheets so it doesn't reload prematurely
       const res = await apiRequest("saveSettings", APP_STATE.settings);
       
       if (res && res.success) {
@@ -2650,10 +2687,8 @@
           window.location.reload();
         }, 1500);
       } else {
-        btn.innerText = originalText;
-        btn.disabled = false;
-        btn.classList.remove("opacity-70", "cursor-not-allowed");
-        showNotification("Gagal menyimpan ke server: " + (res.error || "Terjadi kesalahan"), "Error Jaringan", "❌");
+        // If it fails (e.g. offline mode), still reload for local cache update
+        window.location.reload();
       }
     }
 
@@ -2700,6 +2735,7 @@
       document.getElementById("rec-customer-name").innerText = cust.name;
       document.getElementById("rec-customer-phone").innerText = cust.phone;
 
+      // Render Multi-Item ke Struk
       const itemsContainer = document.getElementById("rec-items-container");
       itemsContainer.innerHTML = "";
       itemsArray.forEach(item => {
@@ -2732,11 +2768,13 @@
 
     function reprintInvoice(txId) {
       const tx = APP_STATE.transactions.find(t => t.id === txId);
+      // We must fetch the actual items to reprint accurately
       const itemsForTx = APP_STATE.transactionItems.filter(item => item.transaction_id === txId);
       
       if(itemsForTx.length > 0) {
           triggerDirectPrintReceiptMulti(tx, itemsForTx);
       } else {
+          // Fallback if older transaction didn't have items mapped
           const dummyItemArray = [{ service_name: "Layanan Umum (Data Lama)", qty: 1, price: tx.subtotal, total: tx.subtotal }];
           triggerDirectPrintReceiptMulti(tx, dummyItemArray);
       }
@@ -2793,6 +2831,7 @@
       if (params.get("invoice")) { switchView("tracking"); }
       else if (!APP_STATE.currentUser) { switchView("landing"); }
       
+      // Auto-sync diam-diam di background (silent mode)
       if (CONFIG.API_URL && !CONFIG.MOCK_MODE) {
         triggerForceSync(false);
       }
