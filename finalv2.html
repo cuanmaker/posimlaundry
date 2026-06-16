@@ -1258,7 +1258,7 @@
     }
 
     // ==========================================
-    // MODULE B: NOTIFIKASI KUSTOM (MODAL & TOAST)
+    // MODULE B: NOTIFIKASI KUSTOM PENGGANTI ALERT() & CONFIRM()
     // ==========================================
     function showNotification(msg, title = "Informasi Sistem", icon = "💡") {
       const modal = document.getElementById("custom-dialog");
@@ -1321,7 +1321,7 @@
         store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih telah mempercayakan pakaian Anda di iMersLonry!", 
         wa_provider: "none", wa_api_key: "", wa_sender: "", 
         landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", 
-        global_theme: "#f97316", hero_bg_type: "gradient", hero_bg_color1: "#fb923c", hero_bg_color2: "#f97316", hero_bg_color3: "#ea580c", hero_title_color: "#ffffff",
+        global_theme: "#f97316", hero_bg_type: "gradient", hero_bg_color1: "#fb923c", hero_bg_color2: "#ea580c", hero_bg_color3: "#c2410c", hero_title_color: "#ffffff",
         feat_title: "Layanan Premium Kami", feat_sub: "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.", feat1_icon: "🧺", feat1_title: "Cuci & Setrika", feat1_desc: "Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.", feat2_icon: "👔", feat2_title: "Dry Cleaning", feat2_desc: "Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.", feat3_icon: "🛏️", feat3_title: "Bed Cover & Selimut", feat3_desc: "Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.", feat4_icon: "👟", feat4_title: "Spa Sepatu", feat4_desc: "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.",
         ben_title: "Teknologi Sinkronisasi Multi-Outlet Instan", ben_desc: "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.", ben1_title: "Sinkronisasi Spreadsheet Otomatis", ben1_desc: "Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.", ben2_title: "Hak Akses Fleksibel Kasir & Owner", ben2_desc: "Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.", ben3_title: "Lacak Status via QR Code", ben3_desc: "Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.",
         testi_title: "Kisah Puas Pelanggan Setia kami", testi1_desc: "Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya!", testi1_name: "Sarah Rahmawati", testi1_role: "Ibu Rumah Tangga", testi2_desc: "Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian transparan.", testi2_name: "Bambang Susanto", testi2_role: "Pemilik Multi-Outlet", testi3_desc: "Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional.", testi3_name: "Rian Mahendra", testi3_role: "Kasir Laundry Utama",
@@ -1416,7 +1416,7 @@
         const data = await response.json();
         document.getElementById("sync-status").innerText = "Cloud Online Synced 🟢";
         if(data.wa_info && data.wa_info.success) {
-          showToast("WA Terkirim", "Notifikasi ke pelanggan sukses ditembak via API");
+          showNotification("Sistem berhasil menembakkan notifikasi WhatsApp otomatis via API Server ke pelanggan terkait!", "Tembakan WA Terkirim Sukses", "✅");
         }
         return data;
       } catch (e) {
@@ -1438,13 +1438,14 @@
 
       const res = await apiRequest("getAllData");
       if(res.success && res.data) {
+        // Gabungkan setting dari cloud
         APP_STATE.settings = Object.keys(res.data.settings || {}).length ? res.data.settings : APP_STATE.settings;
         APP_STATE.outlets = res.data.outlets || [];
         APP_STATE.users = res.data.users || [];
         APP_STATE.customers = res.data.customers || [];
         APP_STATE.services = res.data.services || [];
         APP_STATE.transactions = res.data.transactions || [];
-        APP_STATE.transactionItems = res.data.transaction_items || []; 
+        APP_STATE.transactionItems = res.data.transaction_items || []; // PULLING ITEMS NOW!
         APP_STATE.expenses = res.data.expenses || [];
         APP_STATE.statusHistory = res.data.status_history || [];
         
@@ -1609,7 +1610,7 @@
       }
       StorageEngine.saveStateToLocal();
 
-      showToast("Tersimpan!", "Kata sandi akun Anda berhasil diperbarui.");
+      showNotification("Rahasia sandi berhasil divalidasi keamanannya dan diperbarui sukses permanen!", "Pemulihan Keamanan Sukses", "✅");
       document.getElementById("prof-new-pwd").value = ""; document.getElementById("prof-conf-pwd").value = "";
       apiRequest("changePassword", { id: u.id, role: u.role, new_password: p1 });
     }
@@ -2603,7 +2604,7 @@
     }
 
     function exportReportToPDF() {
-        showToast("Membuat PDF", "Sedang memproses dokumen...");
+        showNotification("Sistem sedang mencetak dokumen ke PDF. Harap tunggu sebentar...", "Membuat PDF", "⏳");
         
         const element = document.getElementById('printable-report');
         const outletSel = document.getElementById("report-outlet-filter").value;
@@ -2620,9 +2621,10 @@
 
         if(window.html2pdf) {
             html2pdf().set(opt).from(element).save().then(() => {
-                // Done
+                closeNotification();
             });
         } else {
+            closeNotification();
             showNotification("Library pencetak PDF gagal dimuat. Pastikan koneksi internet aktif.", "Gagal Ekspor", "❌");
         }
     }
@@ -2680,7 +2682,6 @@
     }
 
     async function saveGlobalSettings() {
-      // 1. Simpan semua data dari form HTML ke memory (APP_STATE)
       APP_STATE.settings.store_name = document.getElementById("set-store-name").value.trim();
       APP_STATE.settings.store_address = document.getElementById("set-store-address").value.trim();
       APP_STATE.settings.store_phone = document.getElementById("set-store-phone").value.trim();
@@ -2731,16 +2732,10 @@
         }
       }
 
-      // 2. Tampilkan notif "Senyap"
       showToast("Menyimpan...", "Menunggu konfirmasi server cloud", "⏳");
-      
-      // 3. Simpan paksa ke Local Storage buat jaga-jaga
       StorageEngine.saveStateToLocal();
-      
-      // 4. Minta sistem NAHAN NAPAS nunggu Google Sheets kelar
       await apiRequest("saveSettings", APP_STATE.settings);
       
-      // 5. Kalau poin 4 udah sukses tembus, baru halaman nge-reload instan!
       window.location.reload();
     }
 
