@@ -97,7 +97,7 @@
         <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-md border border-white/30 mb-6 shadow-sm">
           ✨ Sistem Kasir & Pelacakan Cerdas
         </span>
-        <!-- innerHTML allows HTML tags inside string (e.g. <span style="..."> gradient colors) -->
+        <!-- innerHTML allows HTML tags inside string -->
         <h1 id="landing-headline" class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 drop-shadow-md transition-colors duration-500 text-white">
           Sistem POS Kasir & Portal Pelanggan Laundry
         </h1>
@@ -384,7 +384,7 @@
     <aside class="w-full md:w-64 bg-slate-900 text-slate-200 flex flex-col flex-shrink-0">
       <div class="p-6 border-b border-slate-800 flex justify-between items-center">
         <div class="flex items-center space-x-2">
-          <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center text-white overflow-hidden" id="sidebar-icon">🧼</div>
+          <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white text-xl overflow-hidden" id="sidebar-icon">🧼</div>
           <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
         <span id="online-indicator" class="w-2.5 h-2.5 rounded-full bg-sky-500" title="Online Sync Active"></span>
@@ -753,22 +753,22 @@
               <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Visual & Tema Warna</h3>
               
               <div class="p-4 bg-brand-50 border border-brand-100 rounded-xl mb-4">
-                <label class="block text-xs font-bold text-brand-700 uppercase mb-1">Pilih Warna Global Sistem (Otomatis Racik)</label>
-                <p class="text-[10px] text-brand-600 mb-2">Sistem akan secara cerdas membuat warna muda & gelap berdasarkan pilihan Anda untuk diterapkan ke seluruh tombol & tabel.</p>
+                <label class="block text-xs font-bold text-brand-700 uppercase mb-1">Warna Tema Global Aplikasi</label>
+                <p class="text-[10px] text-brand-600 mb-2">Sistem AI akan otomatis meracik warna terang/gelap untuk tombol, border, dan tabel sesuai 1 warna utama yang Anda pilih.</p>
                 <input id="set-global-theme" type="color" class="w-full h-12 p-1 border rounded-lg bg-white cursor-pointer" />
               </div>
 
-              <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero Beranda</label>
+              <div class="border-t border-slate-100 pt-4 mt-2">
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Latar Belakang (Hero Background)</label>
                 <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
-                  <option value="gradient">Gradient (Dua / Tiga Warna)</option>
-                  <option value="solid">Solid (Satu Warna Saja)</option>
+                  <option value="gradient">Gradient Modern (Tiga Warna)</option>
+                  <option value="solid">Warna Solid (Satu Warna)</option>
                 </select>
               </div>
               <div class="grid grid-cols-3 gap-2">
-                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Warna 1 (Primer)</label><input id="set-hero-bg-color1" type="color" class="w-full h-10 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Warna 2 (Sekunder)</label><input id="set-hero-bg-color2" type="color" class="w-full h-10 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
-                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Warna 3 (Tersier)</label><input id="set-hero-bg-color3" type="color" class="w-full h-10 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Warna Primer</label><input id="set-hero-bg-color1" type="color" class="w-full h-10 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Warna Sekunder</label><input id="set-hero-bg-color2" type="color" class="w-full h-10 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
+                <div><label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Warna Tersier</label><input id="set-hero-bg-color3" type="color" class="w-full h-10 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
               </div>
               <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Warna Teks Judul (Headline)</label><input id="set-hero-title-color" type="color" class="w-full h-10 p-1 border rounded-xl bg-slate-50 cursor-pointer" /></div>
             </div>
@@ -1189,7 +1189,7 @@
   <!-- ============================================== -->
   <script>
     // ==========================================
-    // MODULE A: CONFIG & GLOBAL STATES
+    // MODULE A: CONFIG & GLOBAL STATES & THEME
     // ==========================================
     const CONFIG = {
       API_URL: "https://script.google.com/macros/s/AKfycbyh-3ba4r8cRJkVnMC0afWPBtq92HnNAJnSMo62GoXFx9hcjQxIq7FUwNmspB-OlljO/exec", 
@@ -1206,6 +1206,44 @@
 
     function formatRupiah(amount) {
       return "Rp " + Math.round(amount).toLocaleString("id-ID");
+    }
+
+    // AI COLOR MIXER ENGINE
+    function mixColors(r1, g1, b1, r2, g2, b2, weight) {
+      const w1 = weight;
+      const w2 = 1 - w1;
+      const r = Math.round(r1 * w1 + r2 * w2);
+      const g = Math.round(g1 * w1 + g2 * w2);
+      const b = Math.round(b1 * w1 + b2 * w2);
+      return `${r} ${g} ${b}`; // Spaced string for tailwind RGB variable
+    }
+
+    function applyCustomTheme(hex) {
+      if (!hex) hex = "#f97316"; // Default orange
+      
+      // Parse Hex to RGB
+      let r = parseInt(hex.slice(1, 3), 16);
+      let g = parseInt(hex.slice(3, 5), 16);
+      let b = parseInt(hex.slice(5, 7), 16);
+
+      // Generate Shades: mix with white for light, black for dark
+      const shades = {
+        50: mixColors(255, 255, 255, r, g, b, 0.95),
+        100: mixColors(255, 255, 255, r, g, b, 0.90),
+        200: mixColors(255, 255, 255, r, g, b, 0.75),
+        300: mixColors(255, 255, 255, r, g, b, 0.60),
+        400: mixColors(255, 255, 255, r, g, b, 0.30),
+        500: `${r} ${g} ${b}`, // Base color
+        600: mixColors(0, 0, 0, r, g, b, 0.10),
+        700: mixColors(0, 0, 0, r, g, b, 0.25),
+        800: mixColors(0, 0, 0, r, g, b, 0.40),
+        900: mixColors(0, 0, 0, r, g, b, 0.50),
+      };
+
+      const root = document.documentElement;
+      for (const [shade, val] of Object.entries(shades)) {
+        root.style.setProperty(`--b-${shade}`, val);
+      }
     }
 
     // ==========================================
@@ -1273,7 +1311,6 @@
         wa_provider: "none", wa_api_key: "", wa_sender: "", 
         landing_status: "ON", brand_icon: "🧼", hero_headline: "Sistem POS Kasir & Portal Pelanggan Laundry", hero_subheadline: "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!", 
         
-        // DEFAULT WARNA ORANGE HEX: #f97316
         global_theme: "#f97316", 
         hero_bg_type: "gradient", hero_bg_color1: "#fb923c", hero_bg_color2: "#f97316", hero_bg_color3: "#ea580c", hero_title_color: "#ffffff",
         
@@ -1384,7 +1421,9 @@
       }
       
       document.getElementById("sync-status").innerText = "Menarik Data... ⬇️";
-      if (isManual) showNotification("Sedang menarik riwayat transaksi & data terbaru dari Google Sheets...", "Sinkronisasi Cloud", "⏳");
+      if (isManual) {
+        showNotification("Sedang menarik riwayat transaksi & data terbaru dari Google Sheets...", "Sinkronisasi Cloud", "⏳");
+      }
 
       const res = await apiRequest("getAllData");
       if(res.success && res.data) {
@@ -1439,49 +1478,22 @@
       }
     }
 
-    // ==========================================
-    // MODULE: AI COLOR GENERATOR
-    // ==========================================
-    function applyCustomTheme(hexColor) {
-        if (!hexColor || !hexColor.startsWith('#')) hexColor = '#f97316'; // Fallback
-        
-        const hex = hexColor.replace('#', '');
-        const r = parseInt(hex.substring(0,2), 16);
-        const g = parseInt(hex.substring(2,4), 16);
-        const b = parseInt(hex.substring(4,6), 16);
-
-        // Mix function for shade generation
-        const mix = (c1, c2, weight) => Math.round(c1 * (1 - weight) + c2 * weight);
-        
-        const root = document.documentElement;
-        // Generate beautiful shades dynamically
-        root.style.setProperty('--b-50', `${mix(r, 255, 0.95)} ${mix(g, 255, 0.95)} ${mix(b, 255, 0.95)}`);
-        root.style.setProperty('--b-100', `${mix(r, 255, 0.85)} ${mix(g, 255, 0.85)} ${mix(b, 255, 0.85)}`);
-        root.style.setProperty('--b-200', `${mix(r, 255, 0.65)} ${mix(g, 255, 0.65)} ${mix(b, 255, 0.65)}`);
-        root.style.setProperty('--b-300', `${mix(r, 255, 0.45)} ${mix(g, 255, 0.45)} ${mix(b, 255, 0.45)}`);
-        root.style.setProperty('--b-400', `${mix(r, 255, 0.25)} ${mix(g, 255, 0.25)} ${mix(b, 255, 0.25)}`);
-        root.style.setProperty('--b-500', `${r} ${g} ${b}`); // Base Color
-        root.style.setProperty('--b-600', `${mix(r, 0, 0.15)} ${mix(g, 0, 0.15)} ${mix(b, 0, 0.15)}`);
-        root.style.setProperty('--b-700', `${mix(r, 0, 0.35)} ${mix(g, 0, 0.35)} ${mix(b, 0, 0.35)}`);
-        root.style.setProperty('--b-800', `${mix(r, 0, 0.55)} ${mix(g, 0, 0.55)} ${mix(b, 0, 0.55)}`);
-        root.style.setProperty('--b-900', `${mix(r, 0, 0.75)} ${mix(g, 0, 0.75)} ${mix(b, 0, 0.75)}`);
-    }
-
+    // Fungsi canggih untuk membuang kotak bayangan bila itu adalah URL gambar
     function renderBrandIcon(val, elId) {
       const el = document.getElementById(elId);
       if(!el) return;
-      if(val && (val.startsWith("http://") || val.startsWith("https://"))) {
+      if(val && (val.startsWith("http://") || val.startsWith("https://") || val.startsWith("data:"))) {
         el.innerHTML = `<img src="${val}" class="h-full w-full object-contain" onerror="this.outerHTML='🧼'" />`;
-        // Hapus background dan shadow jika pakai URL (Otomatis Transparan)
-        el.classList.remove("bg-brand-500", "shadow-lg", "shadow-brand-500/20", "text-white");
-        el.classList.add("bg-transparent");
+        el.className = "w-10 h-10 flex items-center justify-center overflow-hidden bg-transparent shadow-none";
+        el.style.background = "transparent";
+        el.style.boxShadow = "none";
       } else {
         el.innerHTML = val || "🧼";
-        el.classList.add("bg-brand-500", "shadow-lg", "shadow-brand-500/20", "text-white");
-        el.classList.remove("bg-transparent");
+        el.className = "w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-brand-500/20 overflow-hidden";
+        el.style.background = "";
+        el.style.boxShadow = "";
       }
     }
-
 
     // ==========================================
     // MODULE E: AUTHENTICATION & LOGIN LOGIC
@@ -1555,6 +1567,7 @@
         closeLoginModal();
         setupUIAccessRights();
         switchView("app");
+        // Silent Pull on background without popup
         triggerForceSync(false);
       } else {
         showNotification("Kredensial Username ID atau Kata Sandi Security salah kombinasinya! Ulangi atau intip contekan", "Gagal Identifikasi", "❌");
@@ -1635,6 +1648,7 @@
       // APPLY CUSTOM COLOR THEME!
       applyCustomTheme(set.global_theme);
       
+      // Update Title & Icons
       document.getElementById("landing-brand-text").innerText = set.store_name || "iMersLonry";
       renderBrandIcon(set.brand_icon, "landing-icon-badge");
       document.getElementById("sidebar-brand").innerText = set.store_name || "iMersLonry";
@@ -1642,10 +1656,10 @@
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
-      // innerHTML digunakan agar span color gradient bisa terbaca
+      // Hero Section Update (innerHTML diizinkan agar bisa memasukkan tag SPAN Gradient Teks)
       document.getElementById("landing-headline").innerHTML = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
       document.getElementById("landing-subheadline").innerHTML = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
-
+      
       const heroSec = document.getElementById("hero-section");
       if (set.hero_bg_type === "solid") {
         heroSec.style.background = set.hero_bg_color1 || "#fb923c";
@@ -1654,35 +1668,58 @@
       }
       document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
 
-      // Features Update
+      // Features Update (Layanan Premium Kami)
       if(document.getElementById("lp-feat-title")) {
         document.getElementById("lp-feat-title").innerText = set.feat_title || "Layanan Premium Kami";
         document.getElementById("lp-feat-sub").innerText = set.feat_sub || "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.";
-        for(let i=1; i<=4; i++){
-          document.getElementById(`lp-feat${i}-icon`).innerText = set[`feat${i}_icon`] || "🧺";
-          document.getElementById(`lp-feat${i}-title`).innerText = set[`feat${i}_title`] || "Layanan";
-          document.getElementById(`lp-feat${i}-desc`).innerText = set[`feat${i}_desc`] || "Deskripsi";
-        }
+        
+        document.getElementById("lp-feat1-icon").innerText = set.feat1_icon || "🧺";
+        document.getElementById("lp-feat1-title").innerText = set.feat1_title || "Cuci & Setrika";
+        document.getElementById("lp-feat1-desc").innerText = set.feat1_desc || "Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.";
+        
+        document.getElementById("lp-feat2-icon").innerText = set.feat2_icon || "👔";
+        document.getElementById("lp-feat2-title").innerText = set.feat2_title || "Dry Cleaning";
+        document.getElementById("lp-feat2-desc").innerText = set.feat2_desc || "Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.";
+        
+        document.getElementById("lp-feat3-icon").innerText = set.feat3_icon || "🛏️";
+        document.getElementById("lp-feat3-title").innerText = set.feat3_title || "Bed Cover & Selimut";
+        document.getElementById("lp-feat3-desc").innerText = set.feat3_desc || "Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.";
+        
+        document.getElementById("lp-feat4-icon").innerText = set.feat4_icon || "👟";
+        document.getElementById("lp-feat4-title").innerText = set.feat4_title || "Spa Sepatu";
+        document.getElementById("lp-feat4-desc").innerText = set.feat4_desc || "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.";
       }
 
-      // Benefits Update 
+      // Benefits Update (Teknologi Sinkronisasi)
       if(document.getElementById("lp-ben-title")) {
         document.getElementById("lp-ben-title").innerText = set.ben_title || "Teknologi Sinkronisasi Multi-Outlet Instan";
         document.getElementById("lp-ben-desc").innerText = set.ben_desc || "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.";
-        for(let i=1; i<=3; i++){
-          document.getElementById(`lp-ben${i}-title`).innerText = set[`ben${i}_title`] || "Fitur";
-          document.getElementById(`lp-ben${i}-desc`).innerText = set[`ben${i}_desc`] || "Deskripsi";
-        }
+        
+        document.getElementById("lp-ben1-title").innerText = set.ben1_title || "Sinkronisasi Spreadsheet Otomatis";
+        document.getElementById("lp-ben1-desc").innerText = set.ben1_desc || "Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.";
+        
+        document.getElementById("lp-ben2-title").innerText = set.ben2_title || "Hak Akses Fleksibel Kasir & Owner";
+        document.getElementById("lp-ben2-desc").innerText = set.ben2_desc || "Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.";
+        
+        document.getElementById("lp-ben3-title").innerText = set.ben3_title || "Lacak Status via QR Code";
+        document.getElementById("lp-ben3-desc").innerText = set.ben3_desc || "Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.";
       }
 
       // Testimonial Update
       if(document.getElementById("lp-testi-title")) {
         document.getElementById("lp-testi-title").innerText = set.testi_title || "Kisah Puas Pelanggan Setia kami";
-        for(let i=1; i<=3; i++){
-          document.getElementById(`lp-testi${i}-desc`).innerText = `"${set[`testi${i}_desc`] || 'Sangat memuaskan dan cepat'}"`;
-          document.getElementById(`lp-testi${i}-name`).innerText = set[`testi${i}_name`] || "Pelanggan";
-          document.getElementById(`lp-testi${i}-role`).innerText = set[`testi${i}_role`] || "Role";
-        }
+        
+        document.getElementById("lp-testi1-desc").innerText = `"${set.testi1_desc || 'Sangat memuaskan dan cepat'}"`;
+        document.getElementById("lp-testi1-name").innerText = set.testi1_name || "Sarah Rahmawati";
+        document.getElementById("lp-testi1-role").innerText = set.testi1_role || "Ibu Rumah Tangga";
+        
+        document.getElementById("lp-testi2-desc").innerText = `"${set.testi2_desc || 'Sistem kasirnya keren'}"`;
+        document.getElementById("lp-testi2-name").innerText = set.testi2_name || "Bambang Susanto";
+        document.getElementById("lp-testi2-role").innerText = set.testi2_role || "Pemilik Multi-Outlet";
+        
+        document.getElementById("lp-testi3-desc").innerText = `"${set.testi3_desc || 'Pelacakan via QR code gampang banget'}"`;
+        document.getElementById("lp-testi3-name").innerText = set.testi3_name || "Rian Mahendra";
+        document.getElementById("lp-testi3-role").innerText = set.testi3_role || "Kasir Laundry Utama";
       }
       
       const waNum = String(set.store_phone || "").replace(/[^0-9]/g, "");
@@ -1698,6 +1735,7 @@
       }
     }
 
+    // Render Kartu Harga dengan Format GROUPED TABLE
     function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
@@ -1709,6 +1747,7 @@
         return;
       }
 
+      // Grouping layanan berdasarkan Kategori
       const grouped = {};
       activeServices.forEach(s => {
         const cat = s.category || "Layanan Umum";
@@ -2027,7 +2066,6 @@
         total: item.total
       }));
       
-      // SAVE TO LOCAL APP_STATE IMMEDIATELY FOR P&L REPORT
       APP_STATE.transactionItems = APP_STATE.transactionItems.concat(payloadItems);
 
       const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: newTxId, status: "Diterima", note: "Nota cucian telah diterbitkan dari keranjang meja registrasi mesin kasir.", updated_by: APP_STATE.currentUser.name, updated_at: dateString };
@@ -2452,16 +2490,13 @@
          filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
          filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
 
-         // Calculate Total Revenue (just to verify)
          const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? t.paid : 0), 0);
          
-         // 1. Group Revenue by Service Name using transactionItems
          let revGroups = {};
-         let calcRev = 0; // Calculated revenue from items
+         let calcRev = 0;
          
          filteredTxs.forEach(t => {
             if (t.status_payment === "Lunas" || t.status_payment === "DP") {
-               // Find items for this transaction
                const txItems = APP_STATE.transactionItems.filter(item => item.transaction_id === t.id);
                
                if (txItems.length > 0) {
@@ -2471,7 +2506,6 @@
                        calcRev += item.total;
                    });
                } else {
-                   // Fallback for old dummy data that might not have items linked yet
                    if (!revGroups["Layanan Umum / Lama"]) revGroups["Layanan Umum / Lama"] = 0;
                    revGroups["Layanan Umum / Lama"] += t.paid;
                    calcRev += t.paid;
@@ -2493,7 +2527,6 @@
              }
          }
 
-         // 2. Group Expenses by Category
          let expGroups = {};
          let totalExp = 0;
          filteredExps.forEach(e => {
@@ -2594,7 +2627,6 @@
       document.getElementById("set-hero-headline").value = APP_STATE.settings.hero_headline || "";
       document.getElementById("set-hero-sub").value = APP_STATE.settings.hero_subheadline || "";
       
-      // Load NEW Global Theme HEX
       document.getElementById("set-global-theme").value = APP_STATE.settings.global_theme || "#f97316";
       
       document.getElementById("set-hero-bg-type").value = APP_STATE.settings.hero_bg_type || "gradient";
@@ -2652,7 +2684,6 @@
       APP_STATE.settings.hero_headline = document.getElementById("set-hero-headline").value.trim();
       APP_STATE.settings.hero_subheadline = document.getElementById("set-hero-sub").value.trim();
       
-      // Save NEW Global Theme
       APP_STATE.settings.global_theme = document.getElementById("set-global-theme").value;
       
       APP_STATE.settings.hero_bg_type = document.getElementById("set-hero-bg-type").value;
@@ -2690,18 +2721,14 @@
         }
       }
 
+      // Save to storage first
       StorageEngine.saveStateToLocal();
       
-      const res = await apiRequest("saveSettings", APP_STATE.settings);
+      // Async wait connection before refreshing
+      showToast("Tersimpan di Lokal", "Mengirimkan sinkronisasi ke server...", "⏳");
+      await apiRequest("saveSettings", APP_STATE.settings);
       
-      if (res && res.success) {
-        showToast("Pengaturan Disimpan!", "Data aman di Google Sheets. Memuat ulang sistem...", "💾");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
-      } else {
-        window.location.reload();
-      }
+      window.location.reload();
     }
 
     function openStatusModal(txId) {
@@ -2780,13 +2807,11 @@
 
     function reprintInvoice(txId) {
       const tx = APP_STATE.transactions.find(t => t.id === txId);
-      // We must fetch the actual items to reprint accurately
       const itemsForTx = APP_STATE.transactionItems.filter(item => item.transaction_id === txId);
       
       if(itemsForTx.length > 0) {
           triggerDirectPrintReceiptMulti(tx, itemsForTx);
       } else {
-          // Fallback if older transaction didn't have items mapped
           const dummyItemArray = [{ service_name: "Layanan Umum (Data Lama)", qty: 1, price: tx.subtotal, total: tx.subtotal }];
           triggerDirectPrintReceiptMulti(tx, dummyItemArray);
       }
@@ -2843,7 +2868,6 @@
       if (params.get("invoice")) { switchView("tracking"); }
       else if (!APP_STATE.currentUser) { switchView("landing"); }
       
-      // Auto-sync diam-diam di background (silent mode)
       if (CONFIG.API_URL && !CONFIG.MOCK_MODE) {
         triggerForceSync(false);
       }
