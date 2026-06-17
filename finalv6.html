@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>iMersLonry POS - Kasir & Lacak Status Laundry</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Tailwind Custom Colors Integration (STATIC, 100% SAFE) -->
   <script>
     tailwind.config = {
       theme: {
@@ -25,12 +22,9 @@
     }
   </script>
 
-  <!-- QRCode.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <!-- HTML2PDF Library for Report Generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- Google Fonts: Montserrat & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -45,9 +39,9 @@
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     
-    /* SOLUSI KERTAS KOSONG SAAT PRINT & ANTI BOCOR CSS */
+    /* SOLUSI KERTAS KOSONG SAAT PRINT & ANTI BOCOR CSS TUNTAS */
     @media print {
-      body > *:not(#print-receipt-section) { 
+      body > div:not(#print-receipt-section) { 
         display: none !important; 
       }
       #print-receipt-section { 
@@ -72,7 +66,6 @@
     <header class="sticky top-0 bg-white/95 backdrop-blur-md border-b border-slate-100 z-40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div class="flex items-center space-x-2">
-          <!-- Pembungkus logo bersih tanpa background warna/shadow -->
           <div class="w-12 h-12 flex items-center justify-center text-4xl overflow-hidden bg-transparent shadow-none" id="landing-icon-badge">🧼</div>
           <span class="text-2xl font-bold tracking-tight text-brand-600 logo-font" id="landing-brand-text">iMersLonry</span>
         </div>
@@ -87,7 +80,6 @@
       </div>
     </header>
 
-    <!-- HERO SECTION DINAMIS -->
     <section id="hero-section" class="relative py-24 lg:py-36 overflow-hidden text-center shadow-inner transition-colors duration-500" style="background: linear-gradient(135deg, #fb923c, #ea580c);">
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] opacity-30"></div>
       
@@ -109,9 +101,7 @@
       </div>
     </section>
 
-    <!-- WRAPPER UNTUK KONTEN PROMO (BISA DI ON/OFF) -->
     <div id="landing-promo-sections">
-      <!-- Services Section (Teks Dinamis) -->
       <section id="services" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-4" id="lp-feat-title">Layanan Premium Kami</h2>
@@ -141,7 +131,6 @@
         </div>
       </section>
 
-      <!-- Benefits Section (Teks Dinamis) -->
       <section id="benefits" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
           <div class="space-y-6">
@@ -192,19 +181,16 @@
         </div>
       </section>
 
-      <!-- Pricing / Packages Section -->
       <section id="pricing" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-16">
             <h2 class="text-3xl font-bold text-slate-900 mb-4">Daftar Paket Harga Transparan</h2>
             <p class="text-slate-600 max-w-xl mx-auto">Harga terjangkau dengan mutu cucian kelas bintang lima. Tanpa biaya tambahan tersembunyi.</p>
           </div>
-          <!-- GRID KARTU HARGA DINAMIS BERDASARKAN KATEGORI -->
           <div id="landing-pricing-grid" class="max-w-5xl mx-auto"></div>
         </div>
       </section>
 
-      <!-- Testimonials Section -->
       <section id="testimonials" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 class="text-3xl font-bold text-slate-900 mb-16" id="lp-testi-title">Kisah Puas Pelanggan Setia kami</h2>
@@ -230,9 +216,8 @@
           </div>
         </div>
       </section>
-    </div> <!-- Akhir Wrapper Konten Promo Dinamis -->
+    </div> 
 
-    <!-- Footer -->
     <footer class="bg-slate-900 text-white py-12 border-t border-slate-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
         <div>
@@ -255,7 +240,6 @@
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl border border-slate-100 relative mx-4">
       <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl">✕</button>
       
-      <!-- Tab Switcher -->
       <div class="flex bg-slate-100 p-1 rounded-lg mb-6">
         <button id="tab-btn-karyawan" onclick="switchLoginTab('karyawan')" class="flex-1 py-2 text-sm font-bold rounded-md bg-white shadow text-brand-600 transition">Staf Karyawan</button>
         <button id="tab-btn-pelanggan" onclick="switchLoginTab('pelanggan')" class="flex-1 py-2 text-sm font-bold rounded-md text-slate-500 hover:text-slate-800 transition">Pelanggan</button>
@@ -295,7 +279,6 @@
     </div>
   </div>
 
-  <!-- Forgot Password Modal -->
   <div id="forgot-pwd-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-sm w-full p-8 shadow-2xl relative mx-4">
       <button onclick="closeForgotPwdModal()" class="absolute top-4 right-4 text-slate-400 text-xl">✕</button>
@@ -375,10 +358,8 @@
   <!-- ============================================== -->
   <div id="view-app" class="hidden min-h-screen bg-slate-50 flex relative w-full overflow-hidden">
     
-    <!-- Sidebar Overlay for Mobile -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
 
-    <!-- Sidebar Menu -->
     <aside id="app-sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-72 lg:w-64 bg-slate-900 text-slate-200 flex flex-col flex-shrink-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 h-screen shadow-2xl lg:shadow-none">
       <div class="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950/50">
         <div class="flex items-center space-x-2">
@@ -401,16 +382,13 @@
         </div>
       </div>
 
-      <!-- Navigation Links -->
       <nav class="flex-1 p-4 space-y-1 overflow-y-auto" id="sidebar-nav">
-        <!-- Kasir/Admin Navs -->
         <button onclick="changeTab('dashboard')" class="nav-item nav-karyawan flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>📊</span> <span>Dasbor Utama</span></button>
         <button onclick="changeTab('new-transaction')" class="nav-item nav-karyawan flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🛒</span> <span>Pesanan Baru</span></button>
         <button onclick="changeTab('transactions')" class="nav-item nav-karyawan flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>📃</span> <span>Daftar Transaksi</span></button>
         <button onclick="changeTab('customers')" class="nav-item nav-karyawan flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>👥</span> <span>Pelanggan</span></button>
         <button onclick="changeTab('services')" class="nav-item nav-karyawan flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>⚡</span> <span>Daftar Paket</span></button>
         
-        <!-- Khusus Owner / Admin Berdasarkan Otoritas Tertentu -->
         <button onclick="changeTab('outlets')" class="nav-item nav-owner-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🏢</span> <span>Manajemen Cabang</span></button>
         <button onclick="changeTab('settings')" class="nav-item nav-owner-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>⚙️</span> <span>Pengaturan Sistem</span></button>
 
@@ -418,10 +396,8 @@
         <button onclick="changeTab('reports')" class="nav-item nav-admin-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>📈</span> <span>Laporan Keuangan</span></button>
         <button onclick="changeTab('users')" class="nav-item nav-admin-only flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🔑</span> <span>Akses Staf</span></button>
 
-        <!-- Pelanggan Navs -->
         <button onclick="changeTab('customer-portal')" class="nav-item nav-pelanggan hidden flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🧺</span> <span>Cucian Saya</span></button>
         
-        <!-- General Navs -->
         <button onclick="changeTab('profile-security')" class="nav-item flex items-center space-x-3 w-full px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition"><span>🛡️</span> <span>Ganti Sandi Akun</span></button>
 
         <div class="pt-4 border-t border-slate-800 mt-4">
@@ -431,10 +407,8 @@
     </aside>
 
     <main class="flex-1 flex flex-col h-screen w-full lg:w-[calc(100%-16rem)] overflow-hidden bg-slate-50 relative">
-      <!-- Top header bar inside panel -->
       <header class="bg-white border-b border-slate-200 py-3 lg:py-4 px-4 lg:px-8 flex justify-between items-center shadow-sm sticky top-0 z-30">
         <div class="flex items-center gap-3">
-          <!-- Hamburger Button for Mobile -->
           <button onclick="toggleSidebar()" class="lg:hidden text-slate-600 hover:text-brand-600 focus:outline-none p-1.5 rounded-lg bg-slate-100">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </button>
@@ -456,7 +430,7 @@
           <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <div class="bg-brand-600 p-5 rounded-2xl border border-brand-700 shadow-lg col-span-2 md:col-span-2 relative overflow-hidden text-white">
               <div class="relative z-10">
-                <span class="text-xs text-brand-200 font-bold block uppercase tracking-wider">Omset Kas Hari Ini</span>
+                <span class="text-xs text-brand-200 font-bold block uppercase tracking-wider">Omset Hari Ini (Masuk Kas)</span>
                 <span class="text-2xl font-bold block mt-1" id="dash-revenue">Rp 0</span>
                 <span class="text-[10px] text-brand-200 mt-2 block border-t border-brand-500 pt-1">Total Sepanjang Waktu: <b id="dash-total-revenue-all" class="text-white">Rp 0</b></span>
               </div>
@@ -552,7 +526,6 @@
               </div>
             </div>
 
-            <!-- Input Paket ke Keranjang -->
             <div class="bg-brand-50 p-4 rounded-xl border border-brand-100">
               <div class="grid md:grid-cols-4 gap-4 items-end">
                 <div class="md:col-span-2">
@@ -571,7 +544,6 @@
               </div>
             </div>
 
-            <!-- Table Daftar Keranjang (Cart) -->
             <div class="border border-slate-200 rounded-xl overflow-hidden">
               <table class="w-full text-left text-sm">
                 <thead class="bg-slate-100 text-slate-500 text-xs uppercase font-bold">
@@ -614,7 +586,6 @@
             </label>
           </div>
 
-          <!-- Checkout Cart Summary Card -->
           <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl flex flex-col justify-between">
             <div>
               <h4 class="text-sm font-bold uppercase text-brand-400 tracking-wider mb-6">RINGKASAN BIAYA</h4>
@@ -638,7 +609,6 @@
 
         <!-- TAB: SETTINGS & WA GATEWAY (ALL DYNAMIC CONFIGS HERE) -->
         <div id="tab-settings" class="tab-content hidden space-y-6">
-          <!-- Konfigurasi Teks Keterangan & Identitas -->
           <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
             <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
               Identitas Toko & Konfigurasi Landing Page
@@ -662,7 +632,6 @@
             </div>
           </details>
 
-          <!-- Konfigurasi Layanan Premium (Features) -->
           <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
             <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
               Teks Promo - 4 Layanan Premium Kami
@@ -673,7 +642,6 @@
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Judul Utama Section</label><input id="set-feat-title" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
                 <div><label class="block text-xs font-bold text-slate-500 uppercase mb-1">Subjudul / Penjelasan Singkat</label><input id="set-feat-sub" type="text" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" /></div>
               </div>
-              <!-- Box 1 & 2 -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl">
                 <div>
                   <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 1: Ikon & Judul</label>
@@ -692,7 +660,6 @@
                   <input id="set-feat2-desc" type="text" class="w-full p-2 border rounded-lg text-sm" placeholder="Deskripsi Box 2">
                 </div>
               </div>
-              <!-- Box 3 & 4 -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl">
                 <div>
                   <label class="block text-xs font-bold text-brand-600 uppercase mb-1">Box 3: Ikon & Judul</label>
@@ -714,7 +681,6 @@
             </div>
           </details>
 
-          <!-- Konfigurasi Benefits & Keunggulan -->
           <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
             <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
               Teks Promo - Teknologi & Keunggulan (Benefits)
@@ -731,7 +697,6 @@
             </div>
           </details>
 
-          <!-- Konfigurasi Testimonial & Keterangan Harga -->
           <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
             <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
               Teks Promo - Testimoni Pelanggan & Kaki Harga
@@ -765,11 +730,9 @@
           </details>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Tema Warna (Hanya Hero) -->
             <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-              <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Visual Hero</h3>
+              <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Visual & Tema Beranda</h3>
               
-              <!-- HERO CUSTOMIZATION (3 Colors) -->
               <div class="border-t border-slate-100 pt-4 mt-2">
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero (Beranda Atas)</label>
                 <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
@@ -786,7 +749,6 @@
             </div>
 
             <div class="space-y-6">
-              <!-- Konfigurasi WhatsApp API -->
               <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
                 <h3 class="font-bold text-slate-800 text-lg">Konfigurasi WhatsApp API Gateway</h3>
                 <div>
@@ -810,7 +772,6 @@
           </div>
           
           <div class="bg-brand-50 p-6 rounded-2xl border border-brand-200">
-            <!-- ASYNC SAVE BUTTON -->
             <button id="btn-save-settings" onclick="saveGlobalSettings()" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition shadow-lg shadow-brand-500/20">Simpan Semua Pengaturan ke Server Sekarang</button>
           </div>
 
@@ -921,7 +882,6 @@
             </div>
           </div>
 
-          <!-- Printable Area P&L Report -->
           <div id="printable-report" class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm">
             <div class="text-center mb-8 border-b border-slate-200 pb-6">
                 <h2 class="text-2xl font-bold text-slate-800 uppercase tracking-wide" id="rep-print-title">LAPORAN LABA RUGI</h2>
@@ -952,8 +912,6 @@
   <!-- ============================================== -->
   <!-- 5. DIALOGS & ACTION POPUPS (MODALS) -->
   <!-- ============================================== -->
-  
-  <!-- Custom Notification Dialog (Replaces Alert) -->
   <div id="custom-dialog" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300" style="z-index: 9999;">
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
       <div id="dialog-icon" class="text-5xl mb-2">⚠️</div>
@@ -965,7 +923,6 @@
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION (Senyap di pojok kanan bawah) -->
   <div id="toast-notification" class="fixed bottom-6 right-6 z-[9999] transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
     <div class="bg-slate-900/95 backdrop-blur-md text-white px-5 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-slate-700">
       <div id="toast-icon-box" class="text-3xl bg-slate-800 p-2 rounded-xl">✅</div>
@@ -973,7 +930,6 @@
     </div>
   </div>
 
-  <!-- Customer Create/Edit Modal -->
   <div id="modal-customer" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-customer-title">Registrasi Pelanggan</h3>
@@ -991,7 +947,6 @@
     </div>
   </div>
 
-  <!-- Service Edit/Create Modal -->
   <div id="modal-service" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-service-title">Tambahkan Paket Jasa</h3>
@@ -1015,7 +970,6 @@
     </div>
   </div>
 
-  <!-- Outlet Modal -->
   <div id="modal-outlet" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-outlet-title">Ekspansi Posisi Cabang Baru</h3>
@@ -1033,7 +987,6 @@
     </div>
   </div>
 
-  <!-- Expense Modal -->
   <div id="modal-expense" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
       <h3 class="text-xl font-bold text-slate-900 mb-4">Pelaporan Pengeluaran Uang Laci</h3>
@@ -1062,7 +1015,6 @@
     </div>
   </div>
 
-  <!-- User Modal -->
   <div id="modal-user" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
       <h3 class="text-xl font-bold text-slate-900 mb-4" id="modal-user-title">Pembuatan Akses Karyawan Baru</h3>
@@ -1082,7 +1034,6 @@
     </div>
   </div>
 
-  <!-- Update Transaction Status / Payment Modal -->
   <div id="modal-update-status" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
     <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative mx-4">
       <h3 class="text-xl font-bold text-slate-900 mb-4">Pengubahan Status Laju Pesanan</h3>
@@ -1196,9 +1147,6 @@
   <!-- 7. APPLICATION JS LOGIC CONSOLIDATION -->
   <!-- ============================================== -->
   <script>
-    // ==========================================
-    // MODULE A: CONFIG & GLOBAL STATES
-    // ==========================================
     const CONFIG = {
       API_URL: "https://script.google.com/macros/s/AKfycbyh-3ba4r8cRJkVnMC0afWPBtq92HnNAJnSMo62GoXFx9hcjQxIq7FUwNmspB-OlljO/exec", 
       MOCK_MODE: false,
@@ -1212,6 +1160,7 @@
 
     let POS_CART = [];
 
+    // FIX TANGGAL LOKAL (WIB/WITA/WIT)
     function getLocalDateString(dateObj) {
         const yyyy = dateObj.getFullYear();
         const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -1237,9 +1186,6 @@
       if(overlay) overlay.classList.toggle("hidden");
     }
 
-    // ==========================================
-    // MODULE B: NOTIFIKASI KUSTOM PENGGANTI ALERT() & CONFIRM()
-    // ==========================================
     function showNotification(msg, title = "Informasi Sistem", icon = "💡") {
       const modal = document.getElementById("custom-dialog");
       const box = document.getElementById("custom-dialog-box");
@@ -1293,9 +1239,6 @@
       setTimeout(() => { toast.classList.add("translate-y-24", "opacity-0"); }, 3000);
     }
 
-    // ==========================================
-    // MODULE C: LOCALSTORAGE ENGINE
-    // ==========================================
     const INITIAL_DUMMY_DATA = {
       settings: { 
         store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih telah mempercayakan pakaian Anda di iMersLonry!", 
@@ -1341,9 +1284,6 @@
       }
     };
 
-    // ==========================================
-    // MODULE D: API INTEGRATION CLOUD ENGINE
-    // ==========================================
     async function apiRequest(action, payload = {}) {
       if (!CONFIG.API_URL || CONFIG.MOCK_MODE) {
         return { success: true, message: "Mock complete cache override." };
@@ -1359,10 +1299,10 @@
         const data = await response.json();
         document.getElementById("sync-status").innerText = "Cloud Online Synced 🟢";
         
-        // MUNCULKAN ERROR ASLI DARI FONNTE/WAPLUS JIKA GAGAL
+        // POP-UP NOTIF WA LEBIH JELAS
         if(data.wa_info) {
            if(data.wa_info.success) {
-               showToast("Terkirim", "Notifikasi WA berhasil diluncurkan ke pelanggan!", "✅");
+               showNotification("Pesan WhatsApp sukses diluncurkan ke HP Pelanggan!", "WA Terkirim 🚀", "✅");
            } else {
                showNotification("Pesan Ditolak Gateway:\n\n" + (data.wa_info.message || data.wa_info.error || "Nomor/Token Tidak Valid"), "Gagal Kirim WA", "⚠️");
            }
@@ -1449,9 +1389,6 @@
       }
     }
 
-    // ==========================================
-    // MODULE E: AUTHENTICATION & LOGIN LOGIC
-    // ==========================================
     function initAuthCheck() {
       const savedUser = localStorage.getItem("iml_logged_user");
       if (savedUser) {
@@ -2500,7 +2437,6 @@
 
          contentDiv.innerHTML = `
             <div class="space-y-8 max-w-3xl mx-auto">
-                <!-- Pemasukan -->
                 <div>
                     <h4 class="font-bold text-brand-600 uppercase tracking-wide border-b-2 border-brand-200 pb-2 mb-4">A. Pemasukan (Omset)</h4>
                     <table class="w-full text-sm">
@@ -2512,7 +2448,6 @@
                     </table>
                 </div>
                 
-                <!-- Pengeluaran -->
                 <div>
                     <h4 class="font-bold text-rose-600 uppercase tracking-wide border-b-2 border-rose-200 pb-2 mb-4">B. Pengeluaran (Beban Operasional)</h4>
                     <table class="w-full text-sm">
@@ -2524,7 +2459,6 @@
                     </table>
                 </div>
                 
-                <!-- Laba Bersih -->
                 <div class="bg-slate-900 text-white rounded-xl p-6 mt-8 flex justify-between items-center shadow-lg print:border print:border-slate-800 print:text-black print:bg-white print:shadow-none">
                     <span class="font-bold text-lg uppercase tracking-widest">LABA BERSIH (A - B)</span>
                     <span class="font-extrabold text-2xl ${netProfit < 0 ? 'text-rose-400 print:text-rose-600' : 'text-sky-400 print:text-brand-600'}">${formatRupiah(netProfit)}</span>
@@ -2688,7 +2622,6 @@
       t.status_order = orderStatus; 
       t.status_payment = payStatus;
       
-      // AUTO FIX NOMINAL KALO LUNAS (Biar Omset Nambah)
       if (payStatus === "Lunas") {
           t.paid = t.total;
           t.change = 0;
@@ -2724,7 +2657,6 @@
       document.getElementById("rec-customer-name").innerText = cust.name;
       document.getElementById("rec-customer-phone").innerText = cust.phone;
 
-      // Render Multi-Item ke Struk
       const itemsContainer = document.getElementById("rec-items-container");
       itemsContainer.innerHTML = "";
       itemsArray.forEach(item => {
@@ -2759,7 +2691,8 @@
         recSec.classList.add("hidden"); 
         
         if(typeof afterPrintCallback === "function") {
-            setTimeout(afterPrintCallback, 500);
+            // Beri jeda 1.5 detik penuh setelah dialog print hilang agar WA mulus
+            setTimeout(afterPrintCallback, 1500);
         }
       }, 500);
     }
@@ -2819,7 +2752,6 @@
       }
     }
 
-    // Eksekusi Pemicu Awal Aplikasi Start-Up Core App Loading Let's Go
     window.onload = function() {
       StorageEngine.init();
       initAuthCheck();
@@ -2827,7 +2759,6 @@
       if (params.get("invoice")) { switchView("tracking"); }
       else if (!APP_STATE.currentUser) { switchView("landing"); }
       
-      // Auto-sync diam-diam di background (silent mode)
       if (CONFIG.API_URL && !CONFIG.MOCK_MODE) {
         triggerForceSync(false);
       }
