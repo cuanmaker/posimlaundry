@@ -373,16 +373,15 @@
   <!-- ============================================== -->
   <!-- 4. SPA POS CONSOLIDATED BACKOFFICE APP -->
   <!-- ============================================== -->
-  <div id="view-app" class="hidden min-h-screen flex relative w-full overflow-hidden bg-slate-50">
+  <div id="view-app" class="hidden min-h-screen bg-slate-50 flex relative w-full overflow-hidden">
     
     <!-- Sidebar Overlay for Mobile -->
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
 
     <!-- Sidebar Menu -->
     <aside id="app-sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-72 lg:w-64 bg-slate-900 text-slate-200 flex flex-col flex-shrink-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 h-screen shadow-2xl lg:shadow-none">
-      <div class="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-950/50">
+      <div class="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950/50">
         <div class="flex items-center space-x-2">
-          <!-- Pembungkus logo bersih tanpa background warna/shadow -->
           <div class="w-8 h-8 flex items-center justify-center text-2xl overflow-hidden bg-transparent shadow-none" id="sidebar-icon">🧼</div>
           <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
@@ -431,7 +430,7 @@
       </nav>
     </aside>
 
-    <main class="flex-1 bg-slate-50 flex flex-col min-h-screen overflow-hidden relative">
+    <main class="flex-1 flex flex-col h-screen w-full lg:w-[calc(100%-16rem)] overflow-hidden bg-slate-50 relative">
       <!-- Top header bar inside panel -->
       <header class="bg-white border-b border-slate-200 py-3 lg:py-4 px-4 lg:px-8 flex justify-between items-center shadow-sm sticky top-0 z-30">
         <div class="flex items-center gap-3">
@@ -439,13 +438,13 @@
           <button onclick="toggleSidebar()" class="lg:hidden text-slate-600 hover:text-brand-600 focus:outline-none p-1.5 rounded-lg bg-slate-100">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </button>
-          <h2 class="text-lg lg:text-xl font-bold text-slate-800 uppercase tracking-wide truncate max-w-[150px] sm:max-w-max" id="current-tab-title">Ringkasan</h2>
+          <h2 class="text-lg lg:text-xl font-bold text-slate-800 uppercase tracking-wide truncate max-w-[150px] sm:max-w-xs" id="current-tab-title">Ringkasan</h2>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 lg:gap-4">
           <span id="sync-status" class="hidden sm:inline-block text-xs bg-brand-50 text-brand-700 px-3 py-1.5 rounded-full font-bold border border-brand-100">Sistem Aktif ⚡</span>
-          <button onclick="triggerForceSync(true)" class="p-2 md:px-4 md:py-2 hover:bg-slate-100 rounded-lg text-sm bg-white border shadow-sm flex items-center gap-2 transition" title="Tarik Sinkronisasi Cloud">
+          <button onclick="triggerForceSync(true)" class="p-2 lg:px-4 lg:py-2 hover:bg-slate-50 rounded-lg text-sm bg-white border border-slate-200 shadow-sm text-slate-600 font-semibold flex items-center gap-2 transition" title="Tarik Sinkronisasi Cloud">
             <span class="hidden lg:inline">Tarik Data Cloud</span>
-            <span class="text-lg lg:hidden">🔄</span>
+            <span class="text-lg">🔄</span>
           </button>
         </div>
       </header>
@@ -455,18 +454,18 @@
         <!-- TAB: DASHBOARD (KARYAWAN) -->
         <div id="tab-dashboard" class="tab-content block space-y-6">
           <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm col-span-2 md:col-span-2 relative overflow-hidden">
+            <div class="bg-brand-600 p-5 rounded-2xl border border-brand-700 shadow-lg col-span-2 md:col-span-2 relative overflow-hidden text-white">
               <div class="relative z-10">
-                <span class="text-xs text-slate-400 font-bold block uppercase tracking-wider">Omset Masuk Hari Ini</span>
-                <span class="text-2xl font-bold text-brand-600 block mt-1" id="dash-revenue">Rp 0</span>
-                <span class="text-[10px] text-slate-400 mt-2 block border-t border-slate-100 pt-1">Total Kas Sepanjang Waktu: <b id="dash-total-revenue-all" class="text-slate-700">Rp 0</b></span>
+                <span class="text-xs text-brand-200 font-bold block uppercase tracking-wider">Omset Kas Hari Ini</span>
+                <span class="text-2xl font-bold block mt-1" id="dash-revenue">Rp 0</span>
+                <span class="text-[10px] text-brand-200 mt-2 block border-t border-brand-500 pt-1">Total Sepanjang Waktu: <b id="dash-total-revenue-all" class="text-white">Rp 0</b></span>
               </div>
             </div>
-            <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm col-span-2 md:col-span-2 relative overflow-hidden">
+            <div class="bg-white p-5 rounded-2xl border border-rose-200 shadow-sm col-span-2 md:col-span-2 relative overflow-hidden">
               <div class="relative z-10">
                 <span class="text-xs text-slate-400 font-bold block uppercase tracking-wider">Piutang (Belum Lunas)</span>
-                <span class="text-2xl font-bold text-rose-500 block mt-1" id="dash-piutang">Rp 0</span>
-                <span class="text-[10px] text-slate-400 mt-2 block border-t border-slate-100 pt-1">Total Uang di Pelanggan</span>
+                <span class="text-2xl font-bold text-rose-600 block mt-1" id="dash-piutang">Rp 0</span>
+                <span class="text-[10px] text-slate-400 mt-2 block border-t border-slate-100 pt-1">Total Tagihan Nunggak Di Pelanggan</span>
               </div>
             </div>
             <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><span class="text-xs text-slate-400 font-bold block uppercase">Baru Masuk</span><span class="text-xl font-bold text-amber-600 block mt-1" id="dash-incoming">0</span></div>
@@ -484,7 +483,7 @@
                     <tr class="text-slate-400 text-xs font-bold uppercase tracking-wider border-b border-slate-100">
                       <th class="py-3">Nama Cabang</th>
                       <th class="py-3">Total Transaksi</th>
-                      <th class="py-3 text-right">Pendapatan</th>
+                      <th class="py-3 text-right">Pendapatan Lunas</th>
                     </tr>
                   </thead>
                   <tbody id="dash-outlet-analytics" class="divide-y divide-slate-50 text-sm">
@@ -1211,10 +1210,8 @@
       settings: {}
     };
 
-    // Keranjang Multi-Item Kasir
     let POS_CART = [];
 
-    // Helper Tanggal Lokal Indonesia (Memperbaiki bug Omset=0)
     function getLocalDateString(dateObj) {
         const yyyy = dateObj.getFullYear();
         const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -1233,7 +1230,6 @@
       return "Rp " + Math.round(amount).toLocaleString("id-ID");
     }
 
-    // Toggle Sidebar untuk Mobile
     function toggleSidebar() {
       const sidebar = document.getElementById("app-sidebar");
       const overlay = document.getElementById("sidebar-overlay");
@@ -1311,46 +1307,13 @@
         testi_title: "Kisah Puas Pelanggan Setia kami", testi1_desc: "Paling suka dengan fitur lacak status pesanan. Cukup scan QR di struk laundry dari rumah, langsung kelihatan statusnya!", testi1_name: "Sarah Rahmawati", testi1_role: "Ibu Rumah Tangga", testi2_desc: "Sangat terbantu mengelola 3 outlet laundry saya di Bandung. Dasbor kasirnya rapi, hitungan pengeluaran harian transparan.", testi2_name: "Bambang Susanto", testi2_role: "Pemilik Multi-Outlet", testi3_desc: "Sistem kasirnya enteng banget dibuka di tablet maupun handphone android kasir. Struk termal yang diprint juga sangat profesional.", testi3_name: "Rian Mahendra", testi3_role: "Kasir Laundry Utama",
         price_global_footer: "Ketentuan: Minimal berat pengerjaan laundry kiloan adalah 3 Kg per nota."
       },
-      outlets: [
-        { id: "OUT-001", name: "Cabang Utama Dago", address: "Jl. Dago No. 45", phone: "08111222333", status: "Active", created_at: "2026-06-01 10:00:00" },
-        { id: "OUT-002", name: "Cabang Sukajadi", address: "Jl. Sukajadi No. 12", phone: "08222333444", status: "Active", created_at: "2026-06-02 11:00:00" }
-      ],
-      users: [
-        { id: "USR-001", name: "Budi Santoso", username: "owner", password: "owner123", role: "Owner", outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 10:00:00" },
-        { id: "USR-002", name: "Siti Aminah", username: "admin", password: "admin123", role: "Admin", outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 10:05:00" },
-        { id: "USR-003", name: "Rian Hidayat", username: "cashier", password: "cashier123", role: "Cashier", outlet_id: "OUT-002", status: "Active", created_at: "2026-06-02 11:15:00" }
-      ],
-      customers: [
-        { id: "CUST-001", name: "Aditya Rahman", phone: "081234567891", address: "Jl. Dipatiukur No. 10", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 08:00:00" },
-        { id: "CUST-002", name: "Budi Gunawan", phone: "082234567892", address: "Jl. Dago No. 15", password: "123", outlet_id: "OUT-001", created_at: "2026-06-03 09:12:00" }
-      ],
-      services: [
-        { id: "SERV-001", category: "Cuci Setrika", name: "Reguler Biasa", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6000, estimate_days: 3, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:00:00" },
-        { id: "SERV-002", category: "Cuci Setrika", name: "Reguler Cepat", description: "Minimal laundry 3 Kg", type: "kilogram", price: 6500, estimate_days: 2, outlet_id: "OUT-001", status: "Active", created_at: "2026-06-01 12:05:00" },
-        { id: "SERV-003", category: "Cuci Setrika", name: "Express", description: "Minimal laundry 3 Kg", type: "kilogram", price: 8000, estimate_days: 1, outlet_id: "OUT-001", status: "Active", "created_at": "2026-06-01 12:10:00"},
-        { id: "SERV-004", category: "Cuci Setrika", name: "Super Express", "description": "Minimal laundry 3 Kg. Selesai 6 Jam", "type": "kilogram", "price": 14000, "estimate_days": 1, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:00:00"},
-        { id: "SERV-005", category: "Setrika Wangi", "name": "Reguler Biasa", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 5000, "estimate_days": 3, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:05:00"},
-        { id: "SERV-006", category: "Setrika Wangi", "name": "Reguler Cepat", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 5500, "estimate_days": 2, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:10:00"},
-        { id: "SERV-007", category: "Setrika Wangi", "name": "Express", "description": "Minimal laundry 3 Kg", "type": "kilogram", "price": 6000, "estimate_days": 1, "outlet_id": "OUT-001", "status": "Active", "created_at": "2026-06-02 13:15:00"}
-      ],
-      transactions: [],
-      transactionItems: [],
-      expenses: [],
-      statusHistory: []
+      outlets: [], users: [], customers: [], services: [], transactions: [], transactionItems: [], expenses: [], statusHistory: []
     };
 
     const StorageEngine = {
       init() {
         if (!localStorage.getItem("iml_settings")) {
           localStorage.setItem("iml_settings", JSON.stringify(INITIAL_DUMMY_DATA.settings));
-          localStorage.setItem("iml_outlets", JSON.stringify(INITIAL_DUMMY_DATA.outlets));
-          localStorage.setItem("iml_users", JSON.stringify(INITIAL_DUMMY_DATA.users));
-          localStorage.setItem("iml_customers", JSON.stringify(INITIAL_DUMMY_DATA.customers));
-          localStorage.setItem("iml_services", JSON.stringify(INITIAL_DUMMY_DATA.services));
-          localStorage.setItem("iml_transactions", JSON.stringify(INITIAL_DUMMY_DATA.transactions));
-          localStorage.setItem("iml_transaction_items", JSON.stringify(INITIAL_DUMMY_DATA.transactionItems));
-          localStorage.setItem("iml_expenses", JSON.stringify(INITIAL_DUMMY_DATA.expenses));
-          localStorage.setItem("iml_status_history", JSON.stringify(INITIAL_DUMMY_DATA.statusHistory));
         }
         this.loadStateFromLocal();
       },
@@ -1383,9 +1346,6 @@
     // ==========================================
     async function apiRequest(action, payload = {}) {
       if (!CONFIG.API_URL || CONFIG.MOCK_MODE) {
-        if ((action === "forgotPassword" || action === "updateOrderStatus" || action === "createTransaction") && payload.auto_wa) {
-          showNotification(`[Simulasi Mode Cache]\nPesan WhatsApp telah diantrikan simulasi ke WA Gateway lokal.`, "Simulasi WA Terpicu", "💬");
-        }
         return { success: true, message: "Mock complete cache override." };
       }
 
@@ -1422,13 +1382,10 @@
       }
       
       document.getElementById("sync-status").innerText = "Menarik Data... ⬇️";
-      if (isManual) {
-        showNotification("Sedang menarik riwayat transaksi & data terbaru dari Google Sheets...", "Sinkronisasi Cloud", "⏳");
-      }
+      if (isManual) { showNotification("Sedang menarik riwayat transaksi & data terbaru dari Google Sheets...", "Sinkronisasi Cloud", "⏳"); }
 
       const res = await apiRequest("getAllData");
       if(res.success && res.data) {
-        // Gabungkan setting dari cloud
         APP_STATE.settings = Object.keys(res.data.settings || {}).length ? res.data.settings : APP_STATE.settings;
         APP_STATE.outlets = res.data.outlets || [];
         APP_STATE.users = res.data.users || [];
@@ -1462,7 +1419,7 @@
     }
 
     function hardResetApp() {
-      showConfirmDialog("Yakin ingin mereset total seluruh cache memori browser? Aplikasi akan logout paksa dan dimuat ulang dari awal (Data di Google Sheets tetap 100% aman).", () => {
+      showConfirmDialog("Yakin ingin mereset total seluruh cache memori browser? Aplikasi akan logout paksa dan dimuat ulang dari awal.", () => {
         localStorage.clear();
         window.location.reload();
       }, "Hard Reset Lokal", "⚠️");
@@ -1473,19 +1430,18 @@
       const res = await apiRequest("backupData");
       if (res.success) {
         closeNotification();
-        showNotification("Luar Biasa! Salinan file rekap data sukses dimasukkan di akar Google Drive admin.", "Backup 100% Selesai", "💾");
-      } else {
-        closeNotification();
-        showNotification("Karena mode masih simulasi lokal (Mock), file backup otomatis disimpan aman di cache perangkat pintar Anda.", "Backup Lokal Diizinkan", "💾");
+        showNotification("Salinan file rekap data sukses dimasukkan di akar Google Drive admin.", "Backup 100% Selesai", "💾");
       }
     }
 
-    // Fungsi Render Icon Logo Super Bersih Tanpa Box Background
     function renderBrandIcon(val, elId) {
       const el = document.getElementById(elId);
       if(!el) return;
-      el.style.background = "transparent";
+      el.style.backgroundColor = "transparent";
       el.style.boxShadow = "none";
+      el.classList.remove('bg-brand-500', 'text-white', 'shadow-lg', 'border', 'border-brand-400', 'bg-white', 'shadow-none');
+      el.classList.add('bg-transparent', 'shadow-none');
+
       if(val && (val.startsWith("http://") || val.startsWith("https://") || val.startsWith("data:"))) {
         el.innerHTML = `<img src="${val}" class="h-full w-full object-contain" onerror="this.outerHTML='🧼'" />`;
       } else {
@@ -1526,19 +1482,9 @@
       }
     }
 
-    function openLoginModal(type = 'karyawan') { 
-      switchLoginTab(type); 
-      document.getElementById("login-modal").classList.remove("hidden"); 
-    }
-    
+    function openLoginModal(type = 'karyawan') { switchLoginTab(type); document.getElementById("login-modal").classList.remove("hidden"); }
     function closeLoginModal() { document.getElementById("login-modal").classList.add("hidden"); }
-    
-    function openForgotPwdModal() { 
-      closeLoginModal(); 
-      document.getElementById("forgot-type").value = document.getElementById("login-type").value;
-      document.getElementById("forgot-pwd-modal").classList.remove("hidden"); 
-    }
-    
+    function openForgotPwdModal() { closeLoginModal(); document.getElementById("forgot-type").value = document.getElementById("login-type").value; document.getElementById("forgot-pwd-modal").classList.remove("hidden"); }
     function closeForgotPwdModal() { document.getElementById("forgot-pwd-modal").classList.add("hidden"); }
 
     function handleLogin(e) {
@@ -1565,7 +1511,6 @@
         closeLoginModal();
         setupUIAccessRights();
         switchView("app");
-        // Silent Pull on background without popup
         triggerForceSync(false);
       } else {
         showNotification("Kredensial Username ID atau Kata Sandi Security salah kombinasinya! Ulangi atau intip contekan", "Gagal Identifikasi", "❌");
@@ -1596,7 +1541,6 @@
         if(uInx > -1) APP_STATE.users[uInx].password = p1;
       }
       StorageEngine.saveStateToLocal();
-
       showNotification("Rahasia sandi berhasil divalidasi keamanannya dan diperbarui sukses permanen!", "Pemulihan Keamanan Sukses", "✅");
       document.getElementById("prof-new-pwd").value = ""; document.getElementById("prof-conf-pwd").value = "";
       apiRequest("changePassword", { id: u.id, role: u.role, new_password: p1 });
@@ -1605,12 +1549,9 @@
     function submitForgotPassword() {
       const phone = document.getElementById("forgot-phone").value.trim();
       const type = document.getElementById("forgot-type").value === "karyawan" ? "Staff" : "Customer";
-      
       if(!phone) return showNotification("Wajib menancapkan detail Nomor Handphone WA sasaran yang valid!", "Tolak Lanjut Pengiriman OTP", "⚠️");
-      
       closeForgotPwdModal();
       showNotification("Gerbang sistem server mesin kami sedang memutar kombinasi sandi baru super acak, ditunggu kemunculannya di laci WhatsApp Anda!", "Memutar Roda Sandi", "⏳");
-
       apiRequest("forgotPassword", { identifier: phone, phone: phone, type: type, auto_wa: true });
     }
 
@@ -1643,7 +1584,6 @@
     function applyDynamicLandingPage() {
       const set = APP_STATE.settings;
       
-      // Update Title & Icons
       document.title = (set.store_name || "iMersLonry") + " - Kasir & Lacak Status Laundry";
       document.getElementById("landing-brand-text").innerText = set.store_name || "iMersLonry";
       renderBrandIcon(set.brand_icon, "landing-icon-badge");
@@ -1652,7 +1592,6 @@
       document.getElementById("footer-brand-text").innerText = set.store_name || "iMersLonry";
       document.getElementById("tracking-brand-text").innerText = set.store_name || "iMersLonry";
       
-      // Hero Section Update (Pakai innerHTML biar bisa baca span HTML color gradient)
       document.getElementById("landing-headline").innerHTML = set.hero_headline || "Sistem POS Kasir & Portal Pelanggan Laundry";
       document.getElementById("landing-subheadline").innerHTML = set.hero_subheadline || "Dilengkapi Notifikasi WhatsApp Gateway otomatis, sinkronisasi cloud dengan Google Sheets, dan Portal Khusus agar pelanggan bisa melacak cuciannya sendiri!";
       
@@ -1664,55 +1603,42 @@
       }
       document.getElementById("landing-headline").style.color = set.hero_title_color || "#ffffff";
 
-      // Features Update (Layanan Premium Kami)
       if(document.getElementById("lp-feat-title")) {
         document.getElementById("lp-feat-title").innerText = set.feat_title || "Layanan Premium Kami";
         document.getElementById("lp-feat-sub").innerText = set.feat_sub || "Perawatan berkualitas tinggi untuk setiap jenis pakaian. Lembut pada bahan, tangguh pada noda.";
-        
         document.getElementById("lp-feat1-icon").innerText = set.feat1_icon || "🧺";
         document.getElementById("lp-feat1-title").innerText = set.feat1_title || "Cuci & Setrika";
         document.getElementById("lp-feat1-desc").innerText = set.feat1_desc || "Layanan harian standar. Dicuci bersih, dilipat rapi, dan wangi segar tahan lama.";
-        
         document.getElementById("lp-feat2-icon").innerText = set.feat2_icon || "👔";
         document.getElementById("lp-feat2-title").innerText = set.feat2_title || "Dry Cleaning";
         document.getElementById("lp-feat2-desc").innerText = set.feat2_desc || "Pembersihan eksklusif untuk kain mewah, jas formal, dan pakaian seremonial.";
-        
         document.getElementById("lp-feat3-icon").innerText = set.feat3_icon || "🛏️";
         document.getElementById("lp-feat3-title").innerText = set.feat3_title || "Bed Cover & Selimut";
         document.getElementById("lp-feat3-desc").innerText = set.feat3_desc || "Pencucian ekstraksi dalam untuk menghilangkan tungau, debu, dan kotoran membandel.";
-        
         document.getElementById("lp-feat4-icon").innerText = set.feat4_icon || "👟";
         document.getElementById("lp-feat4-title").innerText = set.feat4_title || "Spa Sepatu";
         document.getElementById("lp-feat4-desc").innerText = set.feat4_desc || "Perawatan bahan suede, kanvas, atau kulit. Kembalikan sepatu favorit Anda seperti baru.";
       }
 
-      // Benefits Update (Teknologi Sinkronisasi)
       if(document.getElementById("lp-ben-title")) {
         document.getElementById("lp-ben-title").innerText = set.ben_title || "Teknologi Sinkronisasi Multi-Outlet Instan";
         document.getElementById("lp-ben-desc").innerText = set.ben_desc || "Kami mengerti tantangan mengelola banyak cabang outlet laundry. Aplikasi hadir dengan sinkronisasi awan instan langsung dari meja kasir Anda.";
-        
         document.getElementById("lp-ben1-title").innerText = set.ben1_title || "Sinkronisasi Spreadsheet Otomatis";
         document.getElementById("lp-ben1-desc").innerText = set.ben1_desc || "Terhubung langsung dengan Google Sheets sebagai database pusat, didukung LocalStorage sebagai cadangan saat internet terganggu.";
-        
         document.getElementById("lp-ben2-title").innerText = set.ben2_title || "Hak Akses Fleksibel Kasir & Owner";
         document.getElementById("lp-ben2-desc").innerText = set.ben2_desc || "Kasir hanya memproses data transaksi pada cabang tugas mereka. Owner dan Admin memiliki kendali penuh melihat seluruh laporan laba bersih.";
-        
         document.getElementById("lp-ben3-title").innerText = set.ben3_title || "Lacak Status via QR Code";
         document.getElementById("lp-ben3-desc").innerText = set.ben3_desc || "Setiap struk kasir otomatis dilengkapi QR Code unik. Pelanggan cukup memindai dengan kamera ponsel untuk mengetahui progres cucian.";
       }
 
-      // Testimonial Update
       if(document.getElementById("lp-testi-title")) {
         document.getElementById("lp-testi-title").innerText = set.testi_title || "Kisah Puas Pelanggan Setia kami";
-        
         document.getElementById("lp-testi1-desc").innerText = `"${set.testi1_desc || 'Sangat memuaskan dan cepat'}"`;
         document.getElementById("lp-testi1-name").innerText = set.testi1_name || "Sarah Rahmawati";
         document.getElementById("lp-testi1-role").innerText = set.testi1_role || "Ibu Rumah Tangga";
-        
         document.getElementById("lp-testi2-desc").innerText = `"${set.testi2_desc || 'Sistem kasirnya keren'}"`;
         document.getElementById("lp-testi2-name").innerText = set.testi2_name || "Bambang Susanto";
         document.getElementById("lp-testi2-role").innerText = set.testi2_role || "Pemilik Multi-Outlet";
-        
         document.getElementById("lp-testi3-desc").innerText = `"${set.testi3_desc || 'Pelacakan via QR code gampang banget'}"`;
         document.getElementById("lp-testi3-name").innerText = set.testi3_name || "Rian Mahendra";
         document.getElementById("lp-testi3-role").innerText = set.testi3_role || "Kasir Laundry Utama";
@@ -1731,7 +1657,6 @@
       }
     }
 
-    // Render Kartu Harga dengan Format GROUPED TABLE
     function renderDynamicPricingList() {
       const grid = document.getElementById("landing-pricing-grid");
       if (!grid) return;
@@ -1743,7 +1668,6 @@
         return;
       }
 
-      // Grouping layanan berdasarkan Kategori
       const grouped = {};
       activeServices.forEach(s => {
         const cat = s.category || "Layanan Umum";
@@ -1861,11 +1785,11 @@
       const todayStr = getLocalDateString(new Date()); 
       const todayTxs = transactions.filter(t => t.created_at.startsWith(todayStr));
 
-      // Omset (Hanya yang DIBAYAR Lunas / DP)
+      // Omset (Hanya uang CASH-IN dari Lunas / DP)
       const totalRevenueToday = todayTxs.reduce((sum, t) => sum + Number(t.paid || 0), 0);
       const allTimeRevenue = transactions.reduce((sum, t) => sum + Number(t.paid || 0), 0);
       
-      // Piutang (Total Uang yang Masih Kurang/Belum Dibayar sama sekali)
+      // Piutang (Sisa tagihan yang belum dibayar pelanggan)
       const totalPiutang = transactions.reduce((sum, t) => {
         const bill = Number(t.total || 0);
         const paid = Number(t.paid || 0);
@@ -1895,7 +1819,7 @@
       
       displayOutlets.forEach(out => {
         const oTxs = APP_STATE.transactions.filter(t => t.outlet_id === out.id);
-        const oEarnings = oTxs.reduce((sum, t) => sum + Number(t.total || 0), 0);
+        const oEarnings = oTxs.reduce((sum, t) => sum + Number(t.paid || 0), 0);
         const row = `<tr><td class="py-3 font-semibold text-slate-800">${out.name}</td><td class="py-3 text-slate-500 font-bold">${oTxs.length} Transaksi Terakumulasi</td><td class="py-3 text-right font-extrabold text-brand-600">${formatRupiah(oEarnings)}</td></tr>`;
         body.innerHTML += row;
       });
@@ -1963,7 +1887,7 @@
       };
 
       POS_CART.push(newItem);
-      document.getElementById("tx-qty").value = "1"; // reset qty input
+      document.getElementById("tx-qty").value = "1";
       renderCartTable();
       calculateNewTxTotal();
     }
@@ -2000,7 +1924,7 @@
 
     function calculateNewTxTotal() {
       const discount = parseFloat(document.getElementById("tx-discount").value) || 0;
-      const paid = parseFloat(document.getElementById("tx-paid").value) || 0;
+      let paid = parseFloat(document.getElementById("tx-paid").value) || 0;
 
       let subtotal = 0;
       let maxEstDays = 0;
@@ -2011,6 +1935,17 @@
       });
 
       const total = Math.max(0, subtotal - discount);
+      
+      // Auto adjust if Lunas is selected
+      const payStatus = document.getElementById("tx-payment-status").value;
+      if (payStatus === "Lunas") {
+         paid = total;
+         document.getElementById("tx-paid").value = paid;
+      } else if (payStatus === "Belum Bayar") {
+         paid = 0;
+         document.getElementById("tx-paid").value = 0;
+      }
+
       const change = Math.max(0, paid - total);
 
       document.getElementById("checkout-total-items").innerText = POS_CART.length + " Macam Layanan";
@@ -2018,7 +1953,6 @@
       document.getElementById("checkout-discount").innerText = `-${formatRupiah(discount)}`;
       document.getElementById("checkout-total").innerText = formatRupiah(total);
       
-      const payStatus = document.getElementById("tx-payment-status").value;
       document.getElementById("checkout-payment").innerText = payStatus;
       document.getElementById("checkout-change").innerText = formatRupiah(change);
 
@@ -2085,13 +2019,11 @@
       StorageEngine.saveStateToLocal();
       POS_CART = []; 
       changeTab("transactions");
-      renderTransactions(); // Pastikan layar transaksi ter-refresh seketika
+      renderTransactions();
       
       showToast("Sedang Memproses...", "Menyimpan nota & mempersiapkan dialog struk...", "⏳");
       
-      // Panggil fungsi print, dan oper apiRequest sebagai callback agar jalan SETELAH print dialog selesai/ditutup
       triggerDirectPrintReceiptMulti(newTx, payloadItems, () => {
-        // Baris ini dieksekusi SETELAH layar print ketutup, makanya API dan pop-up WA tidak akan ketelen/hang.
         apiRequest("createTransaction", { transaction: newTx, items: payloadItems, history: newHist, auto_wa: autoWa });
       });
     }
@@ -2182,7 +2114,8 @@
         c.name = name; c.phone = phone; c.address = address; c.outlet_id = outletId;
         apiRequest("updateCustomer", c);
       } else {
-        const newCust = { id: "CUST-" + Math.floor(1000 + Math.random() * 9000), name: name, phone: phone, address: address, outlet_id: outletId, password: "123", created_at: new Date().toISOString().slice(0,19).replace('T',' ') };
+        const localNow = getLocalDateString(new Date()) + " " + getLocalTimeString(new Date());
+        const newCust = { id: "CUST-" + Math.floor(1000 + Math.random() * 9000), name: name, phone: phone, address: address, outlet_id: outletId, password: "123", created_at: localNow };
         APP_STATE.customers.unshift(newCust);
         apiRequest("createCustomer", newCust);
       }
@@ -2249,7 +2182,8 @@
         s.category = category; s.name = name; s.description = desc; s.type = type; s.price = price; s.estimate_days = estimateDays; s.outlet_id = outletId; s.status = status;
         apiRequest("updateService", s);
       } else {
-        const newSvc = { id: "SERV-" + Math.floor(1000 + Math.random() * 9000), category: category, name: name, description: desc, type: type, price: price, estimate_days: estimateDays, outlet_id: outletId, status: status, created_at: new Date().toISOString().slice(0,19).replace('T',' ') };
+        const localNow = getLocalDateString(new Date()) + " " + getLocalTimeString(new Date());
+        const newSvc = { id: "SERV-" + Math.floor(1000 + Math.random() * 9000), category: category, name: name, description: desc, type: type, price: price, estimate_days: estimateDays, outlet_id: outletId, status: status, created_at: localNow };
         APP_STATE.services.unshift(newSvc); apiRequest("createService", newSvc);
       }
       StorageEngine.saveStateToLocal(); closeServiceModal(); renderServices();
@@ -2286,7 +2220,11 @@
       const address = document.getElementById("out-address").value.trim(); const phone = document.getElementById("out-phone").value.trim(); const status = document.getElementById("out-status").value;
       if (!name || !address) return showNotification("Gedung tidak bisa berdiri jika tidak ada pemancangan tiang deskripsi alamat & entitas label nama lokasi cabangnya!", "Kegagalan Tata Kota", "⚠️");
       if (id) { const o = APP_STATE.outlets.find(x => x.id === id); o.name = name; o.address = address; o.phone = phone; o.status = status; apiRequest("updateOutlet", o); } 
-      else { const newOut = { id: "OUT-" + Math.floor(100 + Math.random() * 900), name: name, address: address, phone: phone, status: status, created_at: new Date().toISOString().slice(0,19).replace('T',' ') }; APP_STATE.outlets.push(newOut); apiRequest("createOutlet", newOut); }
+      else { 
+        const localNow = getLocalDateString(new Date()) + " " + getLocalTimeString(new Date());
+        const newOut = { id: "OUT-" + Math.floor(100 + Math.random() * 900), name: name, address: address, phone: phone, status: status, created_at: localNow }; 
+        APP_STATE.outlets.push(newOut); apiRequest("createOutlet", newOut); 
+      }
       StorageEngine.saveStateToLocal(); closeOutletModal(); renderOutlets();
     }
     function editOutlet(id) { openOutletModal(id); }
@@ -2341,7 +2279,8 @@
       
       if (!description || amount <= 0) return showNotification("Pastikan pencatatan jumlah pengeluaran bernilai tidak nihil kosong dan dilengkapi pelampiran dekskripsi rincian logis!", "Tolak Catat Rugi Uang", "⚠️");
       
-      const newExp = { id: "EXP-" + Math.floor(1000 + Math.random() * 9000), outlet_id: outletId, category: category, description: description, amount: amount, created_by: APP_STATE.currentUser.id, created_at: new Date().toISOString().slice(0,19).replace('T',' ') };
+      const localNow = getLocalDateString(new Date()) + " " + getLocalTimeString(new Date());
+      const newExp = { id: "EXP-" + Math.floor(1000 + Math.random() * 9000), outlet_id: outletId, category: category, description: description, amount: amount, created_by: APP_STATE.currentUser.id, created_at: localNow };
       APP_STATE.expenses.unshift(newExp); StorageEngine.saveStateToLocal(); closeExpenseModal(); renderExpenses(); apiRequest("createExpense", newExp);
     }
     function deleteExpense(id) { showConfirmDialog("Musnahkan kertas catetan struk pembayaran ini secara gaib melayang di riwayat angin lalu?", () => { APP_STATE.expenses = APP_STATE.expenses.filter(x => x.id !== id); StorageEngine.saveStateToLocal(); renderExpenses(); apiRequest("deleteExpense", { id: id }); }, "Hilangkan Bon Laci"); }
@@ -2376,14 +2315,15 @@
       const role = document.getElementById("user-role").value; const outletId = document.getElementById("user-outlet").value; const status = document.getElementById("user-status").value;
       if (!name || !username || !password) return showNotification("Gagal merekrut pegawai jika lembar registrasi perihal pengisian kata kunci tak tertuntaskan penuh kesungguhan formulir!", "Kacau Kelengkapan", "⚠️");
       if (id) { const u = APP_STATE.users.find(x => x.id === id); u.name = name; u.username = username; u.password = password; u.role = role; u.outlet_id = outletId; u.status = status; apiRequest("updateUser", u); } 
-      else { const newUser = { id: "USR-" + Math.floor(100 + Math.random() * 900), name: name, username: username, password: password, role: role, outlet_id: outletId, status: status, created_at: new Date().toISOString().slice(0,19).replace('T',' ') }; APP_STATE.users.push(newUser); apiRequest("createUser", newUser); }
+      else { 
+        const localNow = getLocalDateString(new Date()) + " " + getLocalTimeString(new Date());
+        const newUser = { id: "USR-" + Math.floor(100 + Math.random() * 900), name: name, username: username, password: password, role: role, outlet_id: outletId, status: status, created_at: localNow }; 
+        APP_STATE.users.push(newUser); apiRequest("createUser", newUser); 
+      }
       StorageEngine.saveStateToLocal(); closeUserModal(); renderUsers();
     }
     function deleteUser(id) { showConfirmDialog("Tendang kuat-kuat kartu pegawai sang personal yang tertunjuk dari jajaran birokrasi ini, tak kan mampu login selamanya kembali ke pos sistem, sungguhan tekad Anda bulat?", () => { APP_STATE.users = APP_STATE.users.filter(x => x.id !== id); StorageEngine.saveStateToLocal(); renderUsers(); apiRequest("deleteUser", { id: id }); }, "Sanksi Keras Terpilih"); }
 
-    // ==========================================
-    // MODULE M & O: REPORTS, SETTINGS & ORDERS
-    // ==========================================
     function initReportsTab() {
       const fl = document.getElementById("report-outlet-filter");
       fl.innerHTML = "<option value='all'>Keseluruhan Cabang Global</option>";
@@ -2431,7 +2371,6 @@
       const contentDiv = document.getElementById("rep-dynamic-content");
       contentDiv.innerHTML = "";
 
-      // IF GLOBAL IS SELECTED (SHOW COMPARISON TABLE)
       if (outletSel === "all") {
          let tableHTML = `
             <table class="w-full text-left border-collapse mb-8">
@@ -2490,25 +2429,19 @@
          contentDiv.innerHTML = tableHTML;
 
       } else {
-         // IF SINGLE BRANCH IS SELECTED (SHOW DETAILED P&L BREAKDOWN)
          filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
          filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
 
-         // Calculate Total Revenue (just to verify)
          const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? Number(t.paid || 0) : 0), 0);
          
-         // 1. Group Revenue by Service Name using transactionItems
          let revGroups = {};
-         let calcRev = 0; // Calculated revenue from items
+         let calcRev = 0; 
          
          filteredTxs.forEach(t => {
             if (t.status_payment === "Lunas" || t.status_payment === "DP") {
-               // Find items for this transaction
                const txItems = APP_STATE.transactionItems.filter(item => item.transaction_id === t.id);
-               
                if (txItems.length > 0) {
                    txItems.forEach(item => {
-                       // Hitung proporsi pembayaran dari total invoice (Jika DP)
                        let ratio = 1;
                        if(t.status_payment === "DP" && Number(t.total) > 0) {
                            ratio = Number(t.paid) / Number(t.total);
@@ -2520,7 +2453,6 @@
                        calcRev += calculatedVal;
                    });
                } else {
-                   // Fallback for old dummy data that might not have items linked yet
                    if (!revGroups["Layanan Umum / Lama"]) revGroups["Layanan Umum / Lama"] = 0;
                    revGroups["Layanan Umum / Lama"] += Number(t.paid || 0);
                    calcRev += Number(t.paid || 0);
@@ -2542,7 +2474,6 @@
              }
          }
 
-         // 2. Group Expenses by Category
          let expGroups = {};
          let totalExp = 0;
          filteredExps.forEach(e => {
@@ -2754,12 +2685,27 @@
       const autoWa = document.getElementById("status-send-wa").checked;
 
       const t = APP_STATE.transactions.find(x => x.id === txId);
-      t.status_order = orderStatus; t.status_payment = payStatus;
+      t.status_order = orderStatus; 
+      t.status_payment = payStatus;
+      
+      // AUTO FIX NOMINAL KALO LUNAS (Biar Omset Nambah)
+      if (payStatus === "Lunas") {
+          t.paid = t.total;
+          t.change = 0;
+      } else if (payStatus === "Belum Bayar") {
+          t.paid = 0;
+          t.change = 0;
+      }
 
-      const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: txId, status: orderStatus, note: note || `Status terubah paksa ke ${orderStatus}`, updated_by: APP_STATE.currentUser.name, updated_at: new Date().toISOString().slice(0,19).replace('T',' ') };
-      APP_STATE.statusHistory.unshift(newHist); StorageEngine.saveStateToLocal(); closeStatusModal(); renderTransactions();
+      const localNow = getLocalDateString(new Date()) + " " + getLocalTimeString(new Date());
+      const newHist = { id: "STH-" + Math.floor(1000 + Math.random() * 9000), transaction_id: txId, status: orderStatus, note: note || `Status terubah paksa ke ${orderStatus}`, updated_by: APP_STATE.currentUser.name, updated_at: localNow };
+      APP_STATE.statusHistory.unshift(newHist); 
+      
+      StorageEngine.saveStateToLocal(); 
+      closeStatusModal(); 
+      renderTransactions();
 
-      apiRequest("updateOrderStatus", { id: txId, status_order: orderStatus, status_payment: payStatus, history: newHist, auto_wa: autoWa });
+      apiRequest("updateOrderStatus", { id: txId, status_order: orderStatus, status_payment: payStatus, paid: t.paid, change: t.change, history: newHist, auto_wa: autoWa });
     }
 
     function triggerDirectPrintReceiptMulti(tx, itemsArray, afterPrintCallback = null) {
@@ -2807,12 +2753,13 @@
       const recSec = document.getElementById("print-receipt-section");
       recSec.classList.remove("hidden");
       
+      // JEDA SAKTI BIAR WA GAK KETELEN SAAT NGE-PRINT
       setTimeout(() => { 
         window.print(); 
         recSec.classList.add("hidden"); 
         
         if(typeof afterPrintCallback === "function") {
-            afterPrintCallback();
+            setTimeout(afterPrintCallback, 500);
         }
       }, 500);
     }
