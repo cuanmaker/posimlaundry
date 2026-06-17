@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -39,11 +39,19 @@
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     
-    /* SOLUSI KERTAS KOSONG SAAT PRINT & ANTI BOCOR CSS TUNTAS */
+    /* SOLUSI KERTAS KOSONG SAAT PRINT & ANTI BOCOR CSS (FIXED 1000%) */
+    /* Kita hide elemen spesifik, bukan pakai *:not() biar tag <style> Tailwind tetep aman! */
     @media print {
-      body > div:not(#print-receipt-section) { 
+      #view-landing, 
+      #view-tracking, 
+      #view-app, 
+      #login-modal, 
+      #forgot-pwd-modal, 
+      #custom-dialog, 
+      #toast-notification { 
         display: none !important; 
       }
+      
       #print-receipt-section { 
         display: block !important; 
         position: absolute; 
@@ -363,6 +371,7 @@
     <aside id="app-sidebar" class="fixed lg:static inset-y-0 left-0 z-50 w-72 lg:w-64 bg-slate-900 text-slate-200 flex flex-col flex-shrink-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 h-screen shadow-2xl lg:shadow-none">
       <div class="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950/50">
         <div class="flex items-center space-x-2">
+          <!-- Logo transparan bersih -->
           <div class="w-8 h-8 flex items-center justify-center text-2xl overflow-hidden bg-transparent shadow-none" id="sidebar-icon">🧼</div>
           <span class="text-lg font-bold text-white logo-font" id="sidebar-brand">iMersLonry</span>
         </div>
@@ -428,18 +437,19 @@
         <!-- TAB: DASHBOARD (KARYAWAN) -->
         <div id="tab-dashboard" class="tab-content block space-y-6">
           <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            <div class="bg-brand-600 p-5 rounded-2xl border border-brand-700 shadow-lg col-span-2 md:col-span-2 relative overflow-hidden text-white">
+            <div class="bg-brand-600 p-5 rounded-2xl border border-brand-700 shadow-lg col-span-2 relative overflow-hidden text-white">
               <div class="relative z-10">
                 <span class="text-xs text-brand-200 font-bold block uppercase tracking-wider">Omset Hari Ini (Masuk Kas)</span>
                 <span class="text-2xl font-bold block mt-1" id="dash-revenue">Rp 0</span>
                 <span class="text-[10px] text-brand-200 mt-2 block border-t border-brand-500 pt-1">Total Sepanjang Waktu: <b id="dash-total-revenue-all" class="text-white">Rp 0</b></span>
               </div>
             </div>
-            <div class="bg-white p-5 rounded-2xl border border-rose-200 shadow-sm col-span-2 md:col-span-2 relative overflow-hidden">
+            <!-- KOTAK PIUTANG MERAH -->
+            <div class="bg-white p-5 rounded-2xl border border-rose-200 shadow-sm col-span-2 relative overflow-hidden">
               <div class="relative z-10">
                 <span class="text-xs text-slate-400 font-bold block uppercase tracking-wider">Piutang (Belum Lunas)</span>
                 <span class="text-2xl font-bold text-rose-600 block mt-1" id="dash-piutang">Rp 0</span>
-                <span class="text-[10px] text-slate-400 mt-2 block border-t border-slate-100 pt-1">Total Tagihan Nunggak Di Pelanggan</span>
+                <span class="text-[10px] text-slate-400 mt-2 block border-t border-slate-100 pt-1">Sisa Tagihan Belum Dibayar</span>
               </div>
             </div>
             <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm"><span class="text-xs text-slate-400 font-bold block uppercase">Baru Masuk</span><span class="text-xl font-bold text-amber-600 block mt-1" id="dash-incoming">0</span></div>
@@ -457,7 +467,7 @@
                     <tr class="text-slate-400 text-xs font-bold uppercase tracking-wider border-b border-slate-100">
                       <th class="py-3">Nama Cabang</th>
                       <th class="py-3">Total Transaksi</th>
-                      <th class="py-3 text-right">Pendapatan Lunas</th>
+                      <th class="py-3 text-right">Pendapatan Masuk Kas</th>
                     </tr>
                   </thead>
                   <tbody id="dash-outlet-analytics" class="divide-y divide-slate-50 text-sm">
@@ -567,16 +577,16 @@
                 <input id="tx-discount" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
               </div>
               <div>
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Uang Diterima (Rp)</label>
-                <input id="tx-paid" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
-              </div>
-              <div>
                 <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Status Pembayaran</label>
                 <select id="tx-payment-status" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" onchange="calculateNewTxTotal()">
-                  <option value="Lunas">Lunas Sepenuhnya</option>
-                  <option value="DP">Bayar DP Uang Muka</option>
-                  <option value="Belum Bayar" selected>Belum Bayar Sama Sekali</option>
+                  <option value="Lunas">Lunas Penuh</option>
+                  <option value="DP">Bayar DP</option>
+                  <option value="Belum Bayar" selected>Belum Bayar</option>
                 </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Uang Diterima (Rp)</label>
+                <input id="tx-paid" type="number" value="0" oninput="calculateNewTxTotal()" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-medium" />
               </div>
             </div>
 
@@ -607,7 +617,7 @@
           </div>
         </div>
 
-        <!-- TAB: SETTINGS & WA GATEWAY (ALL DYNAMIC CONFIGS HERE) -->
+        <!-- TAB: SETTINGS & WA GATEWAY -->
         <div id="tab-settings" class="tab-content hidden space-y-6">
           <details class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm group">
             <summary class="font-bold text-slate-800 text-lg cursor-pointer flex justify-between items-center outline-none">
@@ -731,10 +741,15 @@
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-              <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Visual & Tema Beranda</h3>
+              <h3 class="font-bold text-slate-800 text-lg">Konfigurasi Warna Background Beranda</h3>
               
+              <!-- TEMA GLOBAL DIHAPUS TOTAL BIAR CSS NGGAK MUNTAH -->
+              <div class="bg-brand-50 p-3 rounded-lg border border-brand-100 text-xs text-brand-700 font-medium">
+                Warna tombol dan border dalam dashboard sudah dikunci mati (Orange Brand) untuk menjaga stabilitas sistem. Anda hanya dapat mengubah warna gradasi background hero di halaman depan.
+              </div>
+
               <div class="border-t border-slate-100 pt-4 mt-2">
-                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero (Beranda Atas)</label>
+                <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Tipe Background Hero (Beranda Depan)</label>
                 <select id="set-hero-bg-type" class="w-full p-3 border rounded-xl bg-slate-50 text-sm font-bold text-brand-700">
                   <option value="gradient">Gradient Modern (Tiga Warna)</option>
                   <option value="solid">Solid (Satu Warna Saja)</option>
@@ -916,7 +931,7 @@
     <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4 mx-4 transform scale-95 transition-transform duration-300" id="custom-dialog-box">
       <div id="dialog-icon" class="text-5xl mb-2">⚠️</div>
       <h4 id="dialog-title" class="text-xl font-bold text-slate-900">Notifikasi Sistem</h4>
-      <p id="dialog-message" class="text-sm text-slate-600 leading-relaxed pb-4 whitespace-pre-line"></p>
+      <p id="dialog-message" class="text-sm text-slate-600 leading-relaxed pb-4 whitespace-pre-line break-words max-h-64 overflow-y-auto"></p>
       <div id="dialog-buttons" class="flex gap-3 justify-center pt-2 border-t border-slate-50">
         <!-- Buttons injected dynamically -->
       </div>
@@ -1116,7 +1131,7 @@
         <span id="rec-discount">-Rp 0</span>
       </div>
       <div class="flex justify-between font-bold text-sm pt-1 border-t border-slate-200 mt-1">
-        <span>Jumlah Total Dibayarkan Lunas:</span>
+        <span>Jumlah Total Dibayarkan:</span>
         <span id="rec-total">Rp 0</span>
       </div>
       <div class="flex justify-between mt-1">
@@ -1160,7 +1175,11 @@
 
     let POS_CART = [];
 
-    // FIX TANGGAL LOKAL (WIB/WITA/WIT)
+    function formatRupiah(amount) {
+      return "Rp " + Math.round(amount).toLocaleString("id-ID");
+    }
+
+    // FIX ZONA WAKTU INDONESIA (WIB/WITA/WIT)
     function getLocalDateString(dateObj) {
         const yyyy = dateObj.getFullYear();
         const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -1175,10 +1194,7 @@
         return `${hh}:${min}:${sec}`;
     }
 
-    function formatRupiah(amount) {
-      return "Rp " + Math.round(amount).toLocaleString("id-ID");
-    }
-
+    // Toggle Sidebar untuk Mobile
     function toggleSidebar() {
       const sidebar = document.getElementById("app-sidebar");
       const overlay = document.getElementById("sidebar-overlay");
@@ -1186,6 +1202,8 @@
       if(overlay) overlay.classList.toggle("hidden");
     }
 
+    // ==========================================
+    // MODULE B: NOTIFIKASI KUSTOM PENGGANTI ALERT() & CONFIRM()
     function showNotification(msg, title = "Informasi Sistem", icon = "💡") {
       const modal = document.getElementById("custom-dialog");
       const box = document.getElementById("custom-dialog-box");
@@ -1239,6 +1257,26 @@
       setTimeout(() => { toast.classList.add("translate-y-24", "opacity-0"); }, 3000);
     }
 
+    // Fungsi Render Icon Logo Super Bersih Tanpa Box Background
+    function renderBrandIcon(val, elId) {
+      const el = document.getElementById(elId);
+      if(!el) return;
+      
+      // Reset total: Pastikan background dan shadow musnah
+      el.style.backgroundColor = "transparent";
+      el.style.boxShadow = "none";
+      el.classList.remove('bg-brand-500', 'text-white', 'shadow-lg', 'border', 'border-brand-400', 'bg-white', 'shadow-none');
+      el.classList.add('bg-transparent', 'shadow-none');
+
+      if(val && (val.startsWith("http://") || val.startsWith("https://") || val.startsWith("data:"))) {
+        el.innerHTML = `<img src="${val}" class="h-full w-full object-contain" onerror="this.outerHTML='🧼'" />`;
+      } else {
+        el.innerHTML = val || "🧼";
+      }
+    }
+
+    // ==========================================
+    // MODULE C: INITIAL DUMMY DATA & API WRAPPER
     const INITIAL_DUMMY_DATA = {
       settings: { 
         store_name: "iMersLonry", store_address: "Jl. Kelembutan Premium No. 123", store_phone: "081234567890", receipt_footer: "Terima kasih telah mempercayakan pakaian Anda di iMersLonry!", 
@@ -1299,10 +1337,10 @@
         const data = await response.json();
         document.getElementById("sync-status").innerText = "Cloud Online Synced 🟢";
         
-        // POP-UP NOTIF WA LEBIH JELAS
+        // MENAMPILKAN POP UP ERROR WA DARI GATEWAY DENGAN JELAS
         if(data.wa_info) {
            if(data.wa_info.success) {
-               showNotification("Pesan WhatsApp sukses diluncurkan ke HP Pelanggan!", "WA Terkirim 🚀", "✅");
+               showNotification("Pesan WhatsApp sukses diluncurkan ke HP Pelanggan!\n\nLog: " + (data.wa_info.response || "Terkirim"), "WA Terkirim 🚀", "✅");
            } else {
                showNotification("Pesan Ditolak Gateway:\n\n" + (data.wa_info.message || data.wa_info.error || "Nomor/Token Tidak Valid"), "Gagal Kirim WA", "⚠️");
            }
@@ -1371,21 +1409,6 @@
       if (res.success) {
         closeNotification();
         showNotification("Salinan file rekap data sukses dimasukkan di akar Google Drive admin.", "Backup 100% Selesai", "💾");
-      }
-    }
-
-    function renderBrandIcon(val, elId) {
-      const el = document.getElementById(elId);
-      if(!el) return;
-      el.style.backgroundColor = "transparent";
-      el.style.boxShadow = "none";
-      el.classList.remove('bg-brand-500', 'text-white', 'shadow-lg', 'border', 'border-brand-400', 'bg-white', 'shadow-none');
-      el.classList.add('bg-transparent', 'shadow-none');
-
-      if(val && (val.startsWith("http://") || val.startsWith("https://") || val.startsWith("data:"))) {
-        el.innerHTML = `<img src="${val}" class="h-full w-full object-contain" onerror="this.outerHTML='🧼'" />`;
-      } else {
-        el.innerHTML = val || "🧼";
       }
     }
 
@@ -1719,14 +1742,15 @@
         return t.outlet_id === u.outlet_id;
       });
 
+      // Fix Timezone Indonesia untuk Hari Ini
       const todayStr = getLocalDateString(new Date()); 
       const todayTxs = transactions.filter(t => t.created_at.startsWith(todayStr));
 
-      // Omset (Hanya uang CASH-IN dari Lunas / DP)
+      // Omset (Hanya Hitung Uang CASH-IN yang diterima dari status Lunas & DP)
       const totalRevenueToday = todayTxs.reduce((sum, t) => sum + Number(t.paid || 0), 0);
       const allTimeRevenue = transactions.reduce((sum, t) => sum + Number(t.paid || 0), 0);
       
-      // Piutang (Sisa tagihan yang belum dibayar pelanggan)
+      // Piutang (Sisa tagihan pelanggan yang masih nunggak / belum dilunasin penuh)
       const totalPiutang = transactions.reduce((sum, t) => {
         const bill = Number(t.total || 0);
         const paid = Number(t.paid || 0);
@@ -1873,7 +1897,7 @@
 
       const total = Math.max(0, subtotal - discount);
       
-      // Auto adjust if Lunas is selected
+      // Auto adjust uang diterima jika status dirubah jadi Lunas / Belum Bayar
       const payStatus = document.getElementById("tx-payment-status").value;
       if (payStatus === "Lunas") {
          paid = total;
@@ -1924,6 +1948,7 @@
       const invoiceCode = "INV-" + Math.floor(10000000 + Math.random() * 90000000);
       const newTxId = "TX-" + Math.floor(1000 + Math.random() * 9000);
 
+      // FIX TANGGAL MENGIKUTI WAKTU LOKAL INDONESIA
       const todayObj = new Date();
       const dateString = getLocalDateString(todayObj) + " " + getLocalTimeString(todayObj);
       const estDate = new Date(); estDate.setDate(todayObj.getDate() + maxEstDays);
@@ -1960,6 +1985,7 @@
       
       showToast("Sedang Memproses...", "Menyimpan nota & mempersiapkan dialog struk...", "⏳");
       
+      // JEDA SAKTI BIAR WA GAK KETELEN SAAT NGE-PRINT
       triggerDirectPrintReceiptMulti(newTx, payloadItems, () => {
         apiRequest("createTransaction", { transaction: newTx, items: payloadItems, history: newHist, auto_wa: autoWa });
       });
@@ -2314,7 +2340,7 @@
               <thead>
                 <tr class="bg-slate-100 text-slate-500 text-xs uppercase font-bold border-b border-slate-200">
                   <th class="py-3 px-4">Nama Cabang</th>
-                  <th class="py-3 px-4 text-right">Total Pendapatan</th>
+                  <th class="py-3 px-4 text-right">Total Pendapatan (Lunas)</th>
                   <th class="py-3 px-4 text-right">Total Pengeluaran</th>
                   <th class="py-3 px-4 text-right">Laba Bersih (Profit)</th>
                 </tr>
@@ -2329,6 +2355,7 @@
              const oTxs = filteredTxs.filter(t => t.outlet_id === out.id);
              const oExps = filteredExps.filter(e => e.outlet_id === out.id);
              
+             // Uang riil yang masuk: Total kolom 'paid' dari tx Lunas & DP
              const oRev = oTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? Number(t.paid || 0) : 0), 0);
              const oExp = oExps.reduce((sum, e) => sum + Number(e.amount || 0), 0);
              const oProfit = oRev - oExp;
@@ -2369,8 +2396,6 @@
          filteredTxs = filteredTxs.filter(t => t.outlet_id === outletSel);
          filteredExps = filteredExps.filter(e => e.outlet_id === outletSel);
 
-         const totalRev = filteredTxs.reduce((sum, t) => sum + (t.status_payment === "Lunas" || t.status_payment === "DP" ? Number(t.paid || 0) : 0), 0);
-         
          let revGroups = {};
          let calcRev = 0; 
          
@@ -2438,11 +2463,11 @@
          contentDiv.innerHTML = `
             <div class="space-y-8 max-w-3xl mx-auto">
                 <div>
-                    <h4 class="font-bold text-brand-600 uppercase tracking-wide border-b-2 border-brand-200 pb-2 mb-4">A. Pemasukan (Omset)</h4>
+                    <h4 class="font-bold text-brand-600 uppercase tracking-wide border-b-2 border-brand-200 pb-2 mb-4">A. Pemasukan Uang Riil (Lunas/DP)</h4>
                     <table class="w-full text-sm">
                         ${revTableRows}
                         <tr class="bg-brand-50 font-bold border-t border-brand-200">
-                            <td class="py-3 px-4 text-brand-800 uppercase">Total Pemasukan Layanan</td>
+                            <td class="py-3 px-4 text-brand-800 uppercase">Total Uang Masuk</td>
                             <td class="py-3 px-4 text-right text-brand-600 text-base">${formatRupiah(calcRev)}</td>
                         </tr>
                     </table>
@@ -2622,6 +2647,7 @@
       t.status_order = orderStatus; 
       t.status_payment = payStatus;
       
+      // Auto adjust kalau dari ngutang jadi lunas
       if (payStatus === "Lunas") {
           t.paid = t.total;
           t.change = 0;
@@ -2691,7 +2717,7 @@
         recSec.classList.add("hidden"); 
         
         if(typeof afterPrintCallback === "function") {
-            // Beri jeda 1.5 detik penuh setelah dialog print hilang agar WA mulus
+            // Beri jeda 1.5 detik penuh setelah dialog print hilang agar browser tidak nyekik koneksi WA
             setTimeout(afterPrintCallback, 1500);
         }
       }, 500);
