@@ -1337,12 +1337,21 @@
         const data = await response.json();
         document.getElementById("sync-status").innerText = "Cloud Online Synced 🟢";
         
-        // MENAMPILKAN POP UP ERROR WA DARI GATEWAY DENGAN JELAS
+        // PENCEGAH MUNTAHAN CSS/HTML ERROR DARI WAPLUS ATAU FONNTE DOWN
         if(data.wa_info) {
            if(data.wa_info.success) {
                showNotification("Pesan WhatsApp sukses diluncurkan ke HP Pelanggan!\n\nLog: " + (data.wa_info.response || "Terkirim"), "WA Terkirim 🚀", "✅");
            } else {
-               showNotification("Pesan Ditolak Gateway:\n\n" + (data.wa_info.message || data.wa_info.error || "Nomor/Token Tidak Valid"), "Gagal Kirim WA", "⚠️");
+               let errorRaw = data.wa_info.message || data.wa_info.error || "Nomor/Token Tidak Valid";
+               
+               // Filter Anti Teks HTML: Kalau server WA ngasih error 404 berwujud HTML, potong dan jelaskan.
+               if(errorRaw.includes("<!DOCTYPE") || errorRaw.includes("<html") || errorRaw.includes("404")) {
+                   errorRaw = "Server API Vendor (WAPlus) sedang mati, Error 404 Not Found, atau alamat API mereka telah berubah.\n\nSaran: Masuk ke menu Pengaturan Sistem, lalu ganti Penyedia Vendor ke 'Fonnte' yang lebih stabil.";
+               } else if (errorRaw.length > 250) {
+                   errorRaw = errorRaw.substring(0, 250) + "... (Pesan error terlalu panjang)";
+               }
+               
+               showNotification("Laporan Kegagalan Gateway:\n\n" + errorRaw, "Gagal Kirim WA", "⚠️");
            }
         }
         
